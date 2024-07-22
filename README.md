@@ -1,3 +1,6 @@
+## THIS IS A FORK
+please visit the original project and support it
+
 # ESP8266 Deauther
 
 <img src='https://deauther.com/img/logo.png' alt='Deauther Logo' width='200' />
