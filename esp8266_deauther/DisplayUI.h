@@ -78,6 +78,7 @@ enum class DISPLAY_MODE { OFF,
                           INTRO,
                           CLOCK,
                           CLOCK_DISPLAY,
+                          CRYPTIC_CLOCK,
                           RESETTING };
 
 class DisplayUI {
