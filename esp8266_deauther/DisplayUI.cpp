@@ -616,6 +616,7 @@ void DisplayUI::setupButtons() {
 
                 case DISPLAY_MODE::CLOCK:
                 case DISPLAY_MODE::CLOCK_DISPLAY:
+                case DISPLAY_MODE::CRYPTIC_CLOCK:
                     mode = DISPLAY_MODE::MENU;
                     display.setFont(DejaVu_Sans_Mono_12);
                     display.setTextAlignment(TEXT_ALIGN_LEFT);
