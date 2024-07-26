@@ -839,7 +839,7 @@ void DisplayUI::drawClock() {
 }
 
 void DisplayUI::drawCrypticClock() {
-    String clockTime = String(clockHour);
+    String clockTime = "0123456"; // String(clockHour);
 
     clockTime += ':';
     if (clockMinute < 10) clockTime += '0';
