@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
+lib = File.expand_path('../../source', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+
 require 'simplecov'
 SimpleCov.start 'rails'
 
 require 'pry-nav'
+require 'font_helper'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
