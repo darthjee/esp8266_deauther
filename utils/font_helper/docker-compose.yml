@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  font_helper:
+    container_name: font_helper
+    image: font_helper
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: /bin/bash
+    volumes:
+      - ./source:/home/app/app
