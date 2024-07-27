@@ -1,6 +1,6 @@
 version: "3.9"
 services:
-  font_helper:
+  base: &base
     container_name: font_helper
     image: font_helper
     build:
@@ -9,3 +9,16 @@ services:
     command: /bin/bash
     volumes:
       - ./source:/home/app/app
+
+  base_build:
+    <<: *base
+    command: echo done
+
+  font_helper:
+    <<: *base
+    depends_on: [base_build]
+
+  font_helper_tests:
+    <<: *base
+    depends_on: [base_build]
+    command: /bin/bash
