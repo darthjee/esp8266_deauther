@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe FontHelper::Font do
-  subject(:font) { described_class.new(width, height, characters) }
+  subject(:font) { described_class.new(width:, height:, characters:) }
 
   let(:height) { Random.rand(10..30) }
   let(:width) { (height * 1.5).to_f }

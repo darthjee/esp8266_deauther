@@ -6,7 +6,7 @@ class FontHelper
 
     delegate :<<, to: :characters
 
-    def initialize(width, height, characters = nil)
+    def initialize(width:, height:, characters: nil)
       @width = width
       @height = height
       @characters = characters.to_h do |character|
