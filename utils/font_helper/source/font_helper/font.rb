@@ -7,11 +7,17 @@ class FontHelper
     def initialize(width, height, characters = nil)
       @width = width
       @height = height
-      @characters = characters
+      @characters = characters.map do |character|
+        [character.code, character]
+      end.to_h
+    end
+    
+    def <<(character)
+      characters[character.code] = character
     end
 
     def characters
-      @character ||= []
+      @characters ||= {}
     end
 
     def quantity

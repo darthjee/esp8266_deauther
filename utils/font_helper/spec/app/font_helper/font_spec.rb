@@ -9,8 +9,33 @@ describe FontHelper::Font do
   let(:character) { build(:character) }
 
   describe "#<<" do
-    it do
-      expect { font << character }.to change(font, :quantity)
+    context 'when there are not characters' do
+      let(:characters) { [] }
+
+      it do
+        expect { font << character }
+          .to change(font, :quantity)
+          .from(0).to(1)
+      end
+    end
+
+    context 'where there is already a character' do
+      let(:character) { build(:character, code: 50) }
+
+      it do
+        expect { font << character }
+          .to change(font, :quantity)
+          .from(1).to(2)
+      end
+    end
+
+    context 'where there is already the same character' do
+      let(:character) { build(:character) }
+
+      it do
+        expect { font << character }
+          .not_to change(font, :quantity)
+      end
     end
   end
 end
