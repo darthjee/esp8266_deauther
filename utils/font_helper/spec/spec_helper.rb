@@ -7,9 +7,10 @@ require 'simplecov'
 SimpleCov.start 'rails'
 
 require 'pry-nav'
+require 'factory_bot'
 require 'font_helper'
 
-Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[File.expand_path('spec/support/**/*.rb')].each { |f| require f }
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
