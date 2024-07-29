@@ -19,7 +19,7 @@ describe FontHelper::Font do
       end
     end
 
-    context 'where there is already a character' do
+    context 'when there is already a character' do
       let(:character) { build(:character, code: 50) }
 
       it do
@@ -29,7 +29,7 @@ describe FontHelper::Font do
       end
     end
 
-    context 'where there is already the same character' do
+    context 'when there is already the same character' do
       let(:character) { build(:character) }
 
       it do
