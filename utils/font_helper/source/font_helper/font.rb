@@ -9,9 +9,9 @@ class FontHelper
     def initialize(width, height, characters = nil)
       @width = width
       @height = height
-      @characters = characters.map do |character|
+      @characters = characters.to_h do |character|
         [character.code, character]
-      end.to_h
+      end
     end
 
     def <<(character)
