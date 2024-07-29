@@ -5,5 +5,9 @@ class FontHelper
     def initialize(code)
       @code = code
     end
+
+    def character
+      code.chr
+    end
   end
 end
