@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FontHelper
   class Character
     attr_reader :code

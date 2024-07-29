@@ -6,20 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 7
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: always, always_true, never
-Style/FrozenStringLiteralComment:
-  Exclude:
-    - 'Gemfile'
-    - 'source/font_helper.rb'
-    - 'source/font_helper/character.rb'
-    - 'source/font_helper/font.rb'
-    - 'spec/app/font_helper/character_spec.rb'
-    - 'spec/app/font_helper/font_spec.rb'
-    - 'spec/app/font_helper_spec.rb'
-
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Style/MapToHash:

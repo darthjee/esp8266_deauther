@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FontHelper
   class Font
     attr_reader :width, :height
