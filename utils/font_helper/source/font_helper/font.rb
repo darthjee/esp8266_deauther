@@ -11,7 +11,7 @@ class FontHelper
         [character.code, character]
       end.to_h
     end
-    
+
     def <<(character)
       characters[character.code] = character
     end
