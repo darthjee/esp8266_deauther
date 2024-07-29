@@ -6,8 +6,8 @@ FactoryBot.define do
       FontHelper::Character.new(code)
     end
 
-   transient do
-     code { 48 }
-   end
+    transient do
+      code { 48 }
+    end
   end
 end

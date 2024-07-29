@@ -8,14 +8,6 @@
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: normal, indented_internal_methods
-Layout/IndentationConsistency:
-  Exclude:
-    - 'spec/support/factories/character.rb'
-
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: AllowInHeredoc.
 Layout/TrailingWhitespace:
   Exclude:
