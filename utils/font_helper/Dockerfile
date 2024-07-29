@@ -10,7 +10,7 @@ COPY --chown=app:app Gemfile* /home/app/app/
 
 RUN gem update --system; \
     gem install bundler:2.5.16 --default; \
-    chown app.app /usr/local/bundle -R; \
-    bundle install
+    bundle install ; \
+    chown app.app /usr/local/bundle -R
 
 USER app

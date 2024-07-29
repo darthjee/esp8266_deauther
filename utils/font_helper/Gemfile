@@ -5,12 +5,13 @@ gem 'bundler',       '2.5.16'
 gem 'rake',          '13.1.0'
 
 group :development, :test do
-  gem 'pry',        '0.14.2'
-  gem 'pry-nav',    '1.0.0'
-  gem 'simplecov',  '0.22.0'
-  gem 'rubycritic', '4.9.1'
-  gem 'yard',       '0.9.36'
-  gem 'yardstick',  '0.9.9'
+  gem 'pry',         '0.14.2'
+  gem 'pry-nav',     '1.0.0'
+  gem 'simplecov',   '0.22.0'
+  gem 'rubycritic',  '4.9.1'
+  gem 'yard',        '0.9.36'
+  gem 'yardstick',   '0.9.9'
+  gem 'factory_bot', '6.2.1'
 end
 
 group :development do
