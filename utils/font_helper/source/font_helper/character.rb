@@ -2,7 +2,11 @@
 
 class FontHelper
   class Character
+    include Sinclair::Comparable
+
     attr_reader :code
+
+    comparable_by :code
 
     def initialize(code:)
       @code = code
