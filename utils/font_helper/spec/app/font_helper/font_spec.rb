@@ -10,7 +10,7 @@ describe FontHelper::Font do
 
   describe "#<<" do
     it do
-      expect { font << character }.to change(font, :size)
+      expect { font << character }.to change(font, :quantity)
     end
   end
 end

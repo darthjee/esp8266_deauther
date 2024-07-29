@@ -2,7 +2,7 @@ class FontHelper
   class Font
     attr_reader :width, :height
 
-    delegate :<<, :size, to: :characters
+    delegate :<<, to: :characters
 
     def initialize(width, height, characters = nil)
       @width = width
@@ -12,6 +12,10 @@ class FontHelper
 
     def characters
       @character ||= []
+    end
+
+    def quantity
+      characters.size
     end
   end
 end
