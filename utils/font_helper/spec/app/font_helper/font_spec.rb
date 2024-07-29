@@ -10,7 +10,7 @@ describe FontHelper::Font do
   let(:characters) { build_list(:character, 1) }
   let(:character) { build(:character) }
 
-  describe "#<<" do
+  describe '#<<' do
     context 'when there are not characters' do
       let(:characters) { [] }
 

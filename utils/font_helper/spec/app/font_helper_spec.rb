@@ -3,5 +3,5 @@
 require 'spec_helper'
 
 describe FontHelper do
-  xit "does domething"
+  xit 'does domething'
 end
