@@ -29,6 +29,12 @@ describe FontHelper::Font do
           .to change(font, :quantity)
           .from(1).to(2)
       end
+
+      it do
+        expect { font << character }
+          .to change(font, :quantity)
+          .from(1).to(2)
+      end
     end
 
     context 'when there is already the same character' do
@@ -37,6 +43,11 @@ describe FontHelper::Font do
       it do
         expect { font << character }
           .not_to change(font, :quantity)
+      end
+
+      it do
+        expect { font << character }
+          .to change { font.character(character.code) }
       end
     end
   end

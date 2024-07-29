@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe FontHelper::Character do
-  subject(:character) { described_class.new(code) }
+  subject(:character) { described_class.new(code:) }
 
   describe '#character' do
     context 'when code is a valid character' do

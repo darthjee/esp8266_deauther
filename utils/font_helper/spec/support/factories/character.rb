@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :character, class: FontHelper::Character do
     initialize_with do
-      FontHelper::Character.new(code)
+      FontHelper::Character.new(code:)
     end
 
     transient do

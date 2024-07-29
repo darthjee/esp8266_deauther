@@ -25,5 +25,9 @@ class FontHelper
     def quantity
       characters.size
     end
+
+    def character(code)
+      characters[code]
+    end
   end
 end

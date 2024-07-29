@@ -4,7 +4,7 @@ class FontHelper
   class Character
     attr_reader :code
 
-    def initialize(code)
+    def initialize(code:)
       @code = code
     end
 
