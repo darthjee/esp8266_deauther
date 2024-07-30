@@ -2,7 +2,11 @@
 
 class FontHelper
   class Font
+    include Sinclair::Comparable
+
     attr_reader :width, :height
+
+    comparable_by :width, :height
 
     delegate :<<, to: :characters
 
