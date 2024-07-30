@@ -47,7 +47,7 @@ describe FontHelper::Font do
 
       it do
         expect { font << character }
-          .to change { font.character(character.code) }
+          .to(change { font.character(character.code) })
       end
     end
   end

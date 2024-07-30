@@ -29,7 +29,7 @@ describe FontHelper::FontBuilder do
         .to be_a(FontHelper::Font)
     end
 
-    it "Returns Font with expected attributes" do
+    it 'Returns Font with expected attributes' do
       expect(described_class.build(*font_binary))
         .to eq(expected_font)
     end
