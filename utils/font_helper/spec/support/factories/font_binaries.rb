@@ -12,12 +12,12 @@ FactoryBot.define do
 
     transient do
       width { 24 }
-      height { 32 }
+      height { 28 }
       first_character { 48 }
       characters_count { 10 }
       
-      character_bytes { 4 }
-      character_width { 24 }
+      character_bytes { (height / 8.0).ceil }
+      character_width { width }
 
       characters_table do
         characters_count.times.map do |index|

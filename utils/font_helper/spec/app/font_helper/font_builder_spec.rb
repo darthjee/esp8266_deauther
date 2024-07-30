@@ -4,7 +4,7 @@ require 'spec_helper'
 
 describe FontHelper::FontBuilder do
   let(:width) { 24 }
-  let(:height) { 32 }
+  let(:height) { 28 }
   let(:first_character) { 48 }
   let(:character_bytes) { Random.rand(2..10) }
   let(:character_width) { Random.rand(10..30) }
