@@ -1,0 +1,24 @@
+version: "3.9"
+services:
+  base: &base
+    container_name: font_helper
+    image: font_helper
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: /bin/bash
+    volumes:
+      - ./:/home/app/app
+
+  base_build:
+    <<: *base
+    command: echo done
+
+  font_helper:
+    <<: *base
+    depends_on: [base_build]
+
+  font_helper_tests:
+    <<: *base
+    depends_on: [base_build]
+    command: /bin/bash

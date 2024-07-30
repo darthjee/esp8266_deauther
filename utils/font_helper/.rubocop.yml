@@ -1,0 +1,10 @@
+inherit_from: .rubocop_todo.yml
+
+require: rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 3.3
+  NewCops: enable
+
+Style/Documentation:
+  Enabled: false
