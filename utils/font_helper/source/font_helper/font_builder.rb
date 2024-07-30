@@ -1,6 +1,6 @@
 class FontHelper
-  class FontParser
-    attr_reader :strings
+  class FontBuilder
+    attr_reader :width, :height, :first_char, :char_count, :binaries
 
     class << self
       def build(*args)
@@ -8,8 +8,12 @@ class FontHelper
       end
     end
 
-    def initialize(width, height, binaries)
-      @strings = strings
+    def initialize(width, height, first_char, char_count, *binaries)
+      @width = width
+      @height = height
+      @first_char = first_char
+      @char_count = char_count
+      @binaries = binaries
     end
 
     def build
