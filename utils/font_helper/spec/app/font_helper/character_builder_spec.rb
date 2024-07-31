@@ -6,7 +6,7 @@ describe FontHelper::CharacterBuilder do
   let(:height) { 32 }
   let(:width) { 24 }
   let(:code) { 48 }
-  let(:binary) { bytes.times.map { Random.rand(256) } }
+  let(:binary) { build(:binary, size: bytes) }
   let(:binaries) { binary }
   let(:start_position) { 0 }
   let(:bytes) { 2 }
@@ -36,9 +36,9 @@ describe FontHelper::CharacterBuilder do
   context 'when binnaries has onther characters information' do
     let(:start_position) { Random.rand(1..10) }
     let(:binaries) do
-      start_position.times.map { Random.rand(256) } +
+      build(:binary, size: start_position) +
         binary +
-        Random.rand(1..10).times.map { Random.rand(256) }
+        build(:binary)
     end
 
     it do
