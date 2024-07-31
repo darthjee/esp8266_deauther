@@ -7,4 +7,5 @@ class FontHelper
   autoload :Character, 'font_helper/character'
 
   autoload :FontBuilder, 'font_helper/font_builder'
+  autoload :CharacterBuilder, 'font_helper/character_builder'
 end
