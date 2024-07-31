@@ -23,8 +23,12 @@ class FontHelper
 
     private
 
+    def start_position
+      @start_position ||= first_byte_1 * 256 + first_byte_2
+    end
+
     def binary
-      binaries
+      binaries[start_position, bytes]
     end
   end
 end
