@@ -34,7 +34,7 @@ describe FontHelper::FontBuilder do
         .to eq(expected_font)
     end
 
-    it "creates the expected number of characters" do
+    it 'creates the expected number of characters' do
       expect(described_class.build(*font_binary).characters.size)
         .to eq(characters_count)
     end
