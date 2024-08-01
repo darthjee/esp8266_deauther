@@ -11,7 +11,7 @@ FactoryBot.define do
     transient do
       first_byte_1 { start_position / 256 }
       first_byte_2 { start_position % 256 }
-      bytes  { Random.rand(max_bytes) + 1 }
+      bytes { Random.rand(max_bytes) + 1 }
       width { 24 }
       start_position { 0 }
 

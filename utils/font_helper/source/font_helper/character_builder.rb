@@ -13,7 +13,7 @@ class FontHelper
     def initialize(height, code, character_information, *binaries)
       @height = height
       @code = code
-      (@first_byte_1, @first_byte_2, @bytes,@width) = character_information 
+      (@first_byte_1, @first_byte_2, @bytes, @width) = character_information
       @binaries = binaries
     end
 
@@ -24,7 +24,7 @@ class FontHelper
     private
 
     def start_position
-      @start_position ||= first_byte_1 * 256 + first_byte_2
+      @start_position ||= (first_byte_1 * 256) + first_byte_2
     end
 
     def binary
