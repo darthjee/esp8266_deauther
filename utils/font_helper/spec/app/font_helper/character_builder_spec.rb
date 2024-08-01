@@ -6,15 +6,14 @@ describe FontHelper::CharacterBuilder do
   let(:height) { 32 }
   let(:width) { 24 }
   let(:code) { 48 }
+
   let(:binary) { build(:binary, size: bytes) }
   let(:binaries) { binary }
   let(:start_position) { 0 }
-  let(:bytes) { 2 }
-  let(:first_byte_1) { start_position / 256 }
-  let(:first_byte_2) { start_position % 256 }
 
+  let(:bytes) { character_information[2] }
   let(:character_information) do
-    [first_byte_1, first_byte_2, bytes, width]
+    build(:character_binary, height:, start_position:)
   end
 
   let(:expected_character) do
