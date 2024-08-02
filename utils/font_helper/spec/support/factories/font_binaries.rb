@@ -27,7 +27,7 @@ FactoryBot.define do
       end
 
       characters_binaries do
-        (characters_count * character_bytes).times.map { 100 }
+        (characters_count * character_bytes).times.map { Random.rand(256) }
       end
     end
   end
