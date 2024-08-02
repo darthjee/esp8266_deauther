@@ -69,4 +69,23 @@ describe FontHelper::FontBuilder do
         .to eq(characters_count)
     end
   end
+
+  context 'when there are several characters' do
+    let(:characters_count) { Random.rand(2..10) }
+
+    it do
+      expect(described_class.build(*font_binary))
+        .to be_a(FontHelper::Font)
+    end
+
+    it 'Returns Font with expected attributes' do
+      expect(described_class.build(*font_binary))
+        .to eq(expected_font)
+    end
+
+    it 'creates the expected number of characters' do
+      expect(described_class.build(*font_binary).characters.size)
+        .to eq(characters_count)
+    end
+  end
 end
