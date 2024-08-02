@@ -13,12 +13,17 @@ class FontHelper
     end
 
     def read
+      file.read
+        .gsub(/\/\/.*$/, "")
+        .gsub(/\s/, "")
+        .split(",")
+        .map { |hex| hex.to_i(16) }
     end
 
     private
 
     def file
-      @file ||= File.open(file, "r")
+      @file ||= File.open(path, "r")
     end
   end
 end
