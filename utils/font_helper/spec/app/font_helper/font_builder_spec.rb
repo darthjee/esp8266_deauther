@@ -21,7 +21,7 @@ describe FontHelper::FontBuilder do
     FontHelper::Font.new(width:, height:, characters: expected_characters)
   end
   let(:expected_charactes_binnaries) do
-    index = 4 + characters_count * 4
+    index = 4 + (characters_count * 4)
     font_binary[index..]
   end
   let(:expected_characters) do

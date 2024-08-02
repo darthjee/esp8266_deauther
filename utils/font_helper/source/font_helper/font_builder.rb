@@ -19,7 +19,7 @@ class FontHelper
     end
 
     def build
-      font.tap do |f|
+      font.tap do
         attach_characters
       end
     end
