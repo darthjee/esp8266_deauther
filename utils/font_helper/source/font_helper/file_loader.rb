@@ -1,17 +1,24 @@
 # frozen_string_literal: true
 
 class FontHelper
-  class FontLoader
+  class FileLoader
     attr_reader :path
+
+    def self.read(path)
+      new(path).read
+    end
 
     def initialize(path)
       @path = path
     end
 
+    def read
+    end
+
     private
 
-    def file_loader
-      FileLoader.new(file)
+    def file
+      @file ||= File.open(file, "r")
     end
   end
 end
