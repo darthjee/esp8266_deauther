@@ -1,0 +1,2 @@
+- command: Open
+  arguments: ['spec/support/fixtures/font.txt']
