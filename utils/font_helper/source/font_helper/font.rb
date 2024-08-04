@@ -43,5 +43,12 @@ class FontHelper
     def character(code)
       characters[code] || Character.new(width:, code:)
     end
+
+    def each
+      characters.keys.sort.each do |code|
+        char = character(code)
+        yield(code, char)
+      end
+    end
   end
 end

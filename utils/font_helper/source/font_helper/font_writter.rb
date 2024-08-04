@@ -40,8 +40,7 @@ class FontHelper
       file.write("  // start point (1), start point (2), data size, block width\n")
 
       position = 0
-      characters.keys.sort.each do |code|
-        character = font.character(code)
+      font.each do |code, character|
         CharacterWritter.write(character, position, file)
         position += character.size
       end
@@ -50,8 +49,7 @@ class FontHelper
     def write_characters
       file.write("\n  // Font Data:\n")
 
-      characters.keys.sort.each do |code|
-        character = font.character(code)
+      font.each do |code, character|
         last = code == last_character
         CharacterBinaryWritter.write(character:, last:, file:)
       end
