@@ -14,6 +14,10 @@ class FontHelper
       @binary = binary
     end
 
+    def empty?
+      binary.nil?
+    end
+
     def character
       code.chr
     end

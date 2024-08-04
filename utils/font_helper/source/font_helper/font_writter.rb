@@ -4,7 +4,8 @@ class FontHelper
   class FontWritter
     attr_reader :font, :path
 
-    delegate :width, :height, :first_character, :quantity, to: :font
+    delegate :width, :height, :first_character, :quantity,
+      :characters, to: :font
 
     ATTRIBUTES = %i[width height first_character quantity]
     LABELS = {
@@ -27,12 +28,20 @@ class FontHelper
       ATTRIBUTES.each { |attr| write_attr(attr) }
 
       file.write("\n  // Jump Table:\n")
-      file.write("  // start point (1), start point (2), data size, block width")
+      file.write("  // start point (1), start point (2), data size, block width\n")
+      write_characters
 
       file.close
     end
 
     private
+
+    def write_characters
+      characters.keys.sort.each do |code|
+        character = font.character(code)
+        CharacterWritter.write(character, file)
+      end
+    end
 
     def write_attr(attribute)
       value = public_send(attribute)
