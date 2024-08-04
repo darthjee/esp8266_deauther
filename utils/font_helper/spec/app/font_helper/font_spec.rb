@@ -75,6 +75,32 @@ describe FontHelper::Font do
   end
 
   describe '#size' do
-    xit 'does something'
+    context 'when characters are continuous' do
+      let(:characters) do
+        [
+          build(:character, code: 51),
+          build(:character, code: 48),
+          build(:character, code: 49),
+          build(:character, code: 50),
+        ]
+      end
+
+      it 'returns the size of the array' do
+        expect(font.size).to eq(4)
+      end
+    end
+
+    context 'when characters are not continuous' do
+      let(:characters) do
+        [
+          build(:character, code: 51),
+          build(:character, code: 48),
+        ]
+      end
+
+      it 'returns the size of the limits' do
+        expect(font.size).to eq(4)
+      end
+    end
   end
 end
