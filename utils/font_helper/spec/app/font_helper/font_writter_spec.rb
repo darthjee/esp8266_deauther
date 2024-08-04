@@ -12,7 +12,12 @@ describe FontHelper::FontWritter do
     FontHelper::Font.new(width: 24, height: 28, characters:)
   end
   let(:characters) do
-    []
+    [
+      FontHelper::Character.new(code: 32, width: 7, binary: nil),
+      FontHelper::Character.new(code: 33, width: 7, binary: [170]),
+      FontHelper::Character.new(code: 34, width: 7, binary: [221, 218]),
+      FontHelper::Character.new(code: 35, width: 7i, binary: [202])
+    ]
   end
 
   describe '.write' do

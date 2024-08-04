@@ -6,7 +6,7 @@ class FontHelper
 
     delegate :width, :height, :first_character, to: :font
 
-    ATTRIBUTES = %i[width height]
+    ATTRIBUTES = %i[width height first_character]
     LABELS = {
       width: "Width",
       height: "Height",
