@@ -26,6 +26,10 @@ class FontHelper
       characters.keys.min
     end
 
+    def last_character
+      characters.keys.max
+    end
+
     def characters
       @characters ||= {}
     end
