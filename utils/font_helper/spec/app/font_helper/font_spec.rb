@@ -10,6 +10,27 @@ describe FontHelper::Font do
   let(:characters) { build_list(:character, 1) }
   let(:character) { build(:character) }
 
+  describe '#character' do
+    let(:characters) { [character] }
+
+    context 'when the character is found' do
+      let(:code) { character.code }
+
+      it 'returns the character' do
+        expect(font.character(code)).to eq(character)
+      end
+    end
+
+    context 'when the character is not found' do
+      let(:code) { character.code + 1 }
+
+      it 'returns an empty character' do
+        expect(font.character(code))
+          .to eq(FontHelper::Character.new(width:, code:))
+      end
+    end
+  end
+
   describe '#<<' do
     context 'when there are not characters' do
       let(:characters) { [] }

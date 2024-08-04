@@ -41,7 +41,7 @@ class FontHelper
     end
 
     def character(code)
-      characters[code]
+      characters[code] || Character.new(width:, code:)
     end
   end
 end

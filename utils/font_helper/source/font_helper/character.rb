@@ -10,7 +10,7 @@ class FontHelper
 
     delegate :size, :empty?, to: :binary
 
-    def initialize(code:, width:, binary:)
+    def initialize(code:, width:, binary: nil)
       @code = code
       @width = width
       @binary = binary
