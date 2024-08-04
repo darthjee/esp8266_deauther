@@ -102,5 +102,13 @@ describe FontHelper::Font do
         expect(font.size).to eq(4)
       end
     end
+
+    context 'when there are no characters' do
+      let(:characters) { [] }
+
+      it 'returns the size of the limits' do
+        expect(font.size).to eq(0)
+      end
+    end
   end
 end
