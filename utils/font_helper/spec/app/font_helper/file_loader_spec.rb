@@ -8,7 +8,7 @@ describe FontHelper::FileLoader do
   let(:path) { "spec/support/fixtures/font.txt" }
   let(:expected_data) do
     [
-      24,28,32,3,
+      24,28,32,4,
       255,255,0,7,
       0,0,1,7,
       0,1,2,7,
