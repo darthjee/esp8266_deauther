@@ -17,14 +17,20 @@ class FontHelper
     end
 
     def write
-      file.write("  #{definition}\n")
+      file.write("  #{definition},  // #{code}:#{position}\n")
     end
 
     private
 
+    def position
+      return 65535 if empty?
+      @position
+    end
+
     def definition
-      return "0xFF, 0xFF, 0x00, 0x07,  // #{code}:65535" if empty?
-      "#{definition_binary},  // #{code}:#{position}"
+      definition_binary.map do |value|
+        format('0x%02X', value)
+      end.join(", ")
     end
 
     def definition_binary
@@ -33,9 +39,7 @@ class FontHelper
         start_byte_2,
         size,
         width
-      ].map do |value|
-        format('0x%02X', value)
-      end.join(", ")
+      ]
     end
 
     def start_byte_1
