@@ -2,7 +2,7 @@
 
 class FontHelper
   class CharacterWritter
-    attr_reader :character, :position, :file
+    attr_reader :character, :file
 
     delegate :empty?, :code, :size, :width, to: :character
 
@@ -23,14 +23,15 @@ class FontHelper
     private
 
     def position
-      return 65535 if empty?
+      return 65_535 if empty?
+
       @position
     end
 
     def definition
       definition_binary.map do |value|
         format('0x%02X', value)
-      end.join(", ")
+      end.join(', ')
     end
 
     def definition_binary

@@ -26,7 +26,8 @@ class FontHelper
 
     def separator
       return if last
-      ","
+
+      ','
     end
 
     def binaries
