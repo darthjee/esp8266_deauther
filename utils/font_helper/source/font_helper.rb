@@ -13,4 +13,5 @@ class FontHelper
   autoload :FileLoader, 'font_helper/file_loader'
 
   autoload :Script, 'font_helper/script'
+  autoload :Command, 'font_helper/command'
 end

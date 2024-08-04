@@ -13,7 +13,9 @@ class FontHelper
     private
 
     def read_commands
-      YAML.load(file_content)
+      YAML.load(file_content).map(&:symbolize_keys).map do |hash|
+        Command.for(**hash)
+      end
     end
 
     def file_content

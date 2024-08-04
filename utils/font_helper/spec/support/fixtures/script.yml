@@ -1,2 +1,2 @@
-- Command: Open
-  Arguments: ['spec/support/fixtures/font.txt']
+- command: Open
+  arguments: ['spec/support/fixtures/font.txt']

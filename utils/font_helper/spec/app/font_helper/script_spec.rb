@@ -11,5 +11,9 @@ describe FontHelper::Script do
     it do
       expect(script.commands).to be_a(Array)
     end
+
+    it do
+      expect(script.commands).to all(be_a(FontHelper::Command))
+    end
   end
 end
