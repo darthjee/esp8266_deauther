@@ -26,6 +26,9 @@ class FontHelper
     def write
       ATTRIBUTES.each { |attr| write_attr(attr) }
 
+      file.write("\n  // Jump Table:\n")
+      file.write("  // start point (1), start point (2), data size, block width")
+
       file.close
     end
 
