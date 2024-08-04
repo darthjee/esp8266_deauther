@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FontHelper
   class Command
     class Open < Command
@@ -7,6 +9,7 @@ class FontHelper
 
       def initialize(path)
         @path = path
+        super
       end
 
       def run(context)

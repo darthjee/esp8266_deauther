@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FontHelper
   class Command
     include Sinclair::Comparable
@@ -5,7 +7,7 @@ class FontHelper
     autoload :Open, 'font_helper/command/open'
 
     def self.for(command:, arguments:)
-      klass = self.const_get(command)
+      klass = const_get(command)
       klass.new(*arguments)
     end
 
