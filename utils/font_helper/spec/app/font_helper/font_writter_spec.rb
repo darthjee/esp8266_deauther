@@ -6,7 +6,7 @@ describe FontHelper::FontWritter do
   let(:fixture_path) { 'spec/support/fixtures/font.txt' }
   let(:expected)     { File.read(fixture_path) }
   let(:tmp_path)     { "/tmp/font_#{SecureRandom.hex(32)}.txt" }
-  let(:result)       { File.read(tmp_path) } 
+  let(:result)       { File.read(tmp_path) }
 
   let(:font) do
     FontHelper::Font.new(width: 24, height: 28, characters:)

@@ -5,15 +5,15 @@ class FontHelper
     attr_reader :font, :path
 
     delegate :width, :height, :first_character, :quantity,
-      :characters, to: :font
+             :characters, to: :font
 
-    ATTRIBUTES = %i[width height first_character quantity]
+    ATTRIBUTES = %i[width height first_character quantity].freeze
     LABELS = {
-      width: "Width",
-      height: "Height",
-      first_character: "First Char",
-      quantity: "Numbers of Chars"
-    }
+      width: 'Width',
+      height: 'Height',
+      first_character: 'First Char',
+      quantity: 'Numbers of Chars'
+    }.freeze
 
     def self.write(font, path)
       new(font, path).write
@@ -42,7 +42,7 @@ class FontHelper
 
     def write_characters
       file.write("\n  // Font Data:\n")
-      
+
       characters.keys.sort.each do |code|
         character = font.character(code)
         CharacterBinaryWritter.write(character, file)
@@ -51,14 +51,14 @@ class FontHelper
 
     def write_attr(attribute)
       value = public_send(attribute)
-      hex = ("%02x" % value).upcase
+      hex = format('0x%02X', value)
       label = LABELS[attribute]
 
-      file.write("  0x#{hex}, // #{label}: #{value}\n")
+      file.write("  #{hex}, // #{label}: #{value}\n")
     end
 
     def file
-      @file ||= File.open(path, "w")
+      @file ||= File.open(path, 'w')
     end
   end
 end

@@ -17,16 +17,16 @@ class FontHelper
 
     def write
       return if empty?
+
       file.write("  #{binaries}, // #{code}\n")
     end
 
     private
 
     def binaries
-      binary.map do |value| 
-        value = ("%02x" % value).upcase
-        "0x#{value}"
-      end.join(", ")
+      binary.map do |value|
+        format('0x%02X', value)
+      end.join(', ')
     end
   end
 end
