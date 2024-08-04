@@ -45,4 +45,36 @@ describe FontHelper::Font do
       end
     end
   end
+
+  describe '#first_character' do
+    let(:characters) do
+      [
+        build(:character, code: 51),
+        build(:character, code: 48),
+        build(:character, code: 55),
+      ]
+    end
+
+    it 'returns the first character code' do
+      expect(font.first_character).to eq(48)
+    end
+  end
+
+  describe '#last_character' do
+    let(:characters) do
+      [
+        build(:character, code: 51),
+        build(:character, code: 56),
+        build(:character, code: 55),
+      ]
+    end
+
+    it 'returns the last character code' do
+      expect(font.last_character).to eq(56)
+    end
+  end
+
+  describe '#size' do
+    xit 'does something'
+  end
 end
