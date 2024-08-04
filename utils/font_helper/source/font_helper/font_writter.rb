@@ -38,6 +38,11 @@ class FontHelper
     def write_jump_table
       file.write("\n  // Jump Table:\n")
       file.write("  // start point (1), start point (2), data size, block width\n")
+
+      characters.keys.sort.each do |code|
+        character = font.character(code)
+        CharacterWritter.write(character, file)
+      end
     end
 
     def write_characters

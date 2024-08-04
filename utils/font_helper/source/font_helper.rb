@@ -13,6 +13,7 @@ class FontHelper
   autoload :FileLoader, 'font_helper/file_loader'
 
   autoload :FontWritter,            'font_helper/font_writter'
+  autoload :CharacterWritter,       'font_helper/character_writter'
   autoload :CharacterBinaryWritter, 'font_helper/character_binary_writter'
 
   autoload :Script,        'font_helper/script'
