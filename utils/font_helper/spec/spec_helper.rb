@@ -4,8 +4,9 @@ lib = File.expand_path('../source', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 require 'simplecov'
-SimpleCov.start 'rails'
+SimpleCov.start
 
+require 'securerandom'
 require 'pry-nav'
 require 'factory_bot'
 require 'font_helper'
