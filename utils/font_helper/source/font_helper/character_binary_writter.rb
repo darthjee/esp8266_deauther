@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class FontHelper
-  class CharacterWritter
+  class CharacterBinaryWritter
     attr_reader :character, :file
 
     delegate :binary, :empty?, :code, to: :character

@@ -39,7 +39,7 @@ class FontHelper
     def write_characters
       characters.keys.sort.each do |code|
         character = font.character(code)
-        CharacterWritter.write(character, file)
+        CharacterBinaryWritter.write(character, file)
       end
     end
 
