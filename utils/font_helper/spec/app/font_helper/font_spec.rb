@@ -22,12 +22,24 @@ describe FontHelper::Font do
     end
 
     context 'when there is already a character' do
-      let(:character) { build(:character, code: 50) }
+      context 'when adding the next character' do
+        let(:character) { build(:character, code: font.last_character + 1) }
 
-      it do
-        expect { font << character }
-          .to change(font, :size)
-          .from(1).to(2)
+        it do
+          expect { font << character }
+            .to change(font, :size)
+            .from(1).to(2)
+        end
+      end
+
+      context 'when adding a character further ahead' do
+        let(:character) { build(:character, code: font.last_character + 2) }
+
+        it 'changes the size accordinly' do
+          expect { font << character }
+            .to change(font, :size)
+            .from(1).to(3)
+        end
       end
     end
 
