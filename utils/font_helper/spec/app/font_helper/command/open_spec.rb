@@ -10,7 +10,7 @@ describe FontHelper::Command::Open do
   let(:expected_font) { FontHelper::FontLoader.load(path) }
 
   describe '#run' do
-    it do
+    it 'loads the font' do
       expect { command.run(context) }
         .to change(context, :font)
         .from(nil)
