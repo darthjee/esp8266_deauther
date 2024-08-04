@@ -5,7 +5,7 @@ class FontHelper
     attr_reader :font, :path
 
     delegate :width, :height, :first_character, :quantity,
-             :characters, to: :font
+             :characters, :last_character, to: :font
 
     ATTRIBUTES = %i[width height first_character quantity].freeze
     LABELS = {
@@ -52,7 +52,8 @@ class FontHelper
 
       characters.keys.sort.each do |code|
         character = font.character(code)
-        CharacterBinaryWritter.write(character, file)
+        last = code == last_character
+        CharacterBinaryWritter.write(character:, last:, file:)
       end
     end
 

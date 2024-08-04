@@ -2,26 +2,32 @@
 
 class FontHelper
   class CharacterBinaryWritter
-    attr_reader :character, :file
+    attr_reader :character, :last, :file
 
     delegate :binary, :empty?, :code, to: :character
 
-    def self.write(character, file)
-      new(character, file).write
+    def self.write(**)
+      new(**).write
     end
 
-    def initialize(character, file)
+    def initialize(character:, last:, file:)
       @character = character
+      @last = last
       @file = file
     end
 
     def write
       return if empty?
 
-      file.write("  #{binaries}, // #{code}\n")
+      file.write("  #{binaries}#{separator} // #{code}\n")
     end
 
     private
+
+    def separator
+      return if last
+      ","
+    end
 
     def binaries
       binary.map do |value|
