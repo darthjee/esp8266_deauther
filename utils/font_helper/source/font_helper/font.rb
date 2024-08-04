@@ -24,6 +24,7 @@ class FontHelper
 
     def size
       return 0 if empty?
+
       last_character - first_character + 1
     end
 

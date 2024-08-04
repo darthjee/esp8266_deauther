@@ -63,7 +63,7 @@ describe FontHelper::Font do
       [
         build(:character, code: 51),
         build(:character, code: 48),
-        build(:character, code: 55),
+        build(:character, code: 55)
       ]
     end
 
@@ -77,7 +77,7 @@ describe FontHelper::Font do
       [
         build(:character, code: 51),
         build(:character, code: 56),
-        build(:character, code: 55),
+        build(:character, code: 55)
       ]
     end
 
@@ -93,7 +93,7 @@ describe FontHelper::Font do
           build(:character, code: 51),
           build(:character, code: 48),
           build(:character, code: 49),
-          build(:character, code: 50),
+          build(:character, code: 50)
         ]
       end
 
@@ -106,7 +106,7 @@ describe FontHelper::Font do
       let(:characters) do
         [
           build(:character, code: 51),
-          build(:character, code: 48),
+          build(:character, code: 48)
         ]
       end
 
