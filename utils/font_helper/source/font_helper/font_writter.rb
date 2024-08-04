@@ -4,15 +4,15 @@ class FontHelper
   class FontWritter
     attr_reader :font, :path
 
-    delegate :width, :height, :first_character, :quantity,
+    delegate :width, :height, :first_character, :size,
              :characters, :last_character, to: :font
 
-    ATTRIBUTES = %i[width height first_character quantity].freeze
+    ATTRIBUTES = %i[width height first_character size].freeze
     LABELS = {
       width: 'Width',
       height: 'Height',
       first_character: 'First Char',
-      quantity: 'Numbers of Chars'
+      size: 'Numbers of Chars'
     }.freeze
 
     def self.write(font, path)

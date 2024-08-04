@@ -38,10 +38,6 @@ class FontHelper
       @characters ||= {}
     end
 
-    def quantity
-      characters.size
-    end
-
     def character(code)
       characters[code]
     end

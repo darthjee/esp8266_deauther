@@ -16,7 +16,7 @@ describe FontHelper::Font do
 
       it do
         expect { font << character }
-          .to change(font, :quantity)
+          .to change(font, :size)
           .from(0).to(1)
       end
     end
@@ -26,7 +26,7 @@ describe FontHelper::Font do
 
       it do
         expect { font << character }
-          .to change(font, :quantity)
+          .to change(font, :size)
           .from(1).to(2)
       end
     end
@@ -36,7 +36,7 @@ describe FontHelper::Font do
 
       it do
         expect { font << character }
-          .not_to change(font, :quantity)
+          .not_to change(font, :size)
       end
 
       it do
