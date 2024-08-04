@@ -39,9 +39,11 @@ class FontHelper
       file.write("\n  // Jump Table:\n")
       file.write("  // start point (1), start point (2), data size, block width\n")
 
+      position = 0
       characters.keys.sort.each do |code|
         character = font.character(code)
-        CharacterWritter.write(character, file)
+        CharacterWritter.write(character, position, file)
+        position += character.size
       end
     end
 

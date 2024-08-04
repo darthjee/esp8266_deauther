@@ -8,6 +8,8 @@ class FontHelper
 
     comparable_by :code, :width, :binary
 
+    delegate :size, to: :binary
+
     def initialize(code:, width:, binary:)
       @code = code
       @width = width
