@@ -4,7 +4,14 @@ class FontHelper
   class FontWritter
     attr_reader :font, :path
 
-    delegate :width, :height, to: :font
+    delegate :width, :height, :first_character, to: :font
+
+    ATTRIBUTES = %i[width height]
+    LABELS = {
+      width: "Width",
+      height: "Height",
+      first_character: "First Char"
+    }
 
     def self.write(font, path)
       new(font, path).write
@@ -16,7 +23,8 @@ class FontHelper
     end
 
     def write
-      write_attr(:width)
+      ATTRIBUTES.each { |attr| write_attr(attr) }
+
       file.close
     end
 
@@ -24,8 +32,10 @@ class FontHelper
 
     def write_attr(attribute)
       value = public_send(attribute)
-      hex = value.to_s(16)
-      file.write("  0x#{hex}, // Width: #{value}\n")
+      hex = value.to_s(16).upcase
+      label = LABELS[attribute]
+
+      file.write("  0x#{hex}, // #{label}: #{value}\n")
     end
 
     def file

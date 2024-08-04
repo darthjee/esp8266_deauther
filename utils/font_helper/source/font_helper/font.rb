@@ -22,6 +22,10 @@ class FontHelper
       characters[character.code] = character
     end
 
+    def first_character
+      characters.keys.min
+    end
+
     def characters
       @characters ||= {}
     end
