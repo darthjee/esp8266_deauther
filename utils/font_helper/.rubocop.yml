@@ -15,6 +15,3 @@ Naming/VariableNumber:
 
 RSpec/NestedGroups:
   Max: 4
-
-Style/HashEachMethods:
-  Enabled: false
