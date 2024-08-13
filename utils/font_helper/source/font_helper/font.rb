@@ -8,7 +8,7 @@ class FontHelper
 
     comparable_by :width, :height
 
-    delegate :<<, to: :characters
+    delegate :<<, :empty?, to: :characters
 
     def initialize(width:, height:, characters: nil)
       @width = width
@@ -22,16 +22,45 @@ class FontHelper
       characters[character.code] = character
     end
 
+    def size
+      return 0 if empty?
+
+      last_character - first_character + 1
+    end
+
+    def first_character
+      characters.keys.min
+    end
+
+    def last_character
+      characters.keys.max
+    end
+
     def characters
       @characters ||= {}
     end
 
-    def quantity
-      characters.size
+    def character(code)
+      characters[code] || Character.new(width:, code:)
     end
 
-    def character(code)
-      characters[code]
+    def each
+      characters_codes.each do |code|
+        char = character(code)
+        yield(code, char)
+      end
+    end
+
+    def each_value
+      each do |_code, char|
+        yield(char)
+      end
+    end
+
+    private
+
+    def characters_codes
+      (first_character..last_character)
     end
   end
 end

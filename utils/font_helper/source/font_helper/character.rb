@@ -4,11 +4,13 @@ class FontHelper
   class Character
     include Sinclair::Comparable
 
-    attr_reader :code, :width, :binary
+    attr_reader :code, :width
 
     comparable_by :code, :width, :binary
 
-    def initialize(code:, width:, binary:)
+    delegate :size, :empty?, to: :binary
+
+    def initialize(code:, width:, binary: nil)
       @code = code
       @width = width
       @binary = binary
@@ -16,6 +18,10 @@ class FontHelper
 
     def character
       code.chr
+    end
+
+    def binary
+      @binary ||= []
     end
   end
 end
