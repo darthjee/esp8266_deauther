@@ -144,4 +144,80 @@ describe FontHelper::Font do
       end
     end
   end
+
+  describe '#each' do
+    let(:codes_output) { [] }
+    let(:characters_output) { [] }
+
+    before do
+      font.each do |code, character|
+        codes_output << code
+        characters_output << character
+      end
+    end
+
+    context 'when there is one character' do
+      it 'process that single character code' do
+        expect(codes_output).to eq([48])
+      end
+
+      it 'process that single character' do
+        expect(characters_output).to eq(characters)
+      end
+    end
+
+    context 'when there are more charactes out of order' do
+      let(:characters) do
+        [
+          build(:character, code: 49),
+          build(:character, code: 48),
+          build(:character, code: 51),
+          build(:character, code: 50)
+        ]
+      end
+
+      let(:expected_characters) do
+        [
+          build(:character, code: 48),
+          build(:character, code: 49),
+          build(:character, code: 50),
+          build(:character, code: 51)
+        ]
+      end
+
+      it 'process the characters codes in order' do
+        expect(codes_output).to eq([48,49,50,51])
+      end
+
+      it 'process the characters in order' do
+        expect(characters_output).to eq(expected_characters)
+      end
+    end
+
+    context 'when missing characters' do
+      let(:characters) do
+        [
+          build(:character, code: 51),
+          build(:character, code: 48),
+        ]
+      end
+
+      let(:expected_characters) do
+        [
+          build(:character, code: 48),
+          build(:character, code: 49),
+          build(:character, code: 50),
+          build(:character, code: 51)
+        ]
+      end
+
+      it 'process the characters codes for all missing characters' do
+        expect(codes_output).to eq([48,49,50,51])
+      end
+
+      it 'process the characters for all missing characters' do
+        expect(characters_output).to eq(expected_characters)
+      end
+    end
+  end
 end
