@@ -40,7 +40,7 @@ class FontHelper
       file.write("  // start point (1), start point (2), data size, block width\n")
 
       position = 0
-      font.each do |code, character|
+      font.each do |_code, character|
         CharacterWritter.write(character, position, file)
         position += character.size
       end

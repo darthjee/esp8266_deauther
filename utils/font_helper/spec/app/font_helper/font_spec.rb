@@ -186,7 +186,7 @@ describe FontHelper::Font do
       end
 
       it 'process the characters codes in order' do
-        expect(codes_output).to eq([48,49,50,51])
+        expect(codes_output).to eq([48, 49, 50, 51])
       end
 
       it 'process the characters in order' do
@@ -198,7 +198,7 @@ describe FontHelper::Font do
       let(:characters) do
         [
           build(:character, code: 51),
-          build(:character, code: 48),
+          build(:character, code: 48)
         ]
       end
 
@@ -212,7 +212,7 @@ describe FontHelper::Font do
       end
 
       it 'process the characters codes for all missing characters' do
-        expect(codes_output).to eq([48,49,50,51])
+        expect(codes_output).to eq([48, 49, 50, 51])
       end
 
       it 'process the characters for all missing characters' do
