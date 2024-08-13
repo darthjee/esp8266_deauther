@@ -21,9 +21,26 @@ describe FontHelper::FontWritter do
   end
 
   describe '.write' do
-    it do
-      described_class.write(font, tmp_path)
-      expect(result).to eq(expected)
+    context 'when font is complete' do
+      it 'writes the font file' do
+        described_class.write(font, tmp_path)
+        expect(result).to eq(expected)
+      end
+    end
+
+    context 'when font is missing characters' do
+      let(:fixture_path) { 'spec/support/fixtures/font_lacking_characters.txt' }
+      let(:characters) do
+        [
+          FontHelper::Character.new(code: 32, width: 7, binary: nil),
+          FontHelper::Character.new(code: 35, width: 26, binary: [202])
+        ]
+      end
+
+      it 'writes the font file' do
+        described_class.write(font, tmp_path)
+        expect(result).to eq(expected)
+      end
     end
   end
 end
