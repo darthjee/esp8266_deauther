@@ -220,4 +220,66 @@ describe FontHelper::Font do
       end
     end
   end
+
+  describe '#each_value' do
+    let(:characters_output) { [] }
+
+    before do
+      font.each_value do |character|
+        characters_output << character
+      end
+    end
+
+    context 'when there is one character' do
+      it 'process that single character' do
+        expect(characters_output).to eq(characters)
+      end
+    end
+
+    context 'when there are more charactes out of order' do
+      let(:characters) do
+        [
+          build(:character, code: 49),
+          build(:character, code: 48),
+          build(:character, code: 51),
+          build(:character, code: 50)
+        ]
+      end
+
+      let(:expected_characters) do
+        [
+          build(:character, code: 48),
+          build(:character, code: 49),
+          build(:character, code: 50),
+          build(:character, code: 51)
+        ]
+      end
+
+      it 'process the characters in order' do
+        expect(characters_output).to eq(expected_characters)
+      end
+    end
+
+    context 'when missing characters' do
+      let(:characters) do
+        [
+          build(:character, code: 51),
+          build(:character, code: 48)
+        ]
+      end
+
+      let(:expected_characters) do
+        [
+          build(:character, code: 48),
+          build(:character, code: 49, binary: nil, width:),
+          build(:character, code: 50, binary: nil, width:),
+          build(:character, code: 51)
+        ]
+      end
+
+      it 'process the characters for all missing characters' do
+        expect(characters_output).to eq(expected_characters)
+      end
+    end
+  end
 end

@@ -51,6 +51,12 @@ class FontHelper
       end
     end
 
+    def each_value
+      each do |_code, char|
+        yield(char)
+      end
+    end
+
     private
 
     def characters_codes
