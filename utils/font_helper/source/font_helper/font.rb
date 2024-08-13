@@ -45,10 +45,16 @@ class FontHelper
     end
 
     def each
-      characters.keys.sort.each do |code|
+      characters_codes.each do |code|
         char = character(code)
         yield(code, char)
       end
+    end
+
+    private
+
+    def characters_codes
+      (first_character..last_character)
     end
   end
 end

@@ -205,8 +205,8 @@ describe FontHelper::Font do
       let(:expected_characters) do
         [
           build(:character, code: 48),
-          build(:character, code: 49),
-          build(:character, code: 50),
+          build(:character, code: 49, binary: nil, width:),
+          build(:character, code: 50, binary: nil, width:),
           build(:character, code: 51)
         ]
       end
