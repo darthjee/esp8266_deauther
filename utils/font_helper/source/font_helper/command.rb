@@ -4,7 +4,8 @@ class FontHelper
   class Command
     include Sinclair::Comparable
 
-    autoload :Open, 'font_helper/command/open'
+    autoload :Open,  'font_helper/command/open'
+    autoload :Write, 'font_helper/command/write'
 
     def self.for(command:, arguments:)
       klass = const_get(command)

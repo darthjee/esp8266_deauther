@@ -19,7 +19,6 @@ describe FontHelper::Script do
 
   describe '#run' do
     xit 'loads all commands and write the font' do
-
     end
   end
 end
