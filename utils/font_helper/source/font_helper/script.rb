@@ -8,6 +8,8 @@ class FontHelper
 
     comparable_by :path, :context
 
+    delegate :font, :font=, to: :context
+
     def initialize(path, context: nil)
       @path    = path
       @context = context
