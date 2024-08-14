@@ -22,7 +22,7 @@ describe FontHelper::Character do
 
       it 'returns the binary' do
         expect(character.binary)
-          .to eq(binary)
+          .to eq(FontHelper::BitMap.new(binary))
       end
     end
 
@@ -30,7 +30,7 @@ describe FontHelper::Character do
       let(:binary) { nil }
 
       it 'returns an empty array' do
-        expect(character.binary).to eq([])
+        expect(character.binary).to eq(FontHelper::BitMap.new)
       end
     end
   end
