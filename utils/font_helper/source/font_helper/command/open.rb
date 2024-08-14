@@ -13,7 +13,7 @@ class FontHelper
       end
 
       def run(context)
-        context.font = FontHelper::FontLoader.load(path)
+        self.font = FontHelper::FontLoader.load(path)
       end
     end
   end

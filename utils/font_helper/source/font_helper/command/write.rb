@@ -13,7 +13,7 @@ class FontHelper
       end
 
       def run(context)
-        FontHelper::FontWritter.write(context.font, path)
+        FontHelper::FontWritter.write(font, path)
       end
     end
   end

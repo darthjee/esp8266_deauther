@@ -17,7 +17,7 @@ class FontHelper
     attr_reader :arguments, :script
 
     def initialize(script, *arguments)
-      @script = script
+      @script    = script
       @arguments = arguments
     end
   end
