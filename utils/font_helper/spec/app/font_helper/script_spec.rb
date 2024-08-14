@@ -16,4 +16,10 @@ describe FontHelper::Script do
       expect(script.commands).to all(be_a(FontHelper::Command))
     end
   end
+
+  describe '#run' do
+    xit 'loads all commands and write the font' do
+
+    end
+  end
 end
