@@ -3,11 +3,13 @@
 class FontHelper
   class Command
     class Remove < Command
+      delegate :delete, to: :font
+
       alias codes arguments
 
       def run
         codes.each do |code|
-          font.characters.delete(code)
+          delete(code)
         end
       end
     end
