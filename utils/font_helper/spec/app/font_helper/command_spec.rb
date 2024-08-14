@@ -6,11 +6,12 @@ describe FontHelper::Command do
   describe '.for' do
     let(:command)   { 'Open' }
     let(:arguments) { ['spec/support/fixtures/font.txt'] }
+    let(:script)    { FontHelper::Script.new(SecureRandom.hex(32)) }
 
     context 'when arguments is an array' do
       it 'initializes the command using the arguments' do
-        expect(described_class.for(command:, arguments:))
-          .to eq(FontHelper::Command::Open.new(*arguments))
+        expect(described_class.for(command:, script:, arguments:))
+          .to eq(FontHelper::Command::Open.new(script, *arguments))
       end
     end
 
@@ -18,8 +19,8 @@ describe FontHelper::Command do
       let(:arguments) { 'spec/support/fixtures/font.txt' }
 
       it 'initializes the command using the arguments as array' do
-        expect(described_class.for(command:, arguments:))
-          .to eq(FontHelper::Command::Open.new(arguments))
+        expect(described_class.for(command:, script:, arguments:))
+          .to eq(FontHelper::Command::Open.new(script, arguments))
       end
     end
   end

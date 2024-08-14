@@ -2,7 +2,11 @@
 
 class FontHelper
   class Script
+    include Sinclair::Comparable
+
     attr_reader :path
+
+    comparable_by :path
 
     def initialize(path)
       @path = path
@@ -26,7 +30,7 @@ class FontHelper
 
     def read_commands
       YAML.load(file_content).map(&:symbolize_keys).map do |hash|
-        Command.for(**hash)
+        Command.for(script: self, **hash)
       end
     end
 
