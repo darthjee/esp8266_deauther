@@ -2,7 +2,7 @@
 
 class FontHelper
   class Command
-    class Open < Command
+    class Write < Command
       attr_reader :path
 
       comparable_by :path
@@ -13,7 +13,7 @@ class FontHelper
       end
 
       def run
-        self.font = FontHelper::FontLoader.load(path)
+        FontHelper::FontWritter.write(font, path)
       end
     end
   end
