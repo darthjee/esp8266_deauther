@@ -18,4 +18,12 @@ describe FontHelper::BinaryConverter do
       expect(described_class.to_bits(byte)).to eq([0,1,0,1,0,1,0,1])
     end
   end
+
+  context 'when binary is all 0' do
+    let(:byte) { 0 }
+
+    it 'returns the remapping into a bits' do
+      expect(described_class.to_bits(byte)).to eq([0,0,0,0,0,0,0,0])
+    end
+  end
 end
