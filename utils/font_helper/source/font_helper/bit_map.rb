@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FontHelper
   class BitMap
     include Sinclair::Comparable

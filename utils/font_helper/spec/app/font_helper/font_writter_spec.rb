@@ -8,15 +8,16 @@ describe FontHelper::FontWritter do
   let(:tmp_path)     { "/tmp/font_#{SecureRandom.hex(32)}.txt" }
   let(:result)       { File.read(tmp_path) }
 
+  let(:height) { 28 }
   let(:font) do
-    FontHelper::Font.new(width: 24, height: 28, characters:)
+    FontHelper::Font.new(width: 24, height:, characters:)
   end
   let(:characters) do
     [
-      FontHelper::Character.new(code: 32, width: 7, binary: nil),
-      FontHelper::Character.new(code: 33, width: 16, binary: [170]),
-      FontHelper::Character.new(code: 34, width: 10, binary: [221, 218]),
-      FontHelper::Character.new(code: 35, width: 26, binary: [202])
+      FontHelper::Character.new(code: 32, width: 7, height:, binary: nil),
+      FontHelper::Character.new(code: 33, width: 16, height:, binary: [170]),
+      FontHelper::Character.new(code: 34, width: 10, height:, binary: [221, 218]),
+      FontHelper::Character.new(code: 35, width: 26, height:, binary: [202])
     ]
   end
 
@@ -32,8 +33,8 @@ describe FontHelper::FontWritter do
       let(:fixture_path) { 'spec/support/fixtures/font_lacking_characters.txt' }
       let(:characters) do
         [
-          FontHelper::Character.new(code: 32, width: 7, binary: nil),
-          FontHelper::Character.new(code: 35, width: 26, binary: [202])
+          FontHelper::Character.new(code: 32, width: 7, height:, binary: nil),
+          FontHelper::Character.new(code: 35, width: 26, height:, binary: [202])
         ]
       end
 

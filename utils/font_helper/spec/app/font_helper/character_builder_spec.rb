@@ -17,7 +17,7 @@ describe FontHelper::CharacterBuilder do
   end
 
   let(:expected_character) do
-    FontHelper::Character.new(code:, width:, binary:)
+    FontHelper::Character.new(code:, width:, height:, binary:)
   end
 
   context 'when binnaries has only character information' do

@@ -26,7 +26,7 @@ describe FontHelper::Font do
 
       it 'returns an empty character' do
         expect(font.character(code))
-          .to eq(FontHelper::Character.new(width:, code:))
+          .to eq(FontHelper::Character.new(width:, code:, height:))
       end
     end
   end
@@ -169,19 +169,19 @@ describe FontHelper::Font do
     context 'when there are more charactes out of order' do
       let(:characters) do
         [
-          build(:character, code: 49),
-          build(:character, code: 48),
-          build(:character, code: 51),
-          build(:character, code: 50)
+          build(:character, code: 49, height:),
+          build(:character, code: 48, height:),
+          build(:character, code: 51, height:),
+          build(:character, code: 50, height:)
         ]
       end
 
       let(:expected_characters) do
         [
-          build(:character, code: 48),
-          build(:character, code: 49),
-          build(:character, code: 50),
-          build(:character, code: 51)
+          build(:character, code: 48, height:),
+          build(:character, code: 49, height:),
+          build(:character, code: 50, height:),
+          build(:character, code: 51, height:)
         ]
       end
 
@@ -197,17 +197,17 @@ describe FontHelper::Font do
     context 'when missing characters' do
       let(:characters) do
         [
-          build(:character, code: 51),
-          build(:character, code: 48)
+          build(:character, code: 51, height:),
+          build(:character, code: 48, height:)
         ]
       end
 
       let(:expected_characters) do
         [
-          build(:character, code: 48),
-          build(:character, code: 49, binary: nil, width:),
-          build(:character, code: 50, binary: nil, width:),
-          build(:character, code: 51)
+          build(:character, code: 48, height:),
+          build(:character, code: 49, binary: nil, width:, height:),
+          build(:character, code: 50, binary: nil, width:, height:),
+          build(:character, code: 51, height:)
         ]
       end
 
@@ -263,17 +263,17 @@ describe FontHelper::Font do
     context 'when missing characters' do
       let(:characters) do
         [
-          build(:character, code: 51),
-          build(:character, code: 48)
+          build(:character, code: 51, height:),
+          build(:character, code: 48, height:)
         ]
       end
 
       let(:expected_characters) do
         [
-          build(:character, code: 48),
-          build(:character, code: 49, binary: nil, width:),
-          build(:character, code: 50, binary: nil, width:),
-          build(:character, code: 51)
+          build(:character, code: 48, height:),
+          build(:character, code: 49, binary: nil, width:, height:),
+          build(:character, code: 50, binary: nil, width:, height:),
+          build(:character, code: 51, height:)
         ]
       end
 
