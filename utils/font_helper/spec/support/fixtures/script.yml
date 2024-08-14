@@ -1,2 +1,4 @@
 - command: Open
   arguments: ['spec/support/fixtures/font.txt']
+- command: Write
+  arguments: ['/tmp/font_output.txt']

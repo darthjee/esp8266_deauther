@@ -12,7 +12,17 @@ class FontHelper
       @commands ||= read_commands
     end
 
+    def run
+      commands.each do |command|
+        command.run(context)
+      end
+    end
+
     private
+
+    def context
+      @context ||= ScriptContext.new
+    end
 
     def read_commands
       YAML.load(file_content).map(&:symbolize_keys).map do |hash|
