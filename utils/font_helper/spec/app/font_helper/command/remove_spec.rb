@@ -17,7 +17,7 @@ describe FontHelper::Command::Remove do
   describe '#run' do
     let(:initial_characters) do
       {
-        32 =>FontHelper::Character.new(code: 32, width: 7, binary: nil),
+        32 => FontHelper::Character.new(code: 32, width: 7, binary: nil),
         33 => FontHelper::Character.new(code: 33, width: 16, binary: [170]),
         34 => FontHelper::Character.new(code: 34, width: 10, binary: [221, 218]),
         35 => FontHelper::Character.new(code: 35, width: 26, binary: [202])
@@ -37,7 +37,7 @@ describe FontHelper::Command::Remove do
 
       it 'remove that character' do
         expect { command.run }
-          .to change { font.characters }
+          .to change(font, :characters)
           .from(initial_characters)
           .to(expected_characters)
       end
@@ -48,7 +48,7 @@ describe FontHelper::Command::Remove do
 
       let(:expected_characters) do
         {
-          32 =>FontHelper::Character.new(code: 32, width: 7, binary: nil),
+          32 => FontHelper::Character.new(code: 32, width: 7, binary: nil),
           34 => FontHelper::Character.new(code: 34, width: 10, binary: [221, 218]),
           35 => FontHelper::Character.new(code: 35, width: 26, binary: [202])
         }
@@ -56,7 +56,7 @@ describe FontHelper::Command::Remove do
 
       it 'remove that character' do
         expect { command.run }
-          .to change { font.characters }
+          .to change(font, :characters)
           .from(initial_characters)
           .to(expected_characters)
       end
@@ -67,14 +67,14 @@ describe FontHelper::Command::Remove do
 
       let(:expected_characters) do
         {
-          32 =>FontHelper::Character.new(code: 32, width: 7, binary: nil),
+          32 => FontHelper::Character.new(code: 32, width: 7, binary: nil),
           35 => FontHelper::Character.new(code: 35, width: 26, binary: [202])
         }
       end
 
       it 'remove those characters' do
         expect { command.run }
-          .to change { font.characters }
+          .to change(font, :characters)
           .from(initial_characters)
           .to(expected_characters)
       end
