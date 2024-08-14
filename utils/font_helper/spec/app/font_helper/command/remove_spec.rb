@@ -61,5 +61,23 @@ describe FontHelper::Command::Remove do
           .to(expected_characters)
       end
     end
+
+    context 'when passing more than one code' do
+      let(:codes) { [33, 34] }
+
+      let(:expected_characters) do
+        {
+          32 =>FontHelper::Character.new(code: 32, width: 7, binary: nil),
+          35 => FontHelper::Character.new(code: 35, width: 26, binary: [202])
+        }
+      end
+
+      it 'remove those characters' do
+        expect { command.run }
+          .to change { font.characters }
+          .from(initial_characters)
+          .to(expected_characters)
+      end
+    end
   end
 end
