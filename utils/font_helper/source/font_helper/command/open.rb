@@ -12,7 +12,7 @@ class FontHelper
         super(script)
       end
 
-      def run(context)
+      def run
         self.font = FontHelper::FontLoader.load(path)
       end
     end

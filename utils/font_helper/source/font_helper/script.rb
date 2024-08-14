@@ -20,9 +20,7 @@ class FontHelper
     end
 
     def run
-      commands.each do |command|
-        command.run(context)
-      end
+      commands.each(&:run)
     end
 
     private

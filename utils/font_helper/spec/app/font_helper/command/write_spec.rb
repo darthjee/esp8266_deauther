@@ -17,13 +17,13 @@ describe FontHelper::Command::Write do
 
   describe '#run' do
     it 'creates the font file' do
-      expect { command.run(context) }
+      expect { command.run }
         .to change { File.exist?(path) }
         .from(false).to(true)
     end
 
     it 'writes the font data' do
-      command.run(context)
+      command.run
 
       expect(File.read(path)).to eq(File.read(font_path))
     end
