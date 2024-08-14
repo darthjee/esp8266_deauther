@@ -40,7 +40,7 @@ describe FontHelper::Character do
       let(:binary) { [255] }
 
       it 'returns the remapping into a bitmap' do
-        expect(character.bitmap).to eq([[1,1,1,1,1,1,1,1]])
+        expect(character.bitmap).to eq([[1, 1, 1, 1, 1, 1, 1, 1]])
       end
     end
 
@@ -48,7 +48,7 @@ describe FontHelper::Character do
       let(:binary) { [170] }
 
       it 'returns the remapping into a bitmap' do
-        expect(character.bitmap).to eq([[0,1,0,1,0,1,0,1]])
+        expect(character.bitmap).to eq([[0, 1, 0, 1, 0, 1, 0, 1]])
       end
     end
   end

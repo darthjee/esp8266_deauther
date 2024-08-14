@@ -7,7 +7,7 @@ describe FontHelper::BinaryConverter do
     let(:byte) { 255 }
 
     it 'returns the remapping into a bits' do
-      expect(described_class.to_bits(byte)).to eq([1,1,1,1,1,1,1,1])
+      expect(described_class.to_bits(byte)).to eq([1, 1, 1, 1, 1, 1, 1, 1])
     end
   end
 
@@ -15,7 +15,7 @@ describe FontHelper::BinaryConverter do
     let(:byte) { 170 }
 
     it 'returns the remapping into a bits' do
-      expect(described_class.to_bits(byte)).to eq([0,1,0,1,0,1,0,1])
+      expect(described_class.to_bits(byte)).to eq([0, 1, 0, 1, 0, 1, 0, 1])
     end
   end
 
@@ -23,7 +23,7 @@ describe FontHelper::BinaryConverter do
     let(:byte) { 0 }
 
     it 'returns the remapping into a bits' do
-      expect(described_class.to_bits(byte)).to eq([0,0,0,0,0,0,0,0])
+      expect(described_class.to_bits(byte)).to eq([0, 0, 0, 0, 0, 0, 0, 0])
     end
   end
 end
