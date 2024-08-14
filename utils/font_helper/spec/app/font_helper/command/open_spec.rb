@@ -8,7 +8,7 @@ describe FontHelper::Command::Open do
   let(:path)          { 'spec/support/fixtures/font.txt' }
   let(:context)       { FontHelper::ScriptContext.new }
   let(:expected_font) { FontHelper::FontLoader.load(path) }
-  let(:script)        { FontHelper::Script.new(SecureRandom.hex(32)) }
+  let(:script)        { FontHelper::Script.new(SecureRandom.hex(32), context:) }
 
   describe '#run' do
     it 'loads the font' do

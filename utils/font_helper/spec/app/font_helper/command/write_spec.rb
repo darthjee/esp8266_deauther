@@ -9,7 +9,7 @@ describe FontHelper::Command::Write do
   let(:context)   { FontHelper::ScriptContext.new }
   let(:font)      { FontHelper::FontLoader.load(font_path) }
   let(:font_path) { 'spec/support/fixtures/font.txt' }
-  let(:script)    { FontHelper::Script.new(SecureRandom.hex(32)) }
+  let(:script)    { FontHelper::Script.new(SecureRandom.hex(32), context:) }
 
   before do
     context.font = font

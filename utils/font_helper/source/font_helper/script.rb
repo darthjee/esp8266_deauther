@@ -6,10 +6,11 @@ class FontHelper
 
     attr_reader :path
 
-    comparable_by :path
+    comparable_by :path, :context
 
-    def initialize(path)
-      @path = path
+    def initialize(path, context: nil)
+      @path    = path
+      @context = context
     end
 
     def commands
