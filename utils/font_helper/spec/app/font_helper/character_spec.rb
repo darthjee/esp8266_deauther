@@ -8,7 +8,6 @@ describe FontHelper::Character do
   let(:binary)      { nil }
   let(:code)        { 48 }
   let(:height)      { 28 }
-  let(:byte_height) { 4 }
 
   describe '#character' do
     context 'when code is a valid character' do
@@ -69,6 +68,18 @@ describe FontHelper::Character do
       it do
         expect(character.byte_height).to eq(4)
       end
+    end
+  end
+
+  describe '#remove_top' do
+    let(:height) { 8 }
+    let(:binary) { [255, 254, 1] }
+
+    it 'changes binary' do
+      expect { character.remove_top }
+        .to change(character, :binary)
+        .from(binary)
+        .to([127, 127, 0])
     end
   end
 end

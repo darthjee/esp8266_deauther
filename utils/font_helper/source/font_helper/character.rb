@@ -9,6 +9,7 @@ class FontHelper
     comparable_by :code, :width, :height, :binary
 
     delegate :size, :empty?, to: :binary
+    delegate :binary, :remove_top, to: :bit_map
 
     def initialize(code:, width:, height:, binary: nil)
       @code = code
@@ -24,8 +25,6 @@ class FontHelper
     def character
       code.chr
     end
-
-    delegate :binary, to: :bit_map
 
     private
 

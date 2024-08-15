@@ -32,6 +32,12 @@ class FontHelper
       @bitmap = bitmap
     end
 
+    def remove_top
+      bitmap.each do |column|
+        # TODO: code here
+      end
+    end
+
     private
 
     def generate_binary
