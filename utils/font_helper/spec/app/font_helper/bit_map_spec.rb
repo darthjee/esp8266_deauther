@@ -7,6 +7,26 @@ describe FontHelper::BitMap do
 
   let(:byte_height) { 4 }
 
+  describe '#binary' do
+    context 'when it has been initialized' do
+      let(:binary) { [32, 25] }
+
+      it 'returns the binary' do
+        expect(bit_map.binary)
+          .to eq(binary)
+      end
+    end
+
+    context 'when it has not been initialized' do
+      let(:binary) { nil }
+
+      it 'returns an empty array' do
+        expect(bit_map.binary)
+          .to eq([])
+      end
+    end
+  end
+
   describe '#bitmap' do
     context 'when there is only one byte' do
       context 'when binary describes a single column' do
