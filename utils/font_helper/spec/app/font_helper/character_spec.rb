@@ -5,9 +5,10 @@ require 'spec_helper'
 describe FontHelper::Character do
   subject(:character) { build(:character, code:, binary:, height:) }
 
-  let(:binary) { nil }
-  let(:code)   { 48 }
-  let(:height) { 28 }
+  let(:binary)      { nil }
+  let(:code)        { 48 }
+  let(:height)      { 28 }
+  let(:byte_height) { 4 }
 
   describe '#character' do
     context 'when code is a valid character' do
@@ -23,7 +24,7 @@ describe FontHelper::Character do
 
       it 'returns the binary' do
         expect(character.binary)
-          .to eq(FontHelper::BitMap.new(binary))
+          .to eq(FontHelper::BitMap.new(binary:, byte_height:))
       end
     end
 
@@ -31,7 +32,8 @@ describe FontHelper::Character do
       let(:binary) { nil }
 
       it 'returns an empty array' do
-        expect(character.binary).to eq(FontHelper::BitMap.new)
+        expect(character.binary)
+          .to eq(FontHelper::BitMap.new(byte_height:))
       end
     end
   end
