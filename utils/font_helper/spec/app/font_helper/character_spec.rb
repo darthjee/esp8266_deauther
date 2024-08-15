@@ -39,7 +39,7 @@ describe FontHelper::Character do
   end
 
   describe '#byte_height' do
-    context "when height is 8 or less" do
+    context 'when height is 8 or less' do
       let(:height) { Random.rand(1..8) }
 
       it do
@@ -47,7 +47,7 @@ describe FontHelper::Character do
       end
     end
 
-    context "when height is ibetween 9 and 16" do
+    context 'when height is ibetween 9 and 16' do
       let(:height) { Random.rand(9..16) }
 
       it do
@@ -55,7 +55,7 @@ describe FontHelper::Character do
       end
     end
 
-    context "when height is ibetween 17 and 24" do
+    context 'when height is ibetween 17 and 24' do
       let(:height) { Random.rand(17..24) }
 
       it do
@@ -63,7 +63,7 @@ describe FontHelper::Character do
       end
     end
 
-    context "when height is ibetween 25 and 32" do
+    context 'when height is ibetween 25 and 32' do
       let(:height) { Random.rand(25..32) }
 
       it do
