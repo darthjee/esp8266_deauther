@@ -16,11 +16,15 @@ class FontHelper
     end
 
     def binary
-      @binary ||= generate_binary
+      @binary ||= generate_binary.tap do
+        @bitmap = nil
+      end
     end
 
     def bitmap
-      @bitmap ||= generate_bitmap
+      @bitmap ||= generate_bitmap.tap do
+        @binary = nil
+      end
     end
 
     private
@@ -32,9 +36,7 @@ class FontHelper
         column.each_slice(8).map do |bits|
           BinaryConverter.to_byte(bits)
         end
-      end.flatten.tap do
-        @bitmap = nil
-      end
+      end.flatten
     end
 
     def generate_bitmap
@@ -42,8 +44,6 @@ class FontHelper
         column.map do |byte|
           BinaryConverter.to_bits(byte)
         end.flatten
-      end.tap do
-        @binary = nil
       end
     end
 
