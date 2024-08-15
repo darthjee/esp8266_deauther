@@ -12,11 +12,25 @@ class FontHelper
 
     def initialize(byte_height:, binary: [])
       @byte_height = byte_height
-      @binary = binary || []
+      @binary = binary
+    end
+
+    def binary
+      @binary ||= generate_binary
     end
 
     def bitmap
       @bitmap ||= generate_bitmap
+    end
+
+    private
+
+    def generate_binary
+      return [] unless @bitmap
+      # TODO: code here
+      bitmap.map do |column|
+        column.each_slice(8)#.map
+      end
     end
 
     def generate_bitmap
@@ -24,6 +38,8 @@ class FontHelper
         column.map do |byte|
           BinaryConverter.to_bits(byte)
         end.flatten
+      end.tap do
+        @binary = nil
       end
     end
 

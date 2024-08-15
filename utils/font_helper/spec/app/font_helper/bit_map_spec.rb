@@ -6,6 +6,7 @@ describe FontHelper::BitMap do
   subject(:bit_map) { described_class.new(binary:, byte_height:) }
 
   let(:byte_height) { 4 }
+  let(:binary)      { [255] }
 
   describe '#binary' do
     context 'when it has been initialized' do
@@ -28,6 +29,14 @@ describe FontHelper::BitMap do
   end
 
   describe '#bitmap' do
+    context 'when there is a change in it' do
+      it 'changes binary' do
+        expect { bit_map.bitmap[0][0] = 0 }
+          .to change { bit_map.binary }
+          .from([255]).to([254])
+      end
+    end
+
     context 'when there is only one byte' do
       context 'when binary describes a single column' do
         let(:binary) { [255] }
