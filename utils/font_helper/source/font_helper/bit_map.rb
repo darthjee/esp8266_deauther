@@ -27,10 +27,12 @@ class FontHelper
 
     def generate_binary
       return [] unless @bitmap
-      # TODO: code here
+
       bitmap.map do |column|
-        column.each_slice(8)#.map
-      end
+        column.each_slice(8).map do |bits|
+          BinaryConverter.to_byte(bits)
+        end
+      end.flatten
     end
 
     def generate_bitmap
