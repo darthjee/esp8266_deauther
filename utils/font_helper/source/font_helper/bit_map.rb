@@ -33,9 +33,7 @@ class FontHelper
     end
 
     def remove_top
-      bitmap.each do |column|
-        # TODO: code here
-      end
+      bitmap.each(&:shift)
     end
 
     private
