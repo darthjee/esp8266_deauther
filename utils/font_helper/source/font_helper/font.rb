@@ -41,7 +41,7 @@ class FontHelper
     end
 
     def character(code)
-      characters[code] || Character.new(width:, code:)
+      characters[code] || Character.new(width:, code:, height:)
     end
 
     def each
