@@ -28,7 +28,5 @@ class FontHelper
     def binary
       @binary ||= Bitmap.new(byte_height:)
     end
-
-    delegate :bitmap, to: :binary
   end
 end
