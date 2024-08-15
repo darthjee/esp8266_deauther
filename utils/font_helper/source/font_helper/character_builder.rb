@@ -18,7 +18,7 @@ class FontHelper
     end
 
     def build
-      Character.new(code:, width:, binary:)
+      Character.new(code:, width:, binary:, height:)
     end
 
     private

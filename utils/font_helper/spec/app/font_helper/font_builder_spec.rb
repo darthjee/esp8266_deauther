@@ -28,7 +28,7 @@ describe FontHelper::FontBuilder do
     characters_count.times.map do |index|
       code = index + first_character
       binary = expected_charactes_binnaries[index * character_bytes, character_bytes]
-      FontHelper::Character.new(code:, width:, binary:)
+      FontHelper::Character.new(code:, width:, height:, binary:)
     end
   end
 

@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :character, class: FontHelper::Character do
     initialize_with do
       FontHelper::Character.new(
-        code:, width:, binary:
+        code:, width:, height:, binary:
       )
     end
 
@@ -12,6 +12,7 @@ FactoryBot.define do
       code { 48 }
       width { 32 }
       binary { [255] }
+      height { 28 }
     end
   end
 end

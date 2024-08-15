@@ -12,6 +12,8 @@ class FontHelper
   autoload :FontLoader, 'font_helper/font_loader'
   autoload :FileLoader, 'font_helper/file_loader'
 
+  autoload :BitMap,                 'font_helper/bit_map'
+  autoload :BinaryConverter,        'font_helper/binary_converter'
   autoload :FontWritter,            'font_helper/font_writter'
   autoload :CharacterWritter,       'font_helper/character_writter'
   autoload :CharacterBinaryWritter, 'font_helper/character_binary_writter'
