@@ -8,5 +8,11 @@ class FontHelper
         (byte & power) / power
       end
     end
+
+    def self.to_byte(bits)
+      bits.map.with_index do |bit, exp|
+        bit * (2**exp)
+      end.sum
+    end
   end
 end
