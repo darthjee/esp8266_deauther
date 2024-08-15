@@ -14,7 +14,7 @@ class FontHelper
       @code = code
       @width = width
       @height = height
-      @binary = BitMap.new(byte_height:, binary:)
+      @bit_map = BitMap.new(byte_height:, binary:)
     end
 
     def byte_height
@@ -25,8 +25,10 @@ class FontHelper
       code.chr
     end
 
-    def binary
-      @binary ||= Bitmap.new(byte_height:)
-    end
+    delegate :binary, to: :bit_map
+
+    private
+
+    attr_reader :bit_map
   end
 end

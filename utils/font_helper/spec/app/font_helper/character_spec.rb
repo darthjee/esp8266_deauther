@@ -24,7 +24,7 @@ describe FontHelper::Character do
 
       it 'returns the binary' do
         expect(character.binary)
-          .to eq(FontHelper::BitMap.new(binary:, byte_height:))
+          .to eq(binary)
       end
     end
 
@@ -33,7 +33,7 @@ describe FontHelper::Character do
 
       it 'returns an empty array' do
         expect(character.binary)
-          .to eq(FontHelper::BitMap.new(byte_height:))
+          .to eq([])
       end
     end
   end
