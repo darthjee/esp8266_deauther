@@ -32,7 +32,9 @@ class FontHelper
         column.each_slice(8).map do |bits|
           BinaryConverter.to_byte(bits)
         end
-      end.flatten
+      end.flatten.tap do
+        @bitmap = nil
+      end
     end
 
     def generate_bitmap

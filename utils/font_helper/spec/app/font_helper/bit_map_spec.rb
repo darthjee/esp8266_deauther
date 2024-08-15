@@ -37,6 +37,19 @@ describe FontHelper::BitMap do
       end
     end
 
+    context 'when there is a subsequent change in it' do
+      before do
+        bit_map.bitmap[0][0] = 0
+        bit_map.binary
+      end
+
+      it 'changes binary' do
+        expect { bit_map.bitmap[0][1] = 0 }
+          .to change { bit_map.binary }
+          .from([254]).to([252])
+      end
+    end
+
     context 'when there is only one byte' do
       context 'when binary describes a single column' do
         let(:binary) { [255] }
