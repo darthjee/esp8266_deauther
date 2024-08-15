@@ -110,4 +110,20 @@ describe FontHelper::BitMap do
       end
     end
   end
+
+  describe '#bitmap=' do
+    it 'changes bitmap' do
+      expect { bit_map.bitmap = [[0, 0, 0, 0, 0, 0, 1, 0]] }
+        .to change(bit_map, :bitmap)
+        .from([[1, 1, 1, 1, 1, 1, 1, 1]])
+        .to( [[0, 0, 0, 0, 0, 0, 1, 0]])
+    end
+
+    it 'changes binary' do
+      expect { bit_map.bitmap = [[0, 0, 0, 0, 0, 0, 1, 0]] }
+        .to change(bit_map, :binary)
+        .from([255])
+        .to([64])
+    end
+  end
 end

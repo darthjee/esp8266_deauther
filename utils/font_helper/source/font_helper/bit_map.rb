@@ -27,6 +27,11 @@ class FontHelper
       end
     end
 
+    def bitmap=(bitmap)
+      @binary = nil
+      @bitmap = bitmap
+    end
+
     private
 
     def generate_binary
