@@ -392,4 +392,60 @@ describe FontHelper::BitMap do
       end
     end
   end
+
+  describe '#crop' do
+    context 'when cropping top' do
+      let(:height) { 8 }
+      let(:binary) { [255, 254, 1, 128] }
+
+      it 'changes binary' do
+        expect { bit_map.crop(top: 1) }
+          .to change(bit_map, :binary)
+          .from(binary)
+          .to([127, 127, 0, 64])
+      end
+
+      it 'reduces the height' do
+        expect { bit_map.crop(top: 1) }
+          .to change(bit_map, :height)
+          .by(-1)
+      end
+    end
+
+    context 'when cropping bottom' do
+      let(:height) { 8 }
+      let(:binary) { [255, 254, 1, 128] }
+
+      it 'changes binary' do
+        expect { bit_map.crop(bottom: 1) }
+          .to change(bit_map, :binary)
+          .from(binary)
+          .to([127, 126, 1, 0])
+      end
+
+      it 'reduces the height' do
+        expect { bit_map.crop(bottom: 1) }
+          .to change(bit_map, :height)
+          .by(-1)
+      end
+    end
+
+    context 'when cropping top and bottom' do
+      let(:height) { 8 }
+      let(:binary) { [255, 254, 1, 128] }
+
+      it 'changes binary' do
+        expect { bit_map.crop(top:1, bottom: 1) }
+          .to change(bit_map, :binary)
+          .from(binary)
+          .to([63, 63, 0, 0])
+      end
+
+      it 'reduces the height' do
+        expect { bit_map.crop(top:1, bottom: 1) }
+          .to change(bit_map, :height)
+          .by(-2)
+      end
+    end
+  end
 end
