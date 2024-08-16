@@ -64,5 +64,23 @@ describe FontHelper::Command::Crop do
           .to([127, 127, 0, 1])
       end
     end
+
+    context 'when when croping top and bottom' do
+      let(:top)    { 1 }
+      let(:bottom) { 1 }
+
+      it 'change the heights' do
+        expect { command.run }
+          .to change { font.characters.values.map(&:height).uniq }
+          .from([height]).to([height - 2])
+      end
+
+      it 'change the binaries' do
+        expect { command.run }
+          .to change { font.characters.values.map(&:binary).flatten }
+          .from([255, 127, 128, 1])
+          .to([63, 63, 0, 0])
+      end
+    end
   end
 end

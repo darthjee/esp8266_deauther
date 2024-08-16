@@ -324,5 +324,20 @@ describe FontHelper::Font do
           .to([127, 127, 0, 1])
       end
     end
+
+    context 'when when croping top and bottom' do
+      it 'change the heights' do
+        expect { font.crop(bottom: 1, top: 1) }
+          .to change { font.characters.values.map(&:height).uniq }
+          .from([height]).to([height - 2])
+      end
+
+      it 'change the binaries' do
+        expect { font.crop(bottom: 1, top: 1) }
+          .to change { font.characters.values.map(&:binary).flatten }
+          .from([255, 127, 128, 1])
+          .to([63, 63, 0, 0])
+      end
+    end
   end
 end
