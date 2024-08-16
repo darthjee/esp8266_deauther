@@ -45,6 +45,15 @@ class FontHelper
       @byte_height = nil
     end
 
+    def remove_bottom
+      @bitmap = bitmap.map do |column|
+        column[0, height - 1]
+      end
+
+      @height = height - 1
+      @byte_height = nil
+    end
+
     private
 
     def generate_binary

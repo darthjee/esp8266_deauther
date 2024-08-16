@@ -232,4 +232,76 @@ describe FontHelper::BitMap do
       end
     end
   end
+
+  describe '#remove_bottom' do
+    context 'when columns are 1 byte height' do
+      let(:height) { 8 }
+      let(:binary) { [255, 254, 1] }
+
+      it 'changes binary' do
+        expect { bit_map.remove_bottom }
+          .to change(bit_map, :binary)
+          .from(binary)
+          .to([127, 126, 1])
+      end
+
+      it 'does not reduce the byte height' do
+        expect { bit_map.remove_top }
+          .not_to change(bit_map, :byte_height)
+      end
+
+      it 'reduces the height' do
+        expect { bit_map.remove_top }
+          .to change(bit_map, :height)
+          .by(-1)
+      end
+    end
+
+    context 'when columns are 2 bytes height' do
+      let(:height) { 16 }
+      let(:binary) { [255, 131, 254, 128, 1, 1, 128, 64] }
+
+      it 'changes binary shifting bytes' do
+        expect { bit_map.remove_bottom }
+          .to change(bit_map, :binary)
+          .from(binary)
+          .to([255, 3, 254, 0, 1, 1, 128, 64])
+      end
+
+      it 'does not reduce the byte height' do
+        expect { bit_map.remove_top }
+          .not_to change(bit_map, :byte_height)
+      end
+
+      it 'reduces the height' do
+        expect { bit_map.remove_top }
+          .to change(bit_map, :height)
+          .by(-1)
+      end
+    end
+
+    context 'when columns are 9 bits high' do
+      let(:height) { 9 }
+      let(:binary) { [255, 1, 254, 0, 1, 1, 128, 1, 128, 0, 1, 1] }
+
+      it 'changes binary removing the last line' do
+        expect { bit_map.remove_bottom }
+          .to change(bit_map, :binary)
+          .from(binary)
+          .to([255, 254, 1, 128, 128, 1])
+      end
+
+      it 'reduces the byte height' do
+        expect { bit_map.remove_top }
+          .to change(bit_map, :byte_height)
+          .by(-1)
+      end
+
+      it 'reduces the height' do
+        expect { bit_map.remove_top }
+          .to change(bit_map, :height)
+          .by(-1)
+      end
+    end
+  end
 end

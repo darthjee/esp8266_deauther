@@ -7,7 +7,8 @@ class FontHelper
     attr_reader :code, :width
 
     delegate :size, :empty?, to: :binary
-    delegate :binary, :remove_top, :height, to: :bit_map
+    delegate :binary, :height,
+             :remove_top, :remove_bottom, to: :bit_map
 
     comparable_by :code, :width, :height, :binary
 
