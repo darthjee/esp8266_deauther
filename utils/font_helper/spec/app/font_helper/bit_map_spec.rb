@@ -66,7 +66,7 @@ describe FontHelper::BitMap do
     context 'when there is a change in it' do
       it 'changes binary' do
         expect { bit_map.bitmap[0][0] = 0 }
-          .to change { bit_map.binary }
+          .to change(bit_map, :binary)
           .from([255]).to([254])
       end
     end
@@ -79,7 +79,7 @@ describe FontHelper::BitMap do
 
       it 'changes binary' do
         expect { bit_map.bitmap[0][1] = 0 }
-          .to change { bit_map.binary }
+          .to change(bit_map, :binary)
           .from([254]).to([252])
       end
     end
@@ -103,7 +103,7 @@ describe FontHelper::BitMap do
     end
 
     context 'when there is only one full column' do
-      let(:binary) { [255,254,252,248] }
+      let(:binary) { [255, 254, 252, 248] }
       let(:expected) do
         [
           [
@@ -121,7 +121,7 @@ describe FontHelper::BitMap do
     end
 
     context 'when there is only mode than column' do
-      let(:binary) { [255,254,252,248,240,224,192,128] }
+      let(:binary) { [255, 254, 252, 248, 240, 224, 192, 128] }
       let(:expected) do
         [
           [
@@ -150,7 +150,7 @@ describe FontHelper::BitMap do
       expect { bit_map.bitmap = [[0, 0, 0, 0, 0, 0, 1, 0]] }
         .to change(bit_map, :bitmap)
         .from([[1, 1, 1, 1, 1, 1, 1, 1]])
-        .to( [[0, 0, 0, 0, 0, 0, 1, 0]])
+        .to([[0, 0, 0, 0, 0, 0, 1, 0]])
     end
 
     it 'changes binary' do

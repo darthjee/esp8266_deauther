@@ -4,7 +4,7 @@ class FontHelper
   class BitMap
     include Sinclair::Comparable
 
-    attr_reader :binary, :byte_height, :height
+    attr_reader :height
 
     delegate :empty?, :size, :map, to: :binary
 
