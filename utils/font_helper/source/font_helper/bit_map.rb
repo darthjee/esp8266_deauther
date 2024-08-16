@@ -37,28 +37,26 @@ class FontHelper
     end
 
     def remove_top(bits = 1)
-      return if bits.zero?
-
-      @bitmap = bitmap.map do |column|
-        column[bits, height - bits]
-      end
-
-      @height = height - bits
-      @byte_height = nil
+      crop(top: bits)
     end
 
     def remove_bottom(bits = 1)
+      crop(bottom: bits)
+    end
+
+    private
+
+    def crop(top: 0, bottom: 0)
+      bits = top + bottom
       return if bits.zero?
 
       @bitmap = bitmap.map do |column|
-        column[0, height - bits]
+        column[top, height - bits]
       end
 
       @height = height - bits
       @byte_height = nil
     end
-
-    private
 
     def generate_binary
       return [] unless @bitmap
