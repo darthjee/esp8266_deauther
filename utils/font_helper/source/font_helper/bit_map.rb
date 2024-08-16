@@ -38,7 +38,7 @@ class FontHelper
 
     def remove_top
       @bitmap = bitmap.map do |column|
-        column[1, height-1]
+        column[1, height - 1]
       end
 
       @height = height - 1
