@@ -210,13 +210,13 @@ describe FontHelper::BitMap do
 
     context 'when columns are 9 bits high' do
       let(:height) { 9 }
-      let(:binary) { [255, 1, 254, 0, 1, 1] }
+      let(:binary) { [255, 1, 254, 0, 1, 1, 128, 1, 128, 0, 1, 1] }
 
       it 'changes binary removing the last line' do
         expect { bit_map.remove_top }
           .to change(bit_map, :binary)
           .from(binary)
-          .to([255, 127, 128])
+          .to([255, 127, 128, 192, 64, 128])
       end
 
       it 'reduces the byte height' do
