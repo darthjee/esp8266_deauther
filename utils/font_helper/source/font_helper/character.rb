@@ -15,7 +15,7 @@ class FontHelper
       @code = code
       @width = width
       @height = height
-      @bit_map = BitMap.new(byte_height:, binary:)
+      @bit_map = BitMap.new(byte_height:, binary:, height:)
     end
 
     def byte_height
