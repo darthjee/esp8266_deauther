@@ -37,6 +37,8 @@ class FontHelper
     end
 
     def remove_top(bits = 1)
+      return if bits.zero?
+
       @bitmap = bitmap.map do |column|
         column[bits, height - bits]
       end
@@ -46,6 +48,8 @@ class FontHelper
     end
 
     def remove_bottom(bits = 1)
+      return if bits.zero?
+
       @bitmap = bitmap.map do |column|
         column[0, height - bits]
       end
