@@ -435,14 +435,14 @@ describe FontHelper::BitMap do
       let(:binary) { [255, 254, 1, 128] }
 
       it 'changes binary' do
-        expect { bit_map.crop(top:1, bottom: 1) }
+        expect { bit_map.crop(top: 1, bottom: 1) }
           .to change(bit_map, :binary)
           .from(binary)
           .to([63, 63, 0, 0])
       end
 
       it 'reduces the height' do
-        expect { bit_map.crop(top:1, bottom: 1) }
+        expect { bit_map.crop(top: 1, bottom: 1) }
           .to change(bit_map, :height)
           .by(-2)
       end
