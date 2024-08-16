@@ -284,6 +284,8 @@ describe FontHelper::Font do
   end
 
   describe '#crop' do
+    let(:height) { 8 }
+
     let(:characters) do
       [
         build(:character, code: 48, height:, binary: [255]),
