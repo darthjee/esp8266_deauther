@@ -38,6 +38,8 @@ class FontHelper
 
     def remove_top
       bitmap.each(&:shift)
+      @height = height - 1
+      @byte_height = nil
     end
 
     private

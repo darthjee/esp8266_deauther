@@ -48,6 +48,12 @@ describe FontHelper::Character do
           .from(binary)
           .to([127, 127, 0])
       end
+
+      it 'reduces the height' do
+        expect { character.remove_top }
+          .to change(character, :height)
+          .by(-1)
+      end
     end
 
     context 'when columns are 2 bytes height' do
@@ -59,6 +65,30 @@ describe FontHelper::Character do
           .to change(character, :binary)
           .from(binary)
           .to([255, 1, 127, 64, 128, 0])
+      end
+
+      it 'reduces the height' do
+        expect { character.remove_top }
+          .to change(character, :height)
+          .by(-1)
+      end
+    end
+
+    context 'when columns are 9 bits high' do
+      let(:height) { 9 }
+      let(:binary) { [255, 1, 254, 0, 1, 1] }
+
+      it 'changes binary removing the last line' do
+        expect { character.remove_top }
+          .to change(character, :binary)
+          .from(binary)
+          .to([255, 127, 128])
+      end
+
+      it 'reduces the height' do
+        expect { character.remove_top }
+          .to change(character, :height)
+          .by(-1)
       end
     end
   end
