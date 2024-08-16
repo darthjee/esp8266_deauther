@@ -173,6 +173,11 @@ describe FontHelper::BitMap do
           .to([127, 127, 0])
       end
 
+      it 'does not reduce the byte height' do
+        expect { bit_map.remove_top }
+          .not_to change(bit_map, :byte_height)
+      end
+
       it 'reduces the height' do
         expect { bit_map.remove_top }
           .to change(bit_map, :height)
@@ -191,6 +196,11 @@ describe FontHelper::BitMap do
           .to([255, 1, 127, 64, 128, 0])
       end
 
+      it 'does not reduce the byte height' do
+        expect { bit_map.remove_top }
+          .not_to change(bit_map, :byte_height)
+      end
+
       it 'reduces the height' do
         expect { bit_map.remove_top }
           .to change(bit_map, :height)
@@ -207,6 +217,12 @@ describe FontHelper::BitMap do
           .to change(bit_map, :binary)
           .from(binary)
           .to([255, 127, 128])
+      end
+
+      it 'reduces the byte height' do
+        expect { bit_map.remove_top }
+          .to change(bit_map, :byte_height)
+          .by(-1)
       end
 
       it 'reduces the height' do
