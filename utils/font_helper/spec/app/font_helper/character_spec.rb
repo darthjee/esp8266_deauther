@@ -38,14 +38,28 @@ describe FontHelper::Character do
   end
 
   describe '#remove_top' do
-    let(:height) { 8 }
-    let(:binary) { [255, 254, 1] }
+    context 'when columns are 1 byte height' do
+      let(:height) { 8 }
+      let(:binary) { [255, 254, 1] }
 
-    it 'changes binary' do
-      expect { character.remove_top }
-        .to change(character, :binary)
-        .from(binary)
-        .to([127, 127, 0])
+      it 'changes binary' do
+        expect { character.remove_top }
+          .to change(character, :binary)
+          .from(binary)
+          .to([127, 127, 0])
+      end
+    end
+
+    context 'when columns are 2 bytes height' do
+      let(:height) { 16 }
+      let(:binary) { [255, 3, 254, 128, 1, 1] }
+
+      it 'changes binary shifting bytes' do
+        expect { character.remove_top }
+          .to change(character, :binary)
+          .from(binary)
+          .to([255, 1, 127, 64, 128, 0])
+      end
     end
   end
 end
