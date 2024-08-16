@@ -3,10 +3,9 @@
 require 'spec_helper'
 
 describe FontHelper::BitMap do
-  subject(:bit_map) { described_class.new(binary:, height:, byte_height:) }
+  subject(:bit_map) { described_class.new(binary:, height:) }
 
   let(:height)      { 28 }
-  let(:byte_height) { 4 }
   let(:binary)      { [255] }
 
   describe '#byte_height' do

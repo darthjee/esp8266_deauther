@@ -37,40 +37,6 @@ describe FontHelper::Character do
     end
   end
 
-  describe '#byte_height' do
-    context 'when height is 8 or less' do
-      let(:height) { Random.rand(1..8) }
-
-      it do
-        expect(character.byte_height).to eq(1)
-      end
-    end
-
-    context 'when height is ibetween 9 and 16' do
-      let(:height) { Random.rand(9..16) }
-
-      it do
-        expect(character.byte_height).to eq(2)
-      end
-    end
-
-    context 'when height is ibetween 17 and 24' do
-      let(:height) { Random.rand(17..24) }
-
-      it do
-        expect(character.byte_height).to eq(3)
-      end
-    end
-
-    context 'when height is ibetween 25 and 32' do
-      let(:height) { Random.rand(25..32) }
-
-      it do
-        expect(character.byte_height).to eq(4)
-      end
-    end
-  end
-
   describe '#remove_top' do
     let(:height) { 8 }
     let(:binary) { [255, 254, 1] }

@@ -15,15 +15,11 @@ class FontHelper
       @code = code
       @width = width
       @height = height
-      @bit_map = BitMap.new(byte_height:, binary:, height:)
+      @bit_map = BitMap.new(binary:, height:)
     end
 
     def character
       code.chr
-    end
-
-    def byte_height
-      @byte_height ||= (height / 8.0).ceil
     end
 
     private
