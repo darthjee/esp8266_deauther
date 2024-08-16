@@ -44,8 +44,6 @@ class FontHelper
       crop(bottom: bits)
     end
 
-    private
-
     def crop(top: 0, bottom: 0)
       bits = top + bottom
       return if bits.zero?
@@ -57,6 +55,8 @@ class FontHelper
       @height = height - bits
       @byte_height = nil
     end
+
+    private
 
     def generate_binary
       return [] unless @bitmap
