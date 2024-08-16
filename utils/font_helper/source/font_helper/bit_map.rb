@@ -36,21 +36,21 @@ class FontHelper
       @bitmap = bitmap
     end
 
-    def remove_top
+    def remove_top(bits = 1)
       @bitmap = bitmap.map do |column|
-        column[1, height - 1]
+        column[bits, height - bits]
       end
 
-      @height = height - 1
+      @height = height - bits
       @byte_height = nil
     end
 
-    def remove_bottom
+    def remove_bottom(bits = 1)
       @bitmap = bitmap.map do |column|
-        column[0, height - 1]
+        column[0, height - bits]
       end
 
-      @height = height - 1
+      @height = height - bits
       @byte_height = nil
     end
 

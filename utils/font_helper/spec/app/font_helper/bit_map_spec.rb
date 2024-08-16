@@ -231,6 +231,30 @@ describe FontHelper::BitMap do
           .by(-1)
       end
     end
+
+    context 'when passing an argument' do
+      let(:height) { 9 }
+      let(:binary) { [255, 128, 131] }
+
+      it 'changes binary removing the last line' do
+        expect { bit_map.remove_top(2) }
+          .to change(bit_map, :binary)
+          .from(binary)
+          .to([63, 32])
+      end
+
+      it 'reduces the byte height' do
+        expect { bit_map.remove_top(2) }
+          .to change(bit_map, :byte_height)
+          .by(-1)
+      end
+
+      it 'reduces the height' do
+        expect { bit_map.remove_top(2) }
+          .to change(bit_map, :height)
+          .by(-2)
+      end
+    end
   end
 
   describe '#remove_bottom' do
@@ -301,6 +325,30 @@ describe FontHelper::BitMap do
         expect { bit_map.remove_top }
           .to change(bit_map, :height)
           .by(-1)
+      end
+    end
+
+    context 'when passing an argument' do
+      let(:height) { 9 }
+      let(:binary) { [255, 1, 254, 0, 128, 1] }
+
+      it 'changes binary removing the last line' do
+        expect { bit_map.remove_bottom(2) }
+          .to change(bit_map, :binary)
+          .from(binary)
+          .to([127, 126, 0])
+      end
+
+      it 'reduces the byte height' do
+        expect { bit_map.remove_bottom(2) }
+          .to change(bit_map, :byte_height)
+          .by(-1)
+      end
+
+      it 'reduces the height' do
+        expect { bit_map.remove_bottom(2) }
+          .to change(bit_map, :height)
+          .by(-2)
       end
     end
   end
