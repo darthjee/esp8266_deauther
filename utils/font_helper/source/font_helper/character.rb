@@ -20,6 +20,7 @@ class FontHelper
 
     def character
       return unless code > 31 && code < 128
+
       code.chr
     end
 

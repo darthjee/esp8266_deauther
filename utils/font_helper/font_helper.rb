@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 lib = File.expand_path('source', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
