@@ -282,4 +282,80 @@ describe FontHelper::Font do
       end
     end
   end
+
+  describe '#crop' do
+    let(:height) { 8 }
+
+    let(:characters) do
+      [
+        build(:character, code: 48, height:, binary: [255]),
+        build(:character, code: 49, height:, binary: [127]),
+        build(:character, code: 51, height:, binary: [128]),
+        build(:character, code: 52, height:, binary: [1])
+      ]
+    end
+
+    context 'when when croping the top' do
+      it 'change the heights' do
+        expect { font.crop(top: 1) }
+          .to change { font.characters.values.map(&:height).uniq }
+          .from([height]).to([height - 1])
+      end
+
+      it 'change the binaries' do
+        expect { font.crop(top: 1) }
+          .to change { font.characters.values.map(&:binary).flatten }
+          .from([255, 127, 128, 1])
+          .to([127, 63, 64, 0])
+      end
+
+      it 'changes font height' do
+        expect { font.crop(top: 1) }
+          .to change(font, :height)
+          .by(-1)
+      end
+    end
+
+    context 'when when croping the bottom' do
+      it 'change the heights' do
+        expect { font.crop(bottom: 1) }
+          .to change { font.characters.values.map(&:height).uniq }
+          .from([height]).to([height - 1])
+      end
+
+      it 'change the binaries' do
+        expect { font.crop(bottom: 1) }
+          .to change { font.characters.values.map(&:binary).flatten }
+          .from([255, 127, 128, 1])
+          .to([127, 127, 0, 1])
+      end
+
+      it 'changes font height' do
+        expect { font.crop(bottom: 1) }
+          .to change(font, :height)
+          .by(-1)
+      end
+    end
+
+    context 'when when croping top and bottom' do
+      it 'change the heights' do
+        expect { font.crop(bottom: 1, top: 1) }
+          .to change { font.characters.values.map(&:height).uniq }
+          .from([height]).to([height - 2])
+      end
+
+      it 'change the binaries' do
+        expect { font.crop(bottom: 1, top: 1) }
+          .to change { font.characters.values.map(&:binary).flatten }
+          .from([255, 127, 128, 1])
+          .to([63, 63, 0, 0])
+      end
+
+      it 'changes font height' do
+        expect { font.crop(bottom: 1, top: 1) }
+          .to change(font, :height)
+          .by(-2)
+      end
+    end
+  end
 end

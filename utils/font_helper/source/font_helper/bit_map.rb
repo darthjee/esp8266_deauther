@@ -4,15 +4,19 @@ class FontHelper
   class BitMap
     include Sinclair::Comparable
 
-    attr_reader :binary, :byte_height
+    attr_reader :height
 
     delegate :empty?, :size, :map, to: :binary
 
     comparable_by :byte_height, :binary
 
-    def initialize(byte_height:, binary: [])
-      @byte_height = byte_height
+    def initialize(height:, binary: [])
+      @height = height
       @binary = binary
+    end
+
+    def byte_height
+      @byte_height ||= (height / 8.0).ceil
     end
 
     def binary
@@ -30,6 +34,26 @@ class FontHelper
     def bitmap=(bitmap)
       @binary = nil
       @bitmap = bitmap
+    end
+
+    def remove_top(bits = 1)
+      crop(top: bits)
+    end
+
+    def remove_bottom(bits = 1)
+      crop(bottom: bits)
+    end
+
+    def crop(top: 0, bottom: 0)
+      bits = top + bottom
+      return if bits.zero?
+
+      @bitmap = bitmap.map do |column|
+        column[top, height - bits]
+      end
+
+      @height = height - bits
+      @byte_height = nil
     end
 
     private
