@@ -19,7 +19,7 @@ class FontHelper
     def write
       return if empty?
 
-      file.write("  #{binaries}#{separator} // #{code}\n")
+      file.write("  #{binaries}#{separator}  // #{code}\n")
     end
 
     private
