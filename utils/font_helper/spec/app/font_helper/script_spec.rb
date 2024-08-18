@@ -51,6 +51,7 @@ describe FontHelper::Script do
     end
 
     context 'when scripts loads and crops characters' do
+      let(:output_path) { '/tmp/font_croped.txt' }
       let(:path) { 'spec/support/fixtures/script_croping.yml' }
       let(:expected_result_file) do
         'spec/support/fixtures/font_croped.txt'
