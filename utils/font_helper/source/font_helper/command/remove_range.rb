@@ -5,7 +5,8 @@ class FontHelper
     class RemoveRange < Remove
 
       def initialize(script, first, last)
-        @argument = (first..last).to_a
+        super(script)
+        @arguments = (first..last).to_a
       end
     end
   end
