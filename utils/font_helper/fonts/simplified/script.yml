@@ -3,6 +3,6 @@
 - command: RemoveRange
   arguments: [33,47]
 - command: RemoveRange
-  arguments: [170,255]
+  arguments: [59,255]
 - command: Write
   arguments: ['fonts/simplified/font.txt']
