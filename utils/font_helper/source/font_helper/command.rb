@@ -23,12 +23,14 @@ class FontHelper
 
       def arguments_list(arguments)
         return [] if arguments.is_a?(Hash)
+        return [arguments] unless arguments.is_a?(Array)
 
         arguments.reject { |arg| arg.is_a?(Hash) }
       end
 
       def options(arguments)
         return arguments if arguments.is_a?(Hash)
+        return {} unless arguments.is_a?(Array)
 
         arguments.select { |arg| arg.is_a?(Hash) }.map.with_object({}) do |opt, hash|
           hash.merge!(opt)
