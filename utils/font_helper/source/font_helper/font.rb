@@ -48,6 +48,7 @@ class FontHelper
       characters.each_value do |character|
         character.crop(top:, bottom:)
       end
+      @height = height - top - bottom
     end
 
     def each

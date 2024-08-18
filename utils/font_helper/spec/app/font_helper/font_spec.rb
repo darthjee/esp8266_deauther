@@ -308,6 +308,12 @@ describe FontHelper::Font do
           .from([255, 127, 128, 1])
           .to([127, 63, 64, 0])
       end
+
+      it 'changes font height' do
+        expect { font.crop(top: 1) }
+          .to change(font, :height)
+          .by(-1)
+      end
     end
 
     context 'when when croping the bottom' do
@@ -323,6 +329,12 @@ describe FontHelper::Font do
           .from([255, 127, 128, 1])
           .to([127, 127, 0, 1])
       end
+
+      it 'changes font height' do
+        expect { font.crop(bottom: 1) }
+          .to change(font, :height)
+          .by(-1)
+      end
     end
 
     context 'when when croping top and bottom' do
@@ -337,6 +349,12 @@ describe FontHelper::Font do
           .to change { font.characters.values.map(&:binary).flatten }
           .from([255, 127, 128, 1])
           .to([63, 63, 0, 0])
+      end
+
+      it 'changes font height' do
+        expect { font.crop(bottom: 1, top: 1) }
+          .to change(font, :height)
+          .by(-2)
       end
     end
   end
