@@ -33,7 +33,7 @@ class FontHelper
     def binaries
       binary.map do |value|
         format('0x%02X', value)
-      end.join(', ')
+      end.join(',')
     end
   end
 end
