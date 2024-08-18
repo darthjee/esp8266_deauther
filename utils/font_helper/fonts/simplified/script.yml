@@ -4,5 +4,9 @@
   arguments: [33,47]
 - command: RemoveRange
   arguments: [59,255]
+- command: Crop
+  arguments:
+    top: 2
+    bottom: 2
 - command: Write
-  arguments: ['fonts/simplified/font.txt']
+  arguments: ['fonts/simplified/output.txt']
