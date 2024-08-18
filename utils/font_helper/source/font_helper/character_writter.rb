@@ -17,7 +17,7 @@ class FontHelper
     end
 
     def write
-      file.write("  #{definition},  // #{code}:#{position}\n")
+      file.write("  #{definition},  // #{code}:#{position} '#{character.character}'\n")
     end
 
     private
