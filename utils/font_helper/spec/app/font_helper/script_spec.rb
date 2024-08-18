@@ -37,10 +37,23 @@ describe FontHelper::Script do
       end
     end
 
-    context 'when scripts loads and edits a font' do
+    context 'when scripts loads and deletes characters' do
       let(:path) { 'spec/support/fixtures/script_removing_characters.yml' }
       let(:expected_result_file) do
         'spec/support/fixtures/font_lacking_characters.txt'
+      end
+
+      it 'loads all commands and write the font' do
+        script.run
+
+        expect(File.read(output_path)).to eq(expected_content)
+      end
+    end
+
+    context 'when scripts loads and crops characters' do
+      let(:path) { 'spec/support/fixtures/script_croping.yml' }
+      let(:expected_result_file) do
+        'spec/support/fixtures/font_croped.txt'
       end
 
       it 'loads all commands and write the font' do
