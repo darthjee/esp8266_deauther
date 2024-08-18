@@ -1,0 +1,8 @@
+- command: Open
+  arguments: ['spec/support/fixtures/font_to_be_croped.txt']
+- command: Crop
+  arguments:
+    top: 1
+    bottom: 1
+- command: Write
+  arguments: ['/tmp/font_croped.txt']
