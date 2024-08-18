@@ -44,6 +44,13 @@ class FontHelper
       characters[code] || Character.new(width:, code:, height:)
     end
 
+    def crop(top: 0, bottom: 0)
+      characters.each_value do |character|
+        character.crop(top:, bottom:)
+      end
+      @height = height - top - bottom
+    end
+
     def each
       characters_codes.each do |code|
         char = character(code)

@@ -3,10 +3,44 @@
 require 'spec_helper'
 
 describe FontHelper::BitMap do
-  subject(:bit_map) { described_class.new(binary:, byte_height:) }
+  subject(:bit_map) { described_class.new(binary:, height:) }
 
-  let(:byte_height) { 4 }
+  let(:height)      { 28 }
   let(:binary)      { [255] }
+
+  describe '#byte_height' do
+    context 'when height is 8 or less' do
+      let(:height) { Random.rand(1..8) }
+
+      it do
+        expect(bit_map.byte_height).to eq(1)
+      end
+    end
+
+    context 'when height is ibetween 9 and 16' do
+      let(:height) { Random.rand(9..16) }
+
+      it do
+        expect(bit_map.byte_height).to eq(2)
+      end
+    end
+
+    context 'when height is ibetween 17 and 24' do
+      let(:height) { Random.rand(17..24) }
+
+      it do
+        expect(bit_map.byte_height).to eq(3)
+      end
+    end
+
+    context 'when height is ibetween 25 and 32' do
+      let(:height) { Random.rand(25..32) }
+
+      it do
+        expect(bit_map.byte_height).to eq(4)
+      end
+    end
+  end
 
   describe '#binary' do
     context 'when it has been initialized' do
@@ -32,7 +66,7 @@ describe FontHelper::BitMap do
     context 'when there is a change in it' do
       it 'changes binary' do
         expect { bit_map.bitmap[0][0] = 0 }
-          .to change { bit_map.binary }
+          .to change(bit_map, :binary)
           .from([255]).to([254])
       end
     end
@@ -45,7 +79,7 @@ describe FontHelper::BitMap do
 
       it 'changes binary' do
         expect { bit_map.bitmap[0][1] = 0 }
-          .to change { bit_map.binary }
+          .to change(bit_map, :binary)
           .from([254]).to([252])
       end
     end
@@ -69,7 +103,7 @@ describe FontHelper::BitMap do
     end
 
     context 'when there is only one full column' do
-      let(:binary) { [255,254,252,248] }
+      let(:binary) { [255, 254, 252, 248] }
       let(:expected) do
         [
           [
@@ -87,7 +121,7 @@ describe FontHelper::BitMap do
     end
 
     context 'when there is only mode than column' do
-      let(:binary) { [255,254,252,248,240,224,192,128] }
+      let(:binary) { [255, 254, 252, 248, 240, 224, 192, 128] }
       let(:expected) do
         [
           [
@@ -116,7 +150,7 @@ describe FontHelper::BitMap do
       expect { bit_map.bitmap = [[0, 0, 0, 0, 0, 0, 1, 0]] }
         .to change(bit_map, :bitmap)
         .from([[1, 1, 1, 1, 1, 1, 1, 1]])
-        .to( [[0, 0, 0, 0, 0, 0, 1, 0]])
+        .to([[0, 0, 0, 0, 0, 0, 1, 0]])
     end
 
     it 'changes binary' do
@@ -124,6 +158,294 @@ describe FontHelper::BitMap do
         .to change(bit_map, :binary)
         .from([255])
         .to([64])
+    end
+  end
+
+  describe '#remove_top' do
+    context 'when columns are 1 byte height' do
+      let(:height) { 8 }
+      let(:binary) { [255, 254, 1] }
+
+      it 'changes binary' do
+        expect { bit_map.remove_top }
+          .to change(bit_map, :binary)
+          .from(binary)
+          .to([127, 127, 0])
+      end
+
+      it 'does not reduce the byte height' do
+        expect { bit_map.remove_top }
+          .not_to change(bit_map, :byte_height)
+      end
+
+      it 'reduces the height' do
+        expect { bit_map.remove_top }
+          .to change(bit_map, :height)
+          .by(-1)
+      end
+    end
+
+    context 'when columns are 2 bytes height' do
+      let(:height) { 16 }
+      let(:binary) { [255, 3, 254, 128, 1, 1] }
+
+      it 'changes binary shifting bytes' do
+        expect { bit_map.remove_top }
+          .to change(bit_map, :binary)
+          .from(binary)
+          .to([255, 1, 127, 64, 128, 0])
+      end
+
+      it 'does not reduce the byte height' do
+        expect { bit_map.remove_top }
+          .not_to change(bit_map, :byte_height)
+      end
+
+      it 'reduces the height' do
+        expect { bit_map.remove_top }
+          .to change(bit_map, :height)
+          .by(-1)
+      end
+    end
+
+    context 'when columns are 9 bits high' do
+      let(:height) { 9 }
+      let(:binary) { [255, 1, 254, 0, 1, 1, 128, 1, 128, 0, 1, 1] }
+
+      it 'changes binary removing the last line' do
+        expect { bit_map.remove_top }
+          .to change(bit_map, :binary)
+          .from(binary)
+          .to([255, 127, 128, 192, 64, 128])
+      end
+
+      it 'reduces the byte height' do
+        expect { bit_map.remove_top }
+          .to change(bit_map, :byte_height)
+          .by(-1)
+      end
+
+      it 'reduces the height' do
+        expect { bit_map.remove_top }
+          .to change(bit_map, :height)
+          .by(-1)
+      end
+    end
+
+    context 'when passing an argument' do
+      let(:height) { 9 }
+      let(:binary) { [255, 128, 131] }
+
+      it 'changes binary removing the last line' do
+        expect { bit_map.remove_top(2) }
+          .to change(bit_map, :binary)
+          .from(binary)
+          .to([63, 32])
+      end
+
+      it 'reduces the byte height' do
+        expect { bit_map.remove_top(2) }
+          .to change(bit_map, :byte_height)
+          .by(-1)
+      end
+
+      it 'reduces the height' do
+        expect { bit_map.remove_top(2) }
+          .to change(bit_map, :height)
+          .by(-2)
+      end
+    end
+
+    context 'when passing 0 as argument' do
+      let(:height) { 9 }
+      let(:binary) { [255, 128, 131] }
+
+      it 'changes binary removing the last line' do
+        expect { bit_map.remove_top(0) }
+          .not_to change(bit_map, :binary)
+      end
+
+      it 'reduces the byte height' do
+        expect { bit_map.remove_top(0) }
+          .not_to change(bit_map, :byte_height)
+      end
+
+      it 'reduces the height' do
+        expect { bit_map.remove_top(0) }
+          .not_to change(bit_map, :height)
+      end
+    end
+  end
+
+  describe '#remove_bottom' do
+    context 'when columns are 1 byte height' do
+      let(:height) { 8 }
+      let(:binary) { [255, 254, 1] }
+
+      it 'changes binary' do
+        expect { bit_map.remove_bottom }
+          .to change(bit_map, :binary)
+          .from(binary)
+          .to([127, 126, 1])
+      end
+
+      it 'does not reduce the byte height' do
+        expect { bit_map.remove_top }
+          .not_to change(bit_map, :byte_height)
+      end
+
+      it 'reduces the height' do
+        expect { bit_map.remove_top }
+          .to change(bit_map, :height)
+          .by(-1)
+      end
+    end
+
+    context 'when columns are 2 bytes height' do
+      let(:height) { 16 }
+      let(:binary) { [255, 131, 254, 128, 1, 1, 128, 64] }
+
+      it 'changes binary shifting bytes' do
+        expect { bit_map.remove_bottom }
+          .to change(bit_map, :binary)
+          .from(binary)
+          .to([255, 3, 254, 0, 1, 1, 128, 64])
+      end
+
+      it 'does not reduce the byte height' do
+        expect { bit_map.remove_top }
+          .not_to change(bit_map, :byte_height)
+      end
+
+      it 'reduces the height' do
+        expect { bit_map.remove_top }
+          .to change(bit_map, :height)
+          .by(-1)
+      end
+    end
+
+    context 'when columns are 9 bits high' do
+      let(:height) { 9 }
+      let(:binary) { [255, 1, 254, 0, 1, 1, 128, 1, 128, 0, 1, 1] }
+
+      it 'changes binary removing the last line' do
+        expect { bit_map.remove_bottom }
+          .to change(bit_map, :binary)
+          .from(binary)
+          .to([255, 254, 1, 128, 128, 1])
+      end
+
+      it 'reduces the byte height' do
+        expect { bit_map.remove_top }
+          .to change(bit_map, :byte_height)
+          .by(-1)
+      end
+
+      it 'reduces the height' do
+        expect { bit_map.remove_top }
+          .to change(bit_map, :height)
+          .by(-1)
+      end
+    end
+
+    context 'when passing an argument' do
+      let(:height) { 9 }
+      let(:binary) { [255, 1, 254, 0, 128, 1] }
+
+      it 'changes binary removing the last line' do
+        expect { bit_map.remove_bottom(2) }
+          .to change(bit_map, :binary)
+          .from(binary)
+          .to([127, 126, 0])
+      end
+
+      it 'reduces the byte height' do
+        expect { bit_map.remove_bottom(2) }
+          .to change(bit_map, :byte_height)
+          .by(-1)
+      end
+
+      it 'reduces the height' do
+        expect { bit_map.remove_bottom(2) }
+          .to change(bit_map, :height)
+          .by(-2)
+      end
+    end
+
+    context 'when passing 0 as argument' do
+      let(:height) { 9 }
+      let(:binary) { [255, 1, 254, 0, 128, 1] }
+
+      it 'changes binary removing the last line' do
+        expect { bit_map.remove_bottom(0) }
+          .not_to change(bit_map, :binary)
+      end
+
+      it 'reduces the byte height' do
+        expect { bit_map.remove_bottom(0) }
+          .not_to change(bit_map, :byte_height)
+      end
+
+      it 'reduces the height' do
+        expect { bit_map.remove_bottom(0) }
+          .not_to change(bit_map, :height)
+      end
+    end
+  end
+
+  describe '#crop' do
+    context 'when cropping top' do
+      let(:height) { 8 }
+      let(:binary) { [255, 254, 1, 128] }
+
+      it 'changes binary' do
+        expect { bit_map.crop(top: 1) }
+          .to change(bit_map, :binary)
+          .from(binary)
+          .to([127, 127, 0, 64])
+      end
+
+      it 'reduces the height' do
+        expect { bit_map.crop(top: 1) }
+          .to change(bit_map, :height)
+          .by(-1)
+      end
+    end
+
+    context 'when cropping bottom' do
+      let(:height) { 8 }
+      let(:binary) { [255, 254, 1, 128] }
+
+      it 'changes binary' do
+        expect { bit_map.crop(bottom: 1) }
+          .to change(bit_map, :binary)
+          .from(binary)
+          .to([127, 126, 1, 0])
+      end
+
+      it 'reduces the height' do
+        expect { bit_map.crop(bottom: 1) }
+          .to change(bit_map, :height)
+          .by(-1)
+      end
+    end
+
+    context 'when cropping top and bottom' do
+      let(:height) { 8 }
+      let(:binary) { [255, 254, 1, 128] }
+
+      it 'changes binary' do
+        expect { bit_map.crop(top: 1, bottom: 1) }
+          .to change(bit_map, :binary)
+          .from(binary)
+          .to([63, 63, 0, 0])
+      end
+
+      it 'reduces the height' do
+        expect { bit_map.crop(top: 1, bottom: 1) }
+          .to change(bit_map, :height)
+          .by(-2)
+      end
     end
   end
 end

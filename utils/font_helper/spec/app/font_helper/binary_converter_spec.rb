@@ -53,5 +53,13 @@ describe FontHelper::BinaryConverter do
         expect(described_class.to_byte(bits)).to eq(0)
       end
     end
+
+    context 'when bits are incomplete' do
+      let(:bits) { [1, 1, 1, 1, 1, 1] }
+
+      it 'returns the remapping into a bits' do
+        expect(described_class.to_byte(bits)).to eq(63)
+      end
+    end
   end
 end
