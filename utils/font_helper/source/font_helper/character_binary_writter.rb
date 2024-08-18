@@ -19,7 +19,7 @@ class FontHelper
     def write
       return if empty?
 
-      file.write("  #{binaries}#{separator} // #{code}\n")
+      file.write("  #{binaries}#{separator}  // #{code}\n")
     end
 
     private
@@ -33,7 +33,7 @@ class FontHelper
     def binaries
       binary.map do |value|
         format('0x%02X', value)
-      end.join(', ')
+      end.join(',')
     end
   end
 end
