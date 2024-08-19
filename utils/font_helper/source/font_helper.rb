@@ -18,6 +18,8 @@ class FontHelper
   autoload :CharacterWritter,       'font_helper/character_writter'
   autoload :CharacterBinaryWritter, 'font_helper/character_binary_writter'
 
+  autoload :ImageWritter, 'font_helper/image_writter'
+
   autoload :Script,        'font_helper/script'
   autoload :ScriptContext, 'font_helper/script_context'
   autoload :Command,       'font_helper/command'
