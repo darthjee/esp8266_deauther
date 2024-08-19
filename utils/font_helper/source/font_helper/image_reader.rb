@@ -13,13 +13,21 @@ class FontHelper
     end
 
     def read
-      bitmap
+      trimmed_bitmap
     end
 
     private
 
+    def trimmed_bitmap
+      bits.each_slice(height).to_a
+    end
+
+    def bits
+      bitmap.join("").gsub(/0*$/, "").split("").map(&:to_i)
+    end
+
     def bitmap
-      numbers[2..]
+      numbers[2..].each_slice(width).to_a.transpose
     end
 
     def width
