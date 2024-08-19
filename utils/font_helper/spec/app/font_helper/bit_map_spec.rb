@@ -448,4 +448,50 @@ describe FontHelper::BitMap do
       end
     end
   end
+
+  describe '#bit_at' do
+    context 'when bit exist and byte is 1' do
+      let(:binary) { [1] }
+
+      context 'when it is 1 do' do
+        it do
+          expect(bit_map.bit_at(column: 0, line: 0)).to eq(1)
+        end
+      end
+
+      context 'when it is 0 do' do
+        it do
+          expect(bit_map.bit_at(column: 0, line: 7)).to eq(0)
+        end
+      end
+    end
+
+    context 'when bit exist and byte is 128' do
+      let(:binary) { [128] }
+
+      context 'when it is 0 do' do
+        it do
+          expect(bit_map.bit_at(column: 0, line: 7)).to eq(1)
+        end
+      end
+
+      context 'when it is 1 do' do
+        it do
+          expect(bit_map.bit_at(column: 0, line: 0)).to eq(0)
+        end
+      end
+    end
+
+    context 'when line does not exist' do
+      it do
+        expect(bit_map.bit_at(column: 0, line: 8)).to eq(0)
+      end
+    end
+
+    context 'when column does not exist' do
+      it do
+        expect(bit_map.bit_at(column: 1, line: 0)).to eq(0)
+      end
+    end
+  end
 end
