@@ -11,9 +11,14 @@ if [ ! $COMMAND ]; then
   COMMAND="help"
 fi
 
+shift 1
+
 case $COMMAND in
-  "read")
-    docker-compose run font_helper /bin/bash -c "echo aaa"
+  "dev")
+    docker-compose run font_helper /bin/bash
+    ;;
+  "script")
+    docker-compose run font_helper /bin/bash -c "ruby font_helper.rb script $*"
     ;;
   "help")
     help
