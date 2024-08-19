@@ -2,31 +2,32 @@
 
 class FontHelper
   class ImageReader
-    attr_reader :path
+    attr_reader :code, :path
 
-    def self.write(path)
-      new(path).read
+    def self.write(code, path)
+      new(code, path).read
     end
 
-    def initialize(path)
+    def initialize(code, path)
+      @code = code
       @path = path
     end
 
     def read
-      trimmed_bitmap
+      Character.new(code:, width:, height:, bitmap:)
     end
 
     private
 
-    def trimmed_bitmap
+    def bitmap
       bits.each_slice(height).to_a
     end
 
     def bits
-      bitmap.join.gsub(/0*$/, '').chars.map(&:to_i)
+      untrimed_bitmap.join.gsub(/0*$/, '').chars.map(&:to_i)
     end
 
-    def bitmap
+    def untrimed_bitmap
       numbers[2..].each_slice(width).to_a.transpose
     end
 
