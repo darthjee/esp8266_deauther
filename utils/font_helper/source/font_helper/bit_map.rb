@@ -25,6 +25,12 @@ class FontHelper
       end
     end
 
+    def bit_at(line:, column:)
+      return 0 unless bitmap[column]
+
+      bitmap[column][line] || 0
+    end
+
     def bitmap
       @bitmap ||= generate_bitmap.tap do
         @binary = nil
