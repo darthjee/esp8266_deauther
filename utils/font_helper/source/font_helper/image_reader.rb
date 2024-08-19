@@ -23,7 +23,7 @@ class FontHelper
     end
 
     def bits
-      bitmap.join("").gsub(/0*$/, "").split("").map(&:to_i)
+      bitmap.join.gsub(/0*$/, '').chars.map(&:to_i)
     end
 
     def bitmap
@@ -40,12 +40,12 @@ class FontHelper
 
     def numbers
       @numbers ||= file_content
-        .gsub(/#.*/, '')
-        .gsub(/P1/, "")
-        .gsub(/\n/, " ")
-        .strip
-        .split(" ")
-        .map(&:to_i)
+                   .gsub(/#.*/, '')
+                   .gsub('P1', '')
+                   .gsub("\n", ' ')
+                   .strip
+                   .split
+                   .map(&:to_i)
     end
 
     def file_content

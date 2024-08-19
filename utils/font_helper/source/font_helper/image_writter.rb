@@ -39,7 +39,7 @@ class FontHelper
       bits = width.times.map do |column|
         bit_at(line:, column:)
       end
-      string = bits.join(" ")
+      string = bits.join(' ')
 
       file.write("#{string}\n")
     end
