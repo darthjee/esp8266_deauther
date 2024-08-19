@@ -12,10 +12,10 @@ class FontHelper
 
     comparable_by :code, :width, :height, :binary
 
-    def initialize(code:, width:, height:, binary: nil)
+    def initialize(code:, width:, height:, binary: nil, bitmap: nil)
       @code = code
       @width = width
-      @bit_map = BitMap.new(binary:, height:)
+      @bit_map = BitMap.new(binary:, height:, bitmap:)
     end
 
     def character

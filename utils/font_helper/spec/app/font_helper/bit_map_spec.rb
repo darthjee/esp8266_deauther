@@ -8,6 +8,33 @@ describe FontHelper::BitMap do
   let(:height)      { 28 }
   let(:binary)      { [255] }
 
+  describe '#initialization' do
+    let(:binary) { [131] }
+    let(:bitmap) { [[1, 1, 0, 0, 0, 0, 0, 1]] }
+
+    context 'when initializing with binary' do
+      it 'ínitializes the binary' do
+        expect(bit_map.binary).to eq(binary)
+      end
+
+      it 'initializes bitmap' do
+        expect(bit_map.bitmap).to eq(bitmap)
+      end
+    end
+
+    context 'when initializing with bitmap' do
+      subject(:bit_map) { described_class.new(bitmap:, height:) }
+
+      it 'ínitializes the binary' do
+        expect(bit_map.binary).to eq(binary)
+      end
+
+      it 'initializes bitmap' do
+        expect(bit_map.bitmap).to eq(bitmap)
+      end
+    end
+  end
+
   describe '#byte_height' do
     context 'when height is 8 or less' do
       let(:height) { Random.rand(1..8) }

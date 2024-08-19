@@ -10,9 +10,10 @@ class FontHelper
 
     comparable_by :byte_height, :binary
 
-    def initialize(height:, binary: [])
+    def initialize(height:, binary: nil, bitmap: nil)
       @height = height
       @binary = binary
+      @bitmap = bitmap
     end
 
     def byte_height
