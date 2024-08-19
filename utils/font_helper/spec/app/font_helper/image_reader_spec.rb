@@ -14,7 +14,7 @@ describe FontHelper::ImageReader do
       let(:code) { cod }
 
       it 'creates the file with the correct content' do
-        expect(described_class.write(code, image_path))
+        expect(described_class.read(code, image_path))
           .to eq(character)
       end
     end

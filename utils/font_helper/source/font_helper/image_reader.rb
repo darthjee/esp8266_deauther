@@ -4,7 +4,7 @@ class FontHelper
   class ImageReader
     attr_reader :code, :path
 
-    def self.write(code, path)
+    def self.read(code, path)
       new(code, path).read
     end
 
