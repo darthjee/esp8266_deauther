@@ -10,19 +10,30 @@ class FontHelper
 
     comparable_by :byte_height, :binary
 
-    def initialize(height:, binary: [])
+    def initialize(height:, binary: nil, bitmap: nil)
       @height = height
       @binary = binary
+      @bitmap = bitmap
     end
 
     def byte_height
       @byte_height ||= (height / 8.0).ceil
     end
 
+    def trim
+      @binary = binary.join(',').gsub(/(,0)*$/, '').split(',').map(&:to_i)
+    end
+
     def binary
       @binary ||= generate_binary.tap do
         @bitmap = nil
       end
+    end
+
+    def bit_at(line:, column:)
+      return 0 unless bitmap[column]
+
+      bitmap[column][line] || 0
     end
 
     def bitmap

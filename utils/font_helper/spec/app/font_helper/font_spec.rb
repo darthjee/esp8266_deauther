@@ -358,4 +358,27 @@ describe FontHelper::Font do
       end
     end
   end
+
+  describe '#trim' do
+    let(:characters) do
+      [
+        build(:character, code: 48, binary: [255, 0, 1, 0, 0, 0]),
+        build(:character, code: 50, binary: [0, 0, 0])
+      ]
+    end
+
+    let(:expected_characters) do
+      [
+        build(:character, code: 48, binary: [255, 0, 1]),
+        build(:character, code: 50, binary: [0])
+      ]
+    end
+
+    it 'trims all characters' do
+      expect { font.trim }
+        .to change { font.characters.values.map(&:binary) }
+        .from(characters.map(&:binary))
+        .to(expected_characters.map(&:binary))
+    end
+  end
 end
