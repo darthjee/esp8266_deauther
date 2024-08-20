@@ -13,6 +13,7 @@ class FontHelper
       end
 
       def run
+        font.trim
         FontHelper::FontWritter.write(font, path)
       end
     end

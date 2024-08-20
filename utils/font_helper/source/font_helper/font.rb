@@ -18,6 +18,10 @@ class FontHelper
       end
     end
 
+    def trim
+      characters.values.each(&:trim)
+    end
+
     def <<(character)
       characters[character.code] = character
     end

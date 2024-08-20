@@ -20,6 +20,10 @@ class FontHelper
       @byte_height ||= (height / 8.0).ceil
     end
 
+    def trim
+      @binary = binary.join(",").gsub(/(,0)*$/,'').split(",")
+    end
+
     def binary
       @binary ||= generate_binary.tap do
         @bitmap = nil
