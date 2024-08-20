@@ -1,12 +1,8 @@
-- command: Open
-  arguments: ['fonts/simplified/font.txt']
-- command: RemoveRange
-  arguments: [33,47]
-- command: RemoveRange
-  arguments: [59,255]
-- command: Crop
+- command: CreateFont
   arguments:
-    top: 2
-    bottom: 2
+    height: 24
+    width: 24
+- command: ReadImages 
+  arguments: ['fonts/crypt/']
 - command: Write
-  arguments: ['fonts/simplified/output.txt']
+  arguments: ['fonts/crypt/output.txt']
