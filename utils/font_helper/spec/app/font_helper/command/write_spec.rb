@@ -30,6 +30,7 @@ describe FontHelper::Command::Write do
 
     context 'when font needs to be trimmed' do
       let(:font_path) { 'spec/support/fixtures/font_to_trim.txt' }
+      let(:expected_font_path) { 'spec/support/fixtures/font.txt' }
 
       it 'creates the font file' do
         expect { command.run }
@@ -40,7 +41,7 @@ describe FontHelper::Command::Write do
       it 'writes the font data' do
         command.run
 
-        expect(File.read(path)).to eq(File.read(font_path))
+        expect(File.read(path)).to eq(File.read(expected_font_path))
       end
     end
   end
