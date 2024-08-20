@@ -2,6 +2,9 @@
   arguments:
     height: 24
     width: 24
+- command: AddCharacter
+  arguments:
+    code: 32
 - command: ReadImages 
   arguments: ['fonts/crypt/']
 - command: Write
