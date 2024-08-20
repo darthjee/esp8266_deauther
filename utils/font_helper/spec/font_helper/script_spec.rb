@@ -77,5 +77,19 @@ describe FontHelper::Script do
         expect(File.read(output_path)).to eq(expected_content)
       end
     end
+
+    context 'when scripts loads images' do
+      let(:output_path) { '/tmp/font_loaded.txt' }
+      let(:path) { 'spec/support/fixtures/script_load_image.yml' }
+      let(:expected_result_file) do
+        'spec/support/fixtures/font_simplified.txt'
+      end
+
+      it 'loads all commands and write the font' do
+        script.run
+
+        expect(File.read(output_path)).to eq(expected_content)
+      end
+    end
   end
 end

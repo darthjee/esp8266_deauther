@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe FontHelper::Command::ReadImages do
-  subject(:command) { described_class.new(script, path:) }
+  subject(:command) { described_class.new(script, path) }
 
   let(:path) { 'spec/support/fixtures' }
 
