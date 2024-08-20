@@ -14,6 +14,10 @@ describe FontHelper::Command::ReadImage do
   let(:context)    { FontHelper::ScriptContext.new }
   let(:script)     { FontHelper::Script.new(SecureRandom.hex(32), context:) }
 
+  let(:expecrted_font)     { FontHelper::FontLoader.load(expected_font_path) }
+  let(:expected_font_path) { 'spec/support/fixtures/font_simplified.txt' }
+  let(:expected_character) { expecrted_font.character(code) }
+
   before do
     context.font = font
   end
@@ -23,6 +27,7 @@ describe FontHelper::Command::ReadImage do
       expect { command.run }
         .to change { font.character(code) }
         .from(characters.first)
+        .to(expected_character)
     end
   end
 end
