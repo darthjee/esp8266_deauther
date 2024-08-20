@@ -7,7 +7,7 @@ class FontHelper
 
       comparable_by :path
 
-      def initialize(script, path:)
+      def initialize(script, path)
         @path = path
         super(script)
       end
