@@ -4,14 +4,15 @@ class FontHelper
   class Command
     include Sinclair::Comparable
 
-    autoload :Open,        'font_helper/command/open'
-    autoload :Write,       'font_helper/command/write'
-    autoload :Remove,      'font_helper/command/remove'
-    autoload :RemoveRange, 'font_helper/command/remove_range'
-    autoload :Crop,        'font_helper/command/crop'
-    autoload :ReadImage,   'font_helper/command/read_image'
-    autoload :ReadImages,  'font_helper/command/read_images'
-    autoload :CreateFont,  'font_helper/command/create_font'
+    autoload :Open,         'font_helper/command/open'
+    autoload :Write,        'font_helper/command/write'
+    autoload :Remove,       'font_helper/command/remove'
+    autoload :RemoveRange,  'font_helper/command/remove_range'
+    autoload :Crop,         'font_helper/command/crop'
+    autoload :ReadImage,    'font_helper/command/read_image'
+    autoload :ReadImages,   'font_helper/command/read_images'
+    autoload :CreateFont,   'font_helper/command/create_font'
+    autoload :AddCharacter, 'font_helper/command/add_character'
 
     delegate :font, :font=, to: :script
 

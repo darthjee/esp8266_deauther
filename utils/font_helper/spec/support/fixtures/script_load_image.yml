@@ -1,0 +1,12 @@
+- command: CreateFont
+  arguments:
+    height: 24
+    width: 24
+- command: AddCharacter
+  arguments:
+    code: 32
+    width: 7
+- command: ReadImages 
+  arguments: ['spec/support/fixtures/']
+- command: Write
+  arguments: ['/tmp/font_loaded.txt']
