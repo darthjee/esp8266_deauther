@@ -8,6 +8,33 @@ describe FontHelper::BitMap do
   let(:height)      { 28 }
   let(:binary)      { [255] }
 
+  describe '#initialization' do
+    let(:binary) { [131] }
+    let(:bitmap) { [[1, 1, 0, 0, 0, 0, 0, 1]] }
+
+    context 'when initializing with binary' do
+      it 'ínitializes the binary' do
+        expect(bit_map.binary).to eq(binary)
+      end
+
+      it 'initializes bitmap' do
+        expect(bit_map.bitmap).to eq(bitmap)
+      end
+    end
+
+    context 'when initializing with bitmap' do
+      subject(:bit_map) { described_class.new(bitmap:, height:) }
+
+      it 'ínitializes the binary' do
+        expect(bit_map.binary).to eq(binary)
+      end
+
+      it 'initializes bitmap' do
+        expect(bit_map.bitmap).to eq(bitmap)
+      end
+    end
+  end
+
   describe '#byte_height' do
     context 'when height is 8 or less' do
       let(:height) { Random.rand(1..8) }
@@ -446,6 +473,64 @@ describe FontHelper::BitMap do
           .to change(bit_map, :height)
           .by(-2)
       end
+    end
+  end
+
+  describe '#bit_at' do
+    context 'when bit exist and byte is 1' do
+      let(:binary) { [1] }
+
+      context 'when it is 1 do' do
+        it do
+          expect(bit_map.bit_at(column: 0, line: 0)).to eq(1)
+        end
+      end
+
+      context 'when it is 0 do' do
+        it do
+          expect(bit_map.bit_at(column: 0, line: 7)).to eq(0)
+        end
+      end
+    end
+
+    context 'when bit exist and byte is 128' do
+      let(:binary) { [128] }
+
+      context 'when it is 0 do' do
+        it do
+          expect(bit_map.bit_at(column: 0, line: 7)).to eq(1)
+        end
+      end
+
+      context 'when it is 1 do' do
+        it do
+          expect(bit_map.bit_at(column: 0, line: 0)).to eq(0)
+        end
+      end
+    end
+
+    context 'when line does not exist' do
+      it do
+        expect(bit_map.bit_at(column: 0, line: 8)).to eq(0)
+      end
+    end
+
+    context 'when column does not exist' do
+      it do
+        expect(bit_map.bit_at(column: 1, line: 0)).to eq(0)
+      end
+    end
+  end
+
+  describe '#trim' do
+    let(:height) { 16 }
+    let(:binary) { [255, 0, 0, 0, 0, 255, 1, 0, 0, 0] }
+
+    it 'removes last empty bytes' do
+      expect { bit_map.trim }
+        .to change(bit_map, :binary)
+        .from(binary)
+        .to([255, 0, 0, 0, 0, 255, 1])
     end
   end
 end

@@ -9,6 +9,7 @@ class FontHelper
     autoload :Remove,      'font_helper/command/remove'
     autoload :RemoveRange, 'font_helper/command/remove_range'
     autoload :Crop,        'font_helper/command/crop'
+    autoload :ReadImage,   'font_helper/command/read_image'
 
     delegate :font, :font=, to: :script
 

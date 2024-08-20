@@ -1,0 +1,12 @@
+- command: Open
+  arguments: ['spec/support/fixtures/font_big.txt']
+- command: RemoveRange
+  arguments: [33,47]
+- command: RemoveRange
+  arguments: [59,255]
+- command: Crop
+  arguments:
+    top: 2
+    bottom: 2
+- command: Write
+  arguments: ['/tmp/font_simplified.txt']
