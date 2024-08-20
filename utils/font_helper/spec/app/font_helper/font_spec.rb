@@ -363,14 +363,14 @@ describe FontHelper::Font do
     let(:characters) do
       [
         build(:character, code: 48, binary: [255, 0, 1, 0, 0, 0]),
-        build(:character, code: 50, binary: [0, 0, 0]),
+        build(:character, code: 50, binary: [0, 0, 0])
       ]
     end
 
     let(:expected_characters) do
       [
         build(:character, code: 48, binary: [255, 0, 1]),
-        build(:character, code: 50, binary: [0]),
+        build(:character, code: 50, binary: [0])
       ]
     end
 

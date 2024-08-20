@@ -21,7 +21,7 @@ class FontHelper
     end
 
     def trim
-      @binary = binary.join(",").gsub(/(,0)*$/,'').split(",").map(&:to_i)
+      @binary = binary.join(',').gsub(/(,0)*$/, '').split(',').map(&:to_i)
     end
 
     def binary

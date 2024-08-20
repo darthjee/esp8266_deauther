@@ -50,7 +50,7 @@ describe FontHelper::Script do
       end
     end
 
-    context "when script loads, deletes and crops characters" do
+    context 'when script loads, deletes and crops characters' do
       let(:path) { 'spec/support/fixtures/script_simplify.yml' }
       let(:output_path) { '/tmp/font_simplified.txt' }
       let(:expected_result_file) do

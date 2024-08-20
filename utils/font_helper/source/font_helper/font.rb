@@ -19,7 +19,7 @@ class FontHelper
     end
 
     def trim
-      characters.values.each(&:trim)
+      characters.each_value(&:trim)
     end
 
     def <<(character)

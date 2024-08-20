@@ -526,7 +526,7 @@ describe FontHelper::BitMap do
     let(:height) { 16 }
     let(:binary) { [255, 0, 0, 0, 0, 255, 1, 0, 0, 0] }
 
-    it 'removes last empty bytes'do
+    it 'removes last empty bytes' do
       expect { bit_map.trim }
         .to change(bit_map, :binary)
         .from(binary)

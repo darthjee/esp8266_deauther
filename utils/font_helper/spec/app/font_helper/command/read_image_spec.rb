@@ -8,7 +8,7 @@ describe FontHelper::Command::ReadImage do
   let(:code)      { (48..58).to_a.sample }
   let(:path)      { "spec/support/fixtures/#{code}.pbm" }
 
-  let(:font)       { build(:font, characters: characters) }
+  let(:font)       { build(:font, characters:) }
   let(:characters) { [build(:character, code:, binary: [255])] }
 
   let(:context)    { FontHelper::ScriptContext.new }
