@@ -14,7 +14,7 @@ class FontHelper
 
       def run
         paths.each do |path|
-          code = path.gsub(/.*\//,'').gsub(/\..*/,'').to_i
+          code = path.gsub(%r{.*/}, '').gsub(/\..*/, '').to_i
           ReadImage.new(script, code:, path:).run
         end
       end

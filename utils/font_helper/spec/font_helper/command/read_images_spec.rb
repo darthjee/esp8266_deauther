@@ -5,7 +5,7 @@ require 'spec_helper'
 describe FontHelper::Command::ReadImages do
   subject(:command) { described_class.new(script, path:) }
 
-  let(:path)      { "spec/support/fixtures" }
+  let(:path) { 'spec/support/fixtures' }
 
   let(:height) { 24 }
   let(:width) { 24 }
@@ -30,7 +30,7 @@ describe FontHelper::Command::ReadImages do
         .to([35] + (48..58).to_a)
     end
 
-    context 'after loading' do
+    context 'when loading is do' do
       let(:characters) { [] }
 
       before do
