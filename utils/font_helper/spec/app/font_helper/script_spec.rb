@@ -50,6 +50,20 @@ describe FontHelper::Script do
       end
     end
 
+    context "when script loads, deletes and crops characters" do
+      let(:path) { 'spec/support/fixtures/script_simplify.yml' }
+      let(:output_path) { '/tmp/font_simplified.txt' }
+      let(:expected_result_file) do
+        'spec/support/fixtures/font_simplified.txt'
+      end
+
+      it 'loads all commands and write the font' do
+        script.run
+
+        expect(File.read(output_path)).to eq(expected_content)
+      end
+    end
+
     context 'when scripts loads and crops characters' do
       let(:output_path) { '/tmp/font_croped.txt' }
       let(:path) { 'spec/support/fixtures/script_croping.yml' }
