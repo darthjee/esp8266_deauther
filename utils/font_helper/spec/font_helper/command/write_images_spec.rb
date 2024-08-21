@@ -6,8 +6,15 @@ describe FontHelper::Command::WriteImages do
   subject(:command) { described_class.new(script, path:) }
 
   let(:font)        { FontHelper::FontLoader.load(font_path) }
+  let(:codes)       { (48..58).to_a }
+  let(:sample_path) { "spec/support/fixtures/images/#{code}.pbm" }
+  let(:sample)      { File.read(sample_path) }
+  let(:code)        { codes.sample }
+  let(:file_paths)  do
+    codes.map { |code| "#{path}#{code}.pbm" }
+  end
   let(:font_path)   { 'spec/support/fixtures/font_simplified.txt' }
-  let(:path)        { "/tmp/images_#{SecureRandom.hex(32)}/"}
+  let(:path)        { "/tmp/images_#{SecureRandom.hex(32)}/" }
   let(:character)   { font.character(code) }
 
   let(:context)    { FontHelper::ScriptContext.new(font:) }
@@ -22,14 +29,6 @@ describe FontHelper::Command::WriteImages do
       FileUtils.rm_f(file)
     end
     Dir.rmdir(path)
-  end
-
-  let(:codes)       { (48..58).to_a }
-  let(:sample_path) { "spec/support/fixtures/images/#{code}.pbm" }
-  let(:sample)      { File.read(sample_path) }
-  let(:code)        { codes.sample }
-  let(:file_paths)  do
-    codes.map { |code| "#{path}#{code}.pbm" }
   end
 
   it 'creates the files' do
