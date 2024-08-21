@@ -6,7 +6,7 @@ describe FontHelper::Command::ReadImage do
   subject(:command) { described_class.new(script, code:, path:) }
 
   let(:code)      { (48..58).to_a.sample }
-  let(:path)      { "spec/support/fixtures/#{code}.pbm" }
+  let(:path)      { "spec/support/fixtures/images/#{code}.pbm" }
 
   let(:font)       { build(:font, characters:) }
   let(:characters) { [build(:character, code:, binary: [255])] }

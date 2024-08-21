@@ -9,7 +9,7 @@ describe FontHelper::Command::WriteImage do
   let(:font_path)   { 'spec/support/fixtures/font_simplified.txt' }
   let(:path)        { "/tmp/#{code}_#{SecureRandom.hex(16)}.pbm" }
   let(:character)   { font.character(code) }
-  let(:sample_path) { "spec/support/fixtures/#{code}.pbm" }
+  let(:sample_path) { "spec/support/fixtures/images/#{code}.pbm" }
   let(:sample)      { File.read(sample_path) }
 
   let(:context)    { FontHelper::ScriptContext.new(font:) }
