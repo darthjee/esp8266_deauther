@@ -533,4 +533,17 @@ describe FontHelper::BitMap do
         .to([255, 0, 0, 0, 0, 255, 1])
     end
   end
+
+  describe '#flip_vertically' do
+    let(:height) { 9 }
+    let(:width)  { 4 }
+    let(:binary) { [255, 1, 3, 0, 0, 1, 128, 1] }
+
+    it 'flips the bits vertically' do
+      expect { bit_map.flip_vertically }
+        .to change(bit_map, :binary)
+        .from(binary)
+        .to([255, 1, 1, 1, 1, 0, 3, 0])
+    end
+  end
 end

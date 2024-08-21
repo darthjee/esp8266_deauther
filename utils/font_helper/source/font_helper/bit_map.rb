@@ -4,10 +4,12 @@ class FontHelper
   class BitMap
     autoload :BitOperations,    'font_helper/bit_map/bit_operations'
     autoload :BinaryOperations, 'font_helper/bit_map/binary_operations'
+    autoload :Flipper,          'font_helper/bit_map/flipper'
 
     include Sinclair::Comparable
     include BitOperations
     include BinaryOperations
+    include Flipper
 
     attr_reader :height
 
