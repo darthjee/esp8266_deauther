@@ -172,6 +172,24 @@ describe FontHelper::BitMap do
         expect(bit_map.bitmap).to eq(expected)
       end
     end
+
+    context "when height is a broken byte" do
+      let(:height) { 9 }
+      let(:binary) { [255, 1, 128, 1, 3, 0, 0, 1, 4] }
+      let(:expected) do
+        [
+          [1, 1, 1, 1, 1, 1, 1, 1, 1],
+          [0, 0, 0, 0, 0, 0, 0, 1, 1],
+          [1, 1, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 1],
+          [0, 0, 1, 0, 0, 0, 0, 0],
+        ]
+      end
+
+      it 'returns the remapping into a bitmap' do
+        expect(bit_map.bitmap).to eq(expected)
+      end
+    end
   end
 
   describe '#bitmap=' do
