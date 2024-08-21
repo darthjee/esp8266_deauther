@@ -13,6 +13,7 @@ class FontHelper
     autoload :ReadImages,   'font_helper/command/read_images'
     autoload :CreateFont,   'font_helper/command/create_font'
     autoload :AddCharacter, 'font_helper/command/add_character'
+    autoload :WriteImage,   'font_helper/command/write_image'
 
     delegate :font, :font=, to: :script
 
