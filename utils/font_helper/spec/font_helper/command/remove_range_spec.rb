@@ -5,14 +5,10 @@ require 'spec_helper'
 describe FontHelper::Command::RemoveRange do
   subject(:command) { described_class.new(script, initial, final) }
 
-  let(:context)   { FontHelper::ScriptContext.new }
+  let(:context)   { FontHelper::ScriptContext.new(font:) }
   let(:font)      { FontHelper::FontLoader.load(font_path) }
   let(:font_path) { 'spec/support/fixtures/font_remove.txt' }
   let(:script)    { FontHelper::Script.new(SecureRandom.hex(32), context:) }
-
-  before do
-    context.font = font
-  end
 
   describe '#run' do
     let(:initial_characters) do

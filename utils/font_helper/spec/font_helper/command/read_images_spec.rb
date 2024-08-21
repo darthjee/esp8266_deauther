@@ -12,15 +12,11 @@ describe FontHelper::Command::ReadImages do
   let(:font)       { build(:font, characters:, height:, width:) }
   let(:characters) { [build(:character, code: 35, binary: [255])] }
 
-  let(:context)    { FontHelper::ScriptContext.new }
+  let(:context)    { FontHelper::ScriptContext.new(font:) }
   let(:script)     { FontHelper::Script.new(SecureRandom.hex(32), context:) }
 
   let(:expected_font)      { FontHelper::FontLoader.load(expected_font_path) }
   let(:expected_font_path) { 'spec/support/fixtures/font_simplified.txt' }
-
-  before do
-    context.font = font
-  end
 
   describe '#run' do
     it 'adds the new characters' do

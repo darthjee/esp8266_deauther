@@ -12,12 +12,8 @@ describe FontHelper::Command::WriteImage do
   let(:sample_path) { "spec/support/fixtures/#{code}.pbm" }
   let(:sample)      { File.read(sample_path) }
   
-  let(:context)    { FontHelper::ScriptContext.new }
+  let(:context)    { FontHelper::ScriptContext.new(font:) }
   let(:script)     { FontHelper::Script.new(SecureRandom.hex(32), context:) }
-
-  before do
-    context.font = font
-  end
 
   after do
     FileUtils.rm_f(path)

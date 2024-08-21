@@ -13,12 +13,8 @@ describe FontHelper::Command::AddCharacter do
   let(:font)       { build(:font, characters:, height:) }
   let(:characters) { [build(:character, code: 32, binary: [255])] }
 
-  let(:context)    { FontHelper::ScriptContext.new }
+  let(:context)    { FontHelper::ScriptContext.new(font:) }
   let(:script)     { FontHelper::Script.new(SecureRandom.hex(32), context:) }
-
-  before do
-    context.font = font
-  end
 
   describe '#run' do
     let(:expected_character) do
