@@ -14,6 +14,7 @@ class FontHelper
     autoload :CreateFont,   'font_helper/command/create_font'
     autoload :AddCharacter, 'font_helper/command/add_character'
     autoload :WriteImage,   'font_helper/command/write_image'
+    autoload :WriteImages,  'font_helper/command/write_images'
 
     delegate :font, :font=, to: :script
 
