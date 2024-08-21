@@ -32,7 +32,7 @@ describe FontHelper::Command::AddCharacter do
 
     context 'when missing height' do
       let(:height) { nil }
-       
+
       it 'add character using font height' do
         expect { command.run }
           .to change { font.characters.values }
@@ -43,7 +43,7 @@ describe FontHelper::Command::AddCharacter do
 
     context 'when missing binary' do
       let(:binary) { nil }
-       
+
       it 'add character using font height' do
         expect { command.run }
           .to change { font.characters.values }
