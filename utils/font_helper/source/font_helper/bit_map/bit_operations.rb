@@ -27,7 +27,7 @@ class FontHelper
         bytes_columns.map do |column|
           column.map do |byte|
             BinaryConverter.to_bits(byte)
-          end.flatten
+          end.flatten[0, height]
         end
       end
     end

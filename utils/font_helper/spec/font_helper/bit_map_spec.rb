@@ -130,6 +130,7 @@ describe FontHelper::BitMap do
     end
 
     context 'when there is only one full column' do
+      let(:height) { 32 }
       let(:binary) { [255, 254, 252, 248] }
       let(:expected) do
         [
@@ -148,6 +149,7 @@ describe FontHelper::BitMap do
     end
 
     context 'when there is only mode than column' do
+      let(:height) { 32 }
       let(:binary) { [255, 254, 252, 248, 240, 224, 192, 128] }
       let(:expected) do
         [
@@ -543,7 +545,7 @@ describe FontHelper::BitMap do
       expect { bit_map.flip_vertically }
         .to change(bit_map, :binary)
         .from(binary)
-        .to([255, 1, 1, 1, 1, 0, 3, 0])
+        .to([255, 1, 128, 1, 1, 0, 3, 0])
     end
   end
 end
