@@ -7,31 +7,40 @@ describe FontHelper::Command::WriteImages do
 
   let(:font)        { FontHelper::FontLoader.load(font_path) }
   let(:font_path)   { 'spec/support/fixtures/font_simplified.txt' }
-  let(:path)        { "/tmp/#{code}_#{SecureRandom.hex(16)}.pbm" }
+  let(:path)        { "/tmp/images_#{SecureRandom.hex(32)}/"}
   let(:character)   { font.character(code) }
 
   let(:context)    { FontHelper::ScriptContext.new(font:) }
   let(:script)     { FontHelper::Script.new(SecureRandom.hex(32), context:) }
 
   before do
+    Dir.mkdir(path)
   end
 
   after do
-    FileUtils.rm_f(path)
+    Dir["#{path}/*"].each do |file|
+      FileUtils.rm_f(file)
+    end
+    Dir.rmdir(path)
   end
 
-  let(:codes) { (48..58).to_a }
+  let(:codes)       { (48..58).to_a }
   let(:sample_path) { "spec/support/fixtures/images/#{code}.pbm" }
   let(:sample)      { File.read(sample_path) }
-  it 'creates the file' do
+  let(:code)        { codes.sample }
+  let(:file_paths)  do
+    codes.map { |code| "#{path}#{code}.pbm" }
+  end
+
+  it 'creates the files' do
     expect { command.run }
-      .to change { File.exist?(path) }
+      .to change { file_paths.all? { |path| File.exist?(path) } }
       .from(false).to(true)
   end
 
   it 'creates the file with the correct content' do
     command.run
 
-    expect(File.read(path)).to eq(sample)
+    expect(File.read("#{path}/#{code}.pbm")).to eq(sample)
   end
 end
