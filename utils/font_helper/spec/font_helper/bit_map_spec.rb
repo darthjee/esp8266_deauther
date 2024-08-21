@@ -173,7 +173,7 @@ describe FontHelper::BitMap do
       end
     end
 
-    context "when height is a broken byte" do
+    context 'when height is a broken byte' do
       let(:height) { 9 }
       let(:binary) { [255, 1, 128, 1, 3, 0, 0, 1, 4] }
       let(:expected) do
@@ -182,7 +182,7 @@ describe FontHelper::BitMap do
           [0, 0, 0, 0, 0, 0, 0, 1, 1],
           [1, 1, 0, 0, 0, 0, 0, 0, 0],
           [0, 0, 0, 0, 0, 0, 0, 0, 1],
-          [0, 0, 1, 0, 0, 0, 0, 0],
+          [0, 0, 1, 0, 0, 0, 0, 0]
         ]
       end
 
