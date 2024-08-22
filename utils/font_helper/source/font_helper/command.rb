@@ -16,6 +16,8 @@ class FontHelper
     autoload :WriteImage,   'font_helper/command/write_image'
     autoload :WriteImages,  'font_helper/command/write_images'
 
+    autoload :FlipVertically,  'font_helper/command/flip_vertically'
+
     delegate :font, :font=, to: :script
 
     class << self

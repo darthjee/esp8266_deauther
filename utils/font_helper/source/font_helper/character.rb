@@ -8,6 +8,7 @@ class FontHelper
 
     delegate :size, :empty?, to: :binary
     delegate :binary, :height, :crop, :bit_at, :trim,
+             :flip_vertically,
              :remove_top, :remove_bottom, to: :bit_map
 
     comparable_by :code, :width, :height, :binary
