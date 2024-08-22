@@ -69,4 +69,31 @@ describe Array do
       end
     end
   end
+
+  describe '#swap' do
+    subject(:array) do
+      [].ensure_size!(size) { Random.rand(1..10000) }
+    end
+
+    let(:size) { Random.rand(5..20) }
+    let(:first_index) { Random.rand(0..5) }
+    let(:second_index) { Random.rand(6..20) }
+
+    it 'changes the array' do
+      expect { array.swap(first_index, second_index) }
+        .to change { array }
+    end
+
+    it 'changes the first index' do
+      expect { array.swap(first_index, second_index) }
+        .to change { array[first_index] }
+        .to(array[second_index])
+    end
+
+    it 'changes the second index' do
+      expect { array.swap(first_index, second_index) }
+        .to change { array[second_index] }
+        .to(array[first_index])
+    end
+  end
 end
