@@ -72,7 +72,7 @@ describe Array do
 
   describe '#swap' do
     subject(:array) do
-      [].ensure_size!(size) { Random.rand(1..10000) }
+      [].ensure_size!(size) { Random.rand(1..10_000) }
     end
 
     let(:size) { Random.rand(5..20) }
@@ -81,7 +81,7 @@ describe Array do
 
     it 'changes the array' do
       expect { array.swap(first_index, second_index) }
-        .to change { array }
+        .to(change { array })
     end
 
     it 'changes the first index' do
