@@ -1,7 +1,7 @@
 class Array
-  def ensure_size!(size, default)
+  def ensure_size!(size, &block)
     slice!(size, self.size - size)
-    fill(default, self.size, size - self.size)
+    fill(self.size, size - self.size, &block)
     self
   end
 end
