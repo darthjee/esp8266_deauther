@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe Array do
-  subject(:array) { [ 1, 2, 3, 4, 5, 6, 7, 8] }
+  subject(:array) { [1, 2, 3, 4, 5, 6, 7, 8] }
 
   describe '#ensure_size' do
     context 'when array has the right size' do
@@ -16,7 +16,7 @@ describe Array do
 
       it 'does not change array content' do
         expect { array.ensure_size!(size) { 0 }  }
-          .to not_change { array }
+          .to(not_change { array })
       end
 
       it 'returns the array' do
@@ -38,7 +38,7 @@ describe Array do
         expect { array.ensure_size!(size) { 0 }  }
           .to change { array }
           .from(array.dup)
-          .to([1,2,3,4,5])
+          .to([1, 2, 3, 4, 5])
       end
 
       it 'returns the array' do
@@ -60,7 +60,7 @@ describe Array do
         expect { array.ensure_size!(size) { 0 }  }
           .to change { array }
           .from(array.dup)
-          .to([1,2,3,4,5,6,7,8,0,0])
+          .to([1, 2, 3, 4, 5, 6, 7, 8, 0, 0])
       end
 
       it 'returns the array' do
