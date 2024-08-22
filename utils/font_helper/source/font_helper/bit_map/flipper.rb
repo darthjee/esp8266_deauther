@@ -12,9 +12,9 @@ class FontHelper
       end
 
       def flip_horizontally
-        (bitmap.size / 2).times do |index|
-          aux = bitmap[index]
-          bitmap[index] = bitmap[width - index - 1]
+        (width / 2).times do |index|
+          aux = bitmap[index] || height.times.map { 0 }
+          bitmap[index] = bitmap[width - index - 1] || height.times.map { 0 }
           bitmap[width - index - 1] = aux
         end
       end
