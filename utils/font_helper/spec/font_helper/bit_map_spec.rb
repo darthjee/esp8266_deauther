@@ -10,6 +10,7 @@ describe FontHelper::BitMap do
   let(:binary) { [255] }
 
   describe '#initialization' do
+    let(:height) { 8 }
     let(:binary) { [131] }
     let(:bitmap) { [[1, 1, 0, 0, 0, 0, 0, 1]] }
 
@@ -91,6 +92,8 @@ describe FontHelper::BitMap do
   end
 
   describe '#bitmap' do
+    let(:height) { 8 }
+
     context 'when there is a change in it' do
       it 'changes binary' do
         expect { bit_map.bitmap[0][0] = 0 }
@@ -183,7 +186,7 @@ describe FontHelper::BitMap do
           [0, 0, 0, 0, 0, 0, 0, 1, 1],
           [1, 1, 0, 0, 0, 0, 0, 0, 0],
           [0, 0, 0, 0, 0, 0, 0, 0, 1],
-          [0, 0, 1, 0, 0, 0, 0, 0]
+          [0, 0, 1, 0, 0, 0, 0, 0, 0]
         ]
       end
 
@@ -194,6 +197,8 @@ describe FontHelper::BitMap do
   end
 
   describe '#bitmap=' do
+    let(:height) { 8 }
+
     it 'changes bitmap' do
       expect { bit_map.bitmap = [[0, 0, 0, 0, 0, 0, 1, 0]] }
         .to change(bit_map, :bitmap)
