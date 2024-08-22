@@ -6,6 +6,6 @@
   arguments:
     code: 32
 - command: ReadImages 
-  arguments: ['fonts/crypt/']
+  arguments: ['fonts/crypt_36/']
 - command: Write
-  arguments: ['fonts/crypt/output.txt']
+  arguments: ['fonts/crypt_36/output.txt']
