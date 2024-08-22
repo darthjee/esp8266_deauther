@@ -607,5 +607,16 @@ describe FontHelper::BitMap do
           .to([0, 0, 0, 0, 0, 0, 255, 1])
       end
     end
+
+    context 'when columns is incomplete' do
+      let(:binary) { [255, 1, 3, 0, 0, 1, 128] }
+
+      it 'flips columns' do
+        expect { bit_map.flip_horizontally }
+          .to change(bit_map, :binary)
+          .from(binary)
+          .to([128, 0, 0, 1, 3, 0, 255, 1])
+      end
+    end
   end
 end
