@@ -3,10 +3,11 @@
 require 'spec_helper'
 
 describe FontHelper::BitMap do
-  subject(:bit_map) { described_class.new(binary:, height:) }
+  subject(:bit_map) { described_class.new(binary:, height:, width:) }
 
-  let(:height)      { 28 }
-  let(:binary)      { [255] }
+  let(:height) { 28 }
+  let(:width)  { 10 }
+  let(:binary) { [255] }
 
   describe '#initialization' do
     let(:binary) { [131] }
@@ -23,7 +24,7 @@ describe FontHelper::BitMap do
     end
 
     context 'when initializing with bitmap' do
-      subject(:bit_map) { described_class.new(bitmap:, height:) }
+      subject(:bit_map) { described_class.new(bitmap:, height:, width:) }
 
       it 'ínitializes the binary' do
         expect(bit_map.binary).to eq(binary)

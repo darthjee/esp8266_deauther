@@ -11,16 +11,17 @@ class FontHelper
     include BinaryOperations
     include Flipper
 
-    attr_reader :height
+    attr_reader :height, :width
 
     delegate :empty?, :size, :map, to: :binary
 
     comparable_by :byte_height, :binary
 
-    def initialize(height:, binary: nil, bitmap: nil)
+    def initialize(width:, height:, binary: nil, bitmap: nil)
       @height = height
       @binary = binary
       @bitmap = bitmap
+      @width  = width
     end
 
     def byte_height

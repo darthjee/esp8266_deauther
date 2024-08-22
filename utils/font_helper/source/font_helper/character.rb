@@ -15,7 +15,7 @@ class FontHelper
     def initialize(code:, width:, height:, binary: nil, bitmap: nil)
       @code = code
       @width = width
-      @bit_map = BitMap.new(binary:, height:, bitmap:)
+      @bit_map = BitMap.new(binary:, width:, height:, bitmap:)
     end
 
     def character
