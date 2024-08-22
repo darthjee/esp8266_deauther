@@ -6,7 +6,7 @@ class FontHelper
       def flip_vertically
         bitmap.size.times do |index|
           column = bitmap[index]
-          column.fill(0, column.size, height - column.size)
+          column.ensure_size!(height) { 0 }
           bitmap[index] = column.reverse
         end
       end
@@ -15,8 +15,8 @@ class FontHelper
         (width / 2).times do |index|
           aux = bitmap[index] || height.times.map { 0 }
           other =  bitmap[width - index - 1] || height.times.map { 0 }
-          bitmap[index] = other.fill(0, other.size, height - other.size)
-          bitmap[width - index - 1] = aux.fill(0, aux.size, height - aux.size)
+          bitmap[index] = other.ensure_size!(height) { 0 }
+          bitmap[width - index - 1] = aux.ensure_size!(height) { 0 }
         end
       end
     end
