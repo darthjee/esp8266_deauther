@@ -45,6 +45,21 @@ describe FontHelper::BinaryConverter do
     end
   end
 
+  describe '.convert_to_bytes' do
+    let(:bits) do
+      [
+        1, 1, 1, 1, 1, 1, 1, 1,
+        0, 0, 0, 0, 0, 0, 0, 1,
+        1, 0, 0, 0, 0, 0, 0, 0
+      ]
+    end
+
+    it 'returns the array of bytes' do
+      expect(described_class.convert_to_bytes(bits))
+        .to eq([255, 128, 1])
+    end
+  end
+
   describe '.to_bytes' do
     context 'when byte is full' do
       let(:bits) { [1, 1, 1, 1, 1, 1, 1, 1] }

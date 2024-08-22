@@ -11,8 +11,8 @@ class FontHelper
     end
 
     def self.convert_to_bytes(bits)
-      bits.each_slice(BYTE_SIZE).map do |bits|
-        to_byte(bits)
+      bits.each_slice(BYTE_SIZE).map do |slice|
+        to_byte(slice)
       end
     end
 
