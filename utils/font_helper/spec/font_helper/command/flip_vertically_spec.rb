@@ -7,7 +7,7 @@ describe FontHelper::Command::FlipVertically do
 
   let(:code)        { (48..58).to_a.sample }
 
-  let(:font)     { FontHelper::FontLoader.load(font_path) }
+  let(:font) { FontHelper::FontLoader.load(font_path) }
   let(:font_path) { 'spec/support/fixtures/font_simplified.txt' }
 
   let(:context)    { FontHelper::ScriptContext.new(font:) }
