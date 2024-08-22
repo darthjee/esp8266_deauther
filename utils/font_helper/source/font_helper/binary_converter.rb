@@ -2,6 +2,8 @@
 
 class FontHelper
   module BinaryConverter
+    BYTE_SIZE = 8
+
     def self.convert_bytes(bytes)
       bytes.map do |byte|
         to_bits(byte)
@@ -9,13 +11,13 @@ class FontHelper
     end
 
     def self.convert_to_bytes(bits)
-      bits.each_slice(8).map do |bits|
+      bits.each_slice(BYTE_SIZE).map do |bits|
         to_byte(bits)
       end
     end
 
     def self.to_bits(byte)
-      8.times.map do |exp|
+      BYTE_SIZE.times.map do |exp|
         power = 2**exp
         (byte & power) / power
       end
