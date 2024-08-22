@@ -4,8 +4,14 @@ class FontHelper
   module BinaryConverter
     def self.convert_bytes(bytes)
       bytes.map do |byte|
-        BinaryConverter.to_bits(byte)
+        to_bits(byte)
       end.flatten
+    end
+
+    def self.convert_to_bytes(bits)
+      bits.each_slice(8).map do |bits|
+        to_byte(bits)
+      end
     end
 
     def self.to_bits(byte)

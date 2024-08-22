@@ -19,9 +19,7 @@ class FontHelper
         return [] unless @bitmap
 
         bitmap.map do |column|
-          column.each_slice(8).map do |bits|
-            BinaryConverter.to_byte(bits)
-          end
+          BinaryConverter.convert_to_bytes(column)
         end.flatten
       end
     end
