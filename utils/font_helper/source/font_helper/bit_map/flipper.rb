@@ -8,6 +8,7 @@ class FontHelper
           column = bitmap[index]
           bitmap[index] = column.reverse
         end
+        trim
       end
 
       def flip_horizontally

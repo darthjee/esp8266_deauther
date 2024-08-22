@@ -571,7 +571,7 @@ describe FontHelper::BitMap do
         expect { bit_map.flip_vertically }
           .to change(bit_map, :binary)
           .from(binary)
-          .to([255, 1, 128, 1, 1, 0, 3, 0])
+          .to([255, 1, 128, 1, 1, 0, 3])
       end
     end
 
