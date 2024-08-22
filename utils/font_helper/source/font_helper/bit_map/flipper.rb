@@ -10,6 +10,14 @@ class FontHelper
           bitmap[index] = column.reverse
         end
       end
+
+      def flip_horizontally
+        (bitmap.size / 2).times do |index|
+          aux = bitmap[index]
+          bitmap[index] = bitmap[width - index]
+          bitmap[width - index] = aux
+        end
+      end
     end
   end
 end

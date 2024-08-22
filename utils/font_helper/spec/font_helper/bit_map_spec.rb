@@ -580,4 +580,20 @@ describe FontHelper::BitMap do
       end
     end
   end
+
+  describe '#flip_horizontally' do
+    let(:height) { 9 }
+    let(:width)  { 4 }
+
+    context 'when all columns are present' do
+      let(:binary) { [255, 1, 3, 0, 0, 1, 128, 1] }
+
+      it 'flips columns' do
+        expect { bit_map.flip_horizontally }
+          .to change(bit_map, :binary)
+          .from(binary)
+          .to([128, 1, 0, 1, 3, 0, 255, 1])
+      end
+    end
+  end
 end
