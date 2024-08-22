@@ -5,13 +5,9 @@ require 'spec_helper'
 describe FontHelper::Command::Crop do
   subject(:command) { described_class.new(script, top:, bottom:) }
 
-  let(:context)   { FontHelper::ScriptContext.new }
   let(:font)      { build(:font) }
+  let(:context)   { FontHelper::ScriptContext.new(font:) }
   let(:script)    { FontHelper::Script.new(SecureRandom.hex(32), context:) }
-
-  before do
-    context.font = font
-  end
 
   describe '#run' do
     let(:font) { FontHelper::Font.new(width:, height:, characters:) }

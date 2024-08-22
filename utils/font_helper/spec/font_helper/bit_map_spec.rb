@@ -3,12 +3,14 @@
 require 'spec_helper'
 
 describe FontHelper::BitMap do
-  subject(:bit_map) { described_class.new(binary:, height:) }
+  subject(:bit_map) { described_class.new(binary:, height:, width:) }
 
-  let(:height)      { 28 }
-  let(:binary)      { [255] }
+  let(:height) { 28 }
+  let(:width)  { 10 }
+  let(:binary) { [255] }
 
   describe '#initialization' do
+    let(:height) { 8 }
     let(:binary) { [131] }
     let(:bitmap) { [[1, 1, 0, 0, 0, 0, 0, 1]] }
 
@@ -23,7 +25,7 @@ describe FontHelper::BitMap do
     end
 
     context 'when initializing with bitmap' do
-      subject(:bit_map) { described_class.new(bitmap:, height:) }
+      subject(:bit_map) { described_class.new(bitmap:, height:, width:) }
 
       it 'ínitializes the binary' do
         expect(bit_map.binary).to eq(binary)
@@ -90,6 +92,8 @@ describe FontHelper::BitMap do
   end
 
   describe '#bitmap' do
+    let(:height) { 8 }
+
     context 'when there is a change in it' do
       it 'changes binary' do
         expect { bit_map.bitmap[0][0] = 0 }
@@ -130,6 +134,7 @@ describe FontHelper::BitMap do
     end
 
     context 'when there is only one full column' do
+      let(:height) { 32 }
       let(:binary) { [255, 254, 252, 248] }
       let(:expected) do
         [
@@ -148,6 +153,7 @@ describe FontHelper::BitMap do
     end
 
     context 'when there is only mode than column' do
+      let(:height) { 32 }
       let(:binary) { [255, 254, 252, 248, 240, 224, 192, 128] }
       let(:expected) do
         [
@@ -170,9 +176,29 @@ describe FontHelper::BitMap do
         expect(bit_map.bitmap).to eq(expected)
       end
     end
+
+    context 'when height is a broken byte' do
+      let(:height) { 9 }
+      let(:binary) { [255, 1, 128, 1, 3, 0, 0, 1, 4] }
+      let(:expected) do
+        [
+          [1, 1, 1, 1, 1, 1, 1, 1, 1],
+          [0, 0, 0, 0, 0, 0, 0, 1, 1],
+          [1, 1, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 1],
+          [0, 0, 1, 0, 0, 0, 0, 0, 0]
+        ]
+      end
+
+      it 'returns the remapping into a bitmap' do
+        expect(bit_map.bitmap).to eq(expected)
+      end
+    end
   end
 
   describe '#bitmap=' do
+    let(:height) { 8 }
+
     it 'changes bitmap' do
       expect { bit_map.bitmap = [[0, 0, 0, 0, 0, 0, 1, 0]] }
         .to change(bit_map, :bitmap)
@@ -531,6 +557,71 @@ describe FontHelper::BitMap do
         .to change(bit_map, :binary)
         .from(binary)
         .to([255, 0, 0, 0, 0, 255, 1])
+    end
+  end
+
+  describe '#flip_vertically' do
+    let(:height) { 9 }
+    let(:width)  { 4 }
+
+    context 'when columns are complete' do
+      let(:binary) { [255, 1, 3, 0, 0, 1, 128, 1] }
+
+      it 'flips the bits vertically' do
+        expect { bit_map.flip_vertically }
+          .to change(bit_map, :binary)
+          .from(binary)
+          .to([255, 1, 128, 1, 1, 0, 3])
+      end
+    end
+
+    context 'when columns is incomplete' do
+      let(:binary) { [255, 1, 3, 0, 0, 1, 129] }
+
+      it 'flips the bits vertically' do
+        expect { bit_map.flip_vertically }
+          .to change(bit_map, :binary)
+          .from(binary)
+          .to([255, 1, 128, 1, 1, 0, 2, 1])
+      end
+    end
+  end
+
+  describe '#flip_horizontally' do
+    let(:height) { 9 }
+    let(:width)  { 4 }
+
+    context 'when all columns are present' do
+      let(:binary) { [255, 1, 3, 0, 0, 1, 128, 1] }
+
+      it 'flips columns' do
+        expect { bit_map.flip_horizontally }
+          .to change(bit_map, :binary)
+          .from(binary)
+          .to([128, 1, 0, 1, 3, 0, 255, 1])
+      end
+    end
+
+    context 'when columns are missing' do
+      let(:binary) { [255, 1] }
+
+      it 'flips columns' do
+        expect { bit_map.flip_horizontally }
+          .to change(bit_map, :binary)
+          .from(binary)
+          .to([0, 0, 0, 0, 0, 0, 255, 1])
+      end
+    end
+
+    context 'when columns is incomplete' do
+      let(:binary) { [255, 1, 3, 0, 0, 1, 128] }
+
+      it 'flips columns' do
+        expect { bit_map.flip_horizontally }
+          .to change(bit_map, :binary)
+          .from(binary)
+          .to([128, 0, 0, 1, 3, 0, 255, 1])
+      end
     end
   end
 end

@@ -8,6 +8,7 @@ class FontHelper
 
     delegate :size, :empty?, to: :binary
     delegate :binary, :height, :crop, :bit_at, :trim,
+             :flip_vertically, :flip_horizontally,
              :remove_top, :remove_bottom, to: :bit_map
 
     comparable_by :code, :width, :height, :binary
@@ -15,7 +16,7 @@ class FontHelper
     def initialize(code:, width:, height:, binary: nil, bitmap: nil)
       @code = code
       @width = width
-      @bit_map = BitMap.new(binary:, height:, bitmap:)
+      @bit_map = BitMap.new(binary:, width:, height:, bitmap:)
     end
 
     def character

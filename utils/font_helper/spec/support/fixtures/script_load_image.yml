@@ -7,6 +7,6 @@
     code: 32
     width: 7
 - command: ReadImages 
-  arguments: ['spec/support/fixtures/']
+  arguments: ['spec/support/fixtures/images/']
 - command: Write
   arguments: ['/tmp/font_loaded.txt']

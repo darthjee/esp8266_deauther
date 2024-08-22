@@ -2,18 +2,26 @@
 
 class FontHelper
   class BitMap
-    include Sinclair::Comparable
+    autoload :BitOperations,    'font_helper/bit_map/bit_operations'
+    autoload :BinaryOperations, 'font_helper/bit_map/binary_operations'
+    autoload :Flipper,          'font_helper/bit_map/flipper'
 
-    attr_reader :height
+    include Sinclair::Comparable
+    include BitOperations
+    include BinaryOperations
+    include Flipper
+
+    attr_reader :height, :width
 
     delegate :empty?, :size, :map, to: :binary
 
     comparable_by :byte_height, :binary
 
-    def initialize(height:, binary: nil, bitmap: nil)
+    def initialize(width:, height:, binary: nil, bitmap: nil)
       @height = height
       @binary = binary
       @bitmap = bitmap
+      @width  = width
     end
 
     def byte_height
@@ -22,18 +30,6 @@ class FontHelper
 
     def trim
       @binary = binary.join(',').gsub(/(,0)*$/, '').split(',').map(&:to_i)
-    end
-
-    def binary
-      @binary ||= generate_binary.tap do
-        @bitmap = nil
-      end
-    end
-
-    def bit_at(line:, column:)
-      return 0 unless bitmap[column]
-
-      bitmap[column][line] || 0
     end
 
     def bitmap
@@ -53,42 +49,6 @@ class FontHelper
 
     def remove_bottom(bits = 1)
       crop(bottom: bits)
-    end
-
-    def crop(top: 0, bottom: 0)
-      bits = top + bottom
-      return if bits.zero?
-
-      @bitmap = bitmap.map do |column|
-        column[top, height - bits]
-      end
-
-      @height = height - bits
-      @byte_height = nil
-    end
-
-    private
-
-    def generate_binary
-      return [] unless @bitmap
-
-      bitmap.map do |column|
-        column.each_slice(8).map do |bits|
-          BinaryConverter.to_byte(bits)
-        end
-      end.flatten
-    end
-
-    def generate_bitmap
-      bytes_columns.map do |column|
-        column.map do |byte|
-          BinaryConverter.to_bits(byte)
-        end.flatten
-      end
-    end
-
-    def bytes_columns
-      binary.each_slice(byte_height).to_a
     end
   end
 end
