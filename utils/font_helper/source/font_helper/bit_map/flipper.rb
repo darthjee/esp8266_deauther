@@ -14,10 +14,7 @@ class FontHelper
         bitmap.ensure_size!(width) { [].ensure_size!(height) { 0 } }
 
         (width / 2).times do |index|
-          aux = bitmap[index]
-          other = bitmap[width - index - 1]
-          bitmap[index] = other
-          bitmap[width - index - 1] = aux
+          bitmap.swap(index, width - index - 1)
         end
       end
     end
