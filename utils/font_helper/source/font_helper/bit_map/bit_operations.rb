@@ -25,9 +25,9 @@ class FontHelper
 
       def generate_bitmap
         bytes_columns.map do |column|
-          column.map do |byte|
-            BinaryConverter.to_bits(byte)
-          end.flatten.ensure_size!(height) { 0 }
+          BinaryConverter
+            .convert_bytes(column)
+            .ensure_size!(height) { 0 }
         end
       end
     end
