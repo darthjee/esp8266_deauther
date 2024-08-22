@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'sinclair'
+require 'array_ext'
 
 class FontHelper
   autoload :Font,      'font_helper/font'

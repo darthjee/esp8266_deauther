@@ -13,6 +13,11 @@ class FontHelper
     autoload :ReadImages,   'font_helper/command/read_images'
     autoload :CreateFont,   'font_helper/command/create_font'
     autoload :AddCharacter, 'font_helper/command/add_character'
+    autoload :WriteImage,   'font_helper/command/write_image'
+    autoload :WriteImages,  'font_helper/command/write_images'
+
+    autoload :FlipVertically,   'font_helper/command/flip_vertically'
+    autoload :FlipHorizontally, 'font_helper/command/flip_horizontally'
 
     delegate :font, :font=, to: :script
 
