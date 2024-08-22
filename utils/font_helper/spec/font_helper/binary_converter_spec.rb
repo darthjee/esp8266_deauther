@@ -3,6 +3,22 @@
 require 'spec_helper'
 
 describe FontHelper::BinaryConverter do
+  describe '.convert_bytes' do
+    let(:bytes) { [255, 128, 1] }
+    let(:expected) do
+      [
+        1, 1, 1, 1, 1, 1, 1, 1,
+        0, 0, 0, 0, 0, 0, 0, 1,
+        1, 0, 0, 0, 0, 0, 0, 0
+      ]
+    end
+
+    it 'returns the remapping into a bits' do
+      expect(described_class.convert_bytes(bytes))
+        .to eq(expected)
+    end
+  end
+
   describe '.to_bits' do
     context 'when byte is full' do
       let(:byte) { 255 }
