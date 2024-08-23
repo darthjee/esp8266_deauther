@@ -7,8 +7,5 @@
     code: 32
 - command: ReadImages 
   arguments: ['fonts/crypt_36/']
-- command: WriteImages 
-  arguments:
-    path: 'fonts/crypt_36/'
 - command: Write
   arguments: ['fonts/crypt_36/output.txt']
