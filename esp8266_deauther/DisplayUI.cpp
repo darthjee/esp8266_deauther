@@ -443,6 +443,11 @@ void DisplayUI::setup() {
 
     // CLOCK MENU
     createMenu(&clockMenu, &mainMenu, [this]() {
+        addMenuNode(&clockMenu, D_CRYPTIC_CLOCK, [this]() { // CRYPTIC CLOCK
+            mode = DISPLAY_MODE::CRYPTIC_CLOCK;
+            display.setFont(Cryptic_Plain_36);
+            display.setTextAlignment(TEXT_ALIGN_CENTER);
+        });
         addMenuNode(&clockMenu, D_CLOCK_DISPLAY, [this]() { // CLOCK
             mode = DISPLAY_MODE::CLOCK_DISPLAY;
             display.setFont(ArialMT_Plain_24);
@@ -611,6 +616,7 @@ void DisplayUI::setupButtons() {
 
                 case DISPLAY_MODE::CLOCK:
                 case DISPLAY_MODE::CLOCK_DISPLAY:
+                case DISPLAY_MODE::CRYPTIC_CLOCK:
                     mode = DISPLAY_MODE::MENU;
                     display.setFont(DejaVu_Sans_Mono_12);
                     display.setTextAlignment(TEXT_ALIGN_LEFT);
@@ -704,13 +710,18 @@ void DisplayUI::draw(bool force) {
 
             case DISPLAY_MODE::INTRO:
                 if (!scan.isScanning() && (currentTime - startTime >= screenIntroTime)) {
-                    mode = DISPLAY_MODE::MENU;
+                    mode = DISPLAY_MODE::CRYPTIC_CLOCK;
+                    display.setFont(Cryptic_Plain_36);
+                    display.setTextAlignment(TEXT_ALIGN_CENTER);
                 }
                 drawIntro();
                 break;
             case DISPLAY_MODE::CLOCK:
             case DISPLAY_MODE::CLOCK_DISPLAY:
                 drawClock();
+                break;
+            case DISPLAY_MODE::CRYPTIC_CLOCK:
+                drawCrypticClock();
                 break;
             case DISPLAY_MODE::RESETTING:
                 drawResetting();
@@ -818,6 +829,16 @@ void DisplayUI::drawIntro() {
 }
 
 void DisplayUI::drawClock() {
+    String clockTime = String(clockHour);
+
+    clockTime += ':';
+    if (clockMinute < 10) clockTime += '0';
+    clockTime += String(clockMinute);
+
+    display.drawString(64, 20, clockTime);
+}
+
+void DisplayUI::drawCrypticClock() {
     String clockTime = String(clockHour);
 
     clockTime += ':';
