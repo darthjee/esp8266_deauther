@@ -716,8 +716,8 @@ void DisplayUI::draw(bool force) {
 
             case DISPLAY_MODE::INTRO:
                 if (!scan.isScanning() && (currentTime - startTime >= screenIntroTime)) {
-                    mode = DISPLAY_MODE::CRYPTIC_CLOCK;
-                    display.setFont(Cryptic_Plain_36);
+                    mode = DISPLAY_MODE::PREDATOR_CLOCK;
+                    display.setFont(Predator_Plain_24);
                     display.setTextAlignment(TEXT_ALIGN_CENTER);
                 }
                 drawIntro();
