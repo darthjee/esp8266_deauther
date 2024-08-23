@@ -7,8 +7,6 @@
     code: 32
 - command: ReadImages 
   arguments: ['fonts/crypt_36/']
-- command: FlipHorizontally 
-  arguments: [49]
 - command: WriteImages 
   arguments:
     path: 'fonts/crypt_36/'
