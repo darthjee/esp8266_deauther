@@ -902,7 +902,7 @@ const uint8_t ArialMT_Plain_24[] PROGMEM = {
   0x00,0x00,0x00,0x00,0x00,0x00,0x80,0x01,0x0C,0x80,0x01,0x0C  // 58
 };
 
-const uint8_t Cryptic_Plain_24[] PROGMEM = {
+const uint8_t Cryptic_Plain_36[] PROGMEM = {
   0x18, // Width: 24
   0x24, // Height: 36
   0x20, // First Char: 32
