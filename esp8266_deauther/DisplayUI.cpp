@@ -443,6 +443,11 @@ void DisplayUI::setup() {
 
     // CLOCK MENU
     createMenu(&clockMenu, &mainMenu, [this]() {
+        addMenuNode(&clockMenu, D_PREDATOR_CLOCK, [this]() { // PREDATOR CLOCK
+            mode = DISPLAY_MODE::PREDATOR_CLOCK;
+            display.setFont(Predator_Plain_24);
+            display.setTextAlignment(TEXT_ALIGN_CENTER);
+        });
         addMenuNode(&clockMenu, D_CRYPTIC_CLOCK, [this]() { // CRYPTIC CLOCK
             mode = DISPLAY_MODE::CRYPTIC_CLOCK;
             display.setFont(Cryptic_Plain_36);
