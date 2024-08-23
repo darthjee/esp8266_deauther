@@ -197,6 +197,7 @@ class DisplayUI {
         void addMenuNode(Menu* menu, const char* ptr, Menu* next);
 
         // fake clock
+        String formatTime(int time);
         void drawClock();
         void drawCrypticClock();
         void setTime(int h, int m, int s);

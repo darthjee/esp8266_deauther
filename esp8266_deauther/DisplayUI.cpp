@@ -837,12 +837,20 @@ void DisplayUI::drawIntro() {
     }
 }
 
+String DisplayUI::formatTime(int time) {
+    String clockTime = "";
+
+    if (time < 10) clockTime += '0';
+    clockTime += String(time);
+
+    return clockTime;
+}
+
 void DisplayUI::drawClock() {
-    String clockTime = String(clockHour);
+    String clockTime = formatTime(clockHour);
 
     clockTime += ':';
-    if (clockMinute < 10) clockTime += '0';
-    clockTime += String(clockMinute);
+    clockTime += formatTime(clockMinute);
 
     display.drawString(64, 20, clockTime);
 }
