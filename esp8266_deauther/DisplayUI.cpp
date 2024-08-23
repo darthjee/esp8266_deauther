@@ -727,7 +727,7 @@ void DisplayUI::draw(bool force) {
                 drawClock();
                 break;
             case DISPLAY_MODE::CRYPTIC_CLOCK:
-                drawCrypticClock();
+                drawClock();
                 break;
             case DISPLAY_MODE::PREDATOR_CLOCK:
                 drawClock();
@@ -838,16 +838,6 @@ void DisplayUI::drawIntro() {
 }
 
 void DisplayUI::drawClock() {
-    String clockTime = String(clockHour);
-
-    clockTime += ':';
-    if (clockMinute < 10) clockTime += '0';
-    clockTime += String(clockMinute);
-
-    display.drawString(64, 20, clockTime);
-}
-
-void DisplayUI::drawCrypticClock() {
     String clockTime = String(clockHour);
 
     clockTime += ':';
