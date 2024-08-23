@@ -1,5 +1,5 @@
   0x18, // Width: 24
-  0x18, // Height: 24
+  0x24, // Height: 36
   0x20, // First Char: 32
   0x1B, // Numbers of Chars: 27
 
