@@ -1,7 +1,7 @@
 - command: CreateFont
   arguments:
     height: 24
-    width: 30
+    width: 32
 - command: AddCharacter
   arguments:
     code: 32
