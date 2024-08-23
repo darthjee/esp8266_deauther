@@ -443,6 +443,11 @@ void DisplayUI::setup() {
 
     // CLOCK MENU
     createMenu(&clockMenu, &mainMenu, [this]() {
+        addMenuNode(&clockMenu, D_PREDATOR_CLOCK, [this]() { // PREDATOR CLOCK
+            mode = DISPLAY_MODE::PREDATOR_CLOCK;
+            display.setFont(Predator_Plain_24);
+            display.setTextAlignment(TEXT_ALIGN_CENTER);
+        });
         addMenuNode(&clockMenu, D_CRYPTIC_CLOCK, [this]() { // CRYPTIC CLOCK
             mode = DISPLAY_MODE::CRYPTIC_CLOCK;
             display.setFont(Cryptic_Plain_36);
@@ -617,6 +622,7 @@ void DisplayUI::setupButtons() {
                 case DISPLAY_MODE::CLOCK:
                 case DISPLAY_MODE::CLOCK_DISPLAY:
                 case DISPLAY_MODE::CRYPTIC_CLOCK:
+                case DISPLAY_MODE::PREDATOR_CLOCK:
                     mode = DISPLAY_MODE::MENU;
                     display.setFont(DejaVu_Sans_Mono_12);
                     display.setTextAlignment(TEXT_ALIGN_LEFT);
@@ -710,8 +716,8 @@ void DisplayUI::draw(bool force) {
 
             case DISPLAY_MODE::INTRO:
                 if (!scan.isScanning() && (currentTime - startTime >= screenIntroTime)) {
-                    mode = DISPLAY_MODE::CRYPTIC_CLOCK;
-                    display.setFont(Cryptic_Plain_36);
+                    mode = DISPLAY_MODE::PREDATOR_CLOCK;
+                    display.setFont(Predator_Plain_24);
                     display.setTextAlignment(TEXT_ALIGN_CENTER);
                 }
                 drawIntro();
@@ -721,7 +727,10 @@ void DisplayUI::draw(bool force) {
                 drawClock();
                 break;
             case DISPLAY_MODE::CRYPTIC_CLOCK:
-                drawCrypticClock();
+                drawClock();
+                break;
+            case DISPLAY_MODE::PREDATOR_CLOCK:
+                drawClock();
                 break;
             case DISPLAY_MODE::RESETTING:
                 drawResetting();
@@ -828,22 +837,20 @@ void DisplayUI::drawIntro() {
     }
 }
 
-void DisplayUI::drawClock() {
-    String clockTime = String(clockHour);
+String DisplayUI::formatTime(int time) {
+    String clockTime = "";
 
-    clockTime += ':';
-    if (clockMinute < 10) clockTime += '0';
-    clockTime += String(clockMinute);
+    if (time < 10) clockTime += '0';
+    clockTime += String(time);
 
-    display.drawString(64, 20, clockTime);
+    return clockTime;
 }
 
-void DisplayUI::drawCrypticClock() {
-    String clockTime = String(clockHour);
+void DisplayUI::drawClock() {
+    String clockTime = formatTime(clockHour);
 
     clockTime += ':';
-    if (clockMinute < 10) clockTime += '0';
-    clockTime += String(clockMinute);
+    clockTime += formatTime(clockMinute);
 
     display.drawString(64, 20, clockTime);
 }

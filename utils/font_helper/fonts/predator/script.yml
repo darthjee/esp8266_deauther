@@ -1,0 +1,11 @@
+- command: CreateFont
+  arguments:
+    height: 24
+    width: 32
+- command: AddCharacter
+  arguments:
+    code: 32
+- command: ReadImages 
+  arguments: ['fonts/predator/']
+- command: Write
+  arguments: ['fonts/predator/output.txt']
