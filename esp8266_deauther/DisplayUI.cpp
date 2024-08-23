@@ -728,6 +728,9 @@ void DisplayUI::draw(bool force) {
             case DISPLAY_MODE::CRYPTIC_CLOCK:
                 drawCrypticClock();
                 break;
+            case DISPLAY_MODE::PREDATOR_DISPLAY:
+                drawClock();
+                break;
             case DISPLAY_MODE::RESETTING:
                 drawResetting();
                 break;
