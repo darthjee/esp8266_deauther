@@ -864,6 +864,11 @@ void DisplayUI::drawClock() {
     display.drawString(64, 20, clockTime);
 }
 
+void DisplayUI::drawRandomClock() {
+    String clockTime = "5 1 2 3 / 1 5 6 1 2 3"
+    display.drawString(64, 20, clockTime);
+}
+
 void DisplayUI::drawResetting() {
     drawString(2, center(str(D_RESETTING), maxLen));
 }
