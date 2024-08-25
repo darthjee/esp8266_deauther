@@ -200,7 +200,7 @@ class DisplayUI {
         // fake clock
         String formatTime(int time);
         void drawClock();
-        void drawCrypticClock();
+        void drawRandomClock();
         void setTime(int h, int m, int s);
 
         int clockHour   = 6;
