@@ -453,6 +453,11 @@ void DisplayUI::setup() {
             display.setFont(Cryptic_Plain_36);
             display.setTextAlignment(TEXT_ALIGN_CENTER);
         });
+        addMenuNode(&clockMenu, D_RANDOM_CLOCK, [this]() { // RANDOM CLOCK
+            mode = DISPLAY_MODE::RANDOM_CLOCK;
+            display.setFont(Random_Plain_24);
+            display.setTextAlignment(TEXT_ALIGN_CENTER);
+        });
         addMenuNode(&clockMenu, D_CLOCK_DISPLAY, [this]() { // CLOCK
             mode = DISPLAY_MODE::CLOCK_DISPLAY;
             display.setFont(ArialMT_Plain_24);
