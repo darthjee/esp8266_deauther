@@ -80,6 +80,7 @@ enum class DISPLAY_MODE { OFF,
                           CLOCK_DISPLAY,
                           CRYPTIC_CLOCK,
                           PREDATOR_CLOCK,
+                          RANDOM_CLOCK,
                           RESETTING };
 
 class DisplayUI {
