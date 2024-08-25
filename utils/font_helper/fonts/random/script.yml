@@ -1,7 +1,7 @@
 - command: CreateFont
   arguments:
     height: 24
-    width: 8
+    width: 7
 - command: ReadImages 
   arguments: ['fonts/random/']
 - command: Write
