@@ -58,21 +58,16 @@ class Generator
   end
 
   def write_full_line
-    file.write(full_line)
-    file.write("\n")
+    write_line([0] + pixel_size.times.map { 1 } + [0])
   end
 
   def write_blank_line
-    file.write(blank_line)
+    write_line(width.times.map { 0 } )
+  end
+
+  def write_line(bits)
+    file.write(bits.join(" "))
     file.write("\n")
-  end
-
-  def blank_line
-    @blank_line ||= (width.times.map { 0 } ).join(" ")
-  end
-
-  def full_line
-    @full_line ||= ([0] + pixel_size.times.map { 1 } + [0]).join(" ")
   end
 
   def width
