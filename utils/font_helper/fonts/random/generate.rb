@@ -7,10 +7,12 @@ class Generator
     new(**args).write
   end
 
-  def initialize(pixel_size: 5, char:, type: :blank)
+  def initialize(pixel_size: 5, char:, type: :blank, width: nil, value: nil)
     @pixel_size = pixel_size
     @char = char
     @type = type
+    @width = width
+    @value = value
   end
 
   def write
@@ -74,11 +76,11 @@ class Generator
   end
 
   def width
-    pixel_size + 2
+    @width ||= pixel_size + 2
   end
 
   def height
-    width * 3 + 2
+    pixel_size * 3 + 8
   end
 
   def file_name
@@ -90,6 +92,11 @@ class Generator
   end
 end
 
+pixel_size = 5
+
+Generator.write(char: 32, width: pixel_size + 1, value: 0)
+Generator.write(char: 47, width: pixel_size + 6, value: 0)
+
 (48..55).to_a.each do |char|
-  Generator.write(char:)
+  Generator.write(char:, pixel_size:)
 end
