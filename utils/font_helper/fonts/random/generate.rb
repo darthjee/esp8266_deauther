@@ -25,6 +25,10 @@ class Generator
 
   private
 
+  def type_blank?
+    type == :blank
+  end
+
   def write_bits
     bits.each do |bit|
        write_bit(bit)
@@ -33,14 +37,37 @@ class Generator
 
   def write_bit(bit)
     write_blank_line
-    pixel_size.times do
-      if bit.zero?
+
+    if bit.zero?
+      if type_blank?
         write_blank_line
       else
-        write_full_line
+        write_frame_bit
       end
+    else
+      write_write_full_bit
     end
     write_blank_line
+  end
+
+  def write_frame_bit
+    write_full_line
+    (pixel_size - 2).times do
+      write_frame_line
+    end
+    write_full_line
+  end
+
+  def write_blank_bit
+    pixel_size.times do
+      write_blank_line
+    end
+  end
+
+  def write_write_full_bit
+    pixel_size.times do
+      write_full_line
+    end
   end
 
   def bits
@@ -55,6 +82,10 @@ class Generator
     file.write("P1\n")
     file.write("#{width} #{height}\n")
     write_blank_line
+  end
+
+  def write_frame_line
+    write_line([0, 1] + (pixel_size - 2).times.map { 0 } + [1, 0])
   end
 
   def write_full_line
@@ -93,5 +124,5 @@ Generator.write(char: 32, width: pixel_size + 1, value: 0)
 Generator.write(char: 47, width: pixel_size + 6, value: 0)
 
 (48..55).to_a.each do |char|
-  Generator.write(char:, pixel_size:)
+  Generator.write(char:, pixel_size:, type: :frame)
 end
