@@ -118,7 +118,7 @@ class Generator
   end
 end
 
-pixel_size = 5
+pixel_size = 7
 
 Generator.write(char: 32, width: pixel_size + 1, value: 0)
 Generator.write(char: 47, width: pixel_size + 6, value: 0)
