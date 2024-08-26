@@ -1,3 +1,5 @@
+#!/usr/local/bin/ruby
+
 # frozen_string_literal: true
 
 lib = File.expand_path('source', __dir__)

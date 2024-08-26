@@ -453,6 +453,11 @@ void DisplayUI::setup() {
             display.setFont(Cryptic_Plain_36);
             display.setTextAlignment(TEXT_ALIGN_CENTER);
         });
+        addMenuNode(&clockMenu, D_RANDOM_CLOCK, [this]() { // RANDOM CLOCK
+            mode = DISPLAY_MODE::RANDOM_CLOCK;
+            display.setFont(Random_Plain_24);
+            display.setTextAlignment(TEXT_ALIGN_CENTER);
+        });
         addMenuNode(&clockMenu, D_CLOCK_DISPLAY, [this]() { // CLOCK
             mode = DISPLAY_MODE::CLOCK_DISPLAY;
             display.setFont(ArialMT_Plain_24);
@@ -623,6 +628,7 @@ void DisplayUI::setupButtons() {
                 case DISPLAY_MODE::CLOCK_DISPLAY:
                 case DISPLAY_MODE::CRYPTIC_CLOCK:
                 case DISPLAY_MODE::PREDATOR_CLOCK:
+                case DISPLAY_MODE::RANDOM_CLOCK:
                     mode = DISPLAY_MODE::MENU;
                     display.setFont(DejaVu_Sans_Mono_12);
                     display.setTextAlignment(TEXT_ALIGN_LEFT);
@@ -716,6 +722,8 @@ void DisplayUI::draw(bool force) {
 
             case DISPLAY_MODE::INTRO:
                 if (!scan.isScanning() && (currentTime - startTime >= screenIntroTime)) {
+                    // mode = DISPLAY_MODE::RANDOM_CLOCK;
+                    // display.setFont(Random_Plain_24);
                     mode = DISPLAY_MODE::PREDATOR_CLOCK;
                     display.setFont(Predator_Plain_24);
                     display.setTextAlignment(TEXT_ALIGN_CENTER);
@@ -731,6 +739,9 @@ void DisplayUI::draw(bool force) {
                 break;
             case DISPLAY_MODE::PREDATOR_CLOCK:
                 drawClock();
+                break;
+            case DISPLAY_MODE::RANDOM_CLOCK:
+                drawRandomClock();
                 break;
             case DISPLAY_MODE::RESETTING:
                 drawResetting();
@@ -852,6 +863,11 @@ void DisplayUI::drawClock() {
     clockTime += ':';
     clockTime += formatTime(clockMinute);
 
+    display.drawString(64, 20, clockTime);
+}
+
+void DisplayUI::drawRandomClock() {
+    String clockTime = "5 365/45 427";
     display.drawString(64, 20, clockTime);
 }
 
