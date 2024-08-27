@@ -445,35 +445,35 @@ void DisplayUI::setup() {
     createMenu(&clockMenu, &mainMenu, [this]() {
         addMenuNode(&clockMenu, D_PREDATOR_CLOCK, [this]() { // PREDATOR CLOCK
             mode = DISPLAY_MODE::PREDATOR_CLOCK;
-            clockApp.setMode(CLOCK_MODE::PREDATOR);
+            setClockMode(CLOCK_MODE::PREDATOR);
 
             display.setFont(Predator_Plain_24);
             display.setTextAlignment(TEXT_ALIGN_CENTER);
         });
         addMenuNode(&clockMenu, D_CRYPTIC_CLOCK, [this]() { // CRYPTIC CLOCK
             mode = DISPLAY_MODE::CRYPTIC_CLOCK;
-            clockApp.setMode(CLOCK_MODE::CRYPTIC);
+            setClockMode(CLOCK_MODE::CRYPTIC);
 
             display.setFont(Cryptic_Plain_36);
             display.setTextAlignment(TEXT_ALIGN_CENTER);
         });
         addMenuNode(&clockMenu, D_RANDOM_CLOCK, [this]() { // RANDOM CLOCK
             mode = DISPLAY_MODE::RANDOM_CLOCK;
-            clockApp.setMode(CLOCK_MODE::RANDOM);
+            setClockMode(CLOCK_MODE::RANDOM);
 
             display.setFont(Random_Plain_24);
             display.setTextAlignment(TEXT_ALIGN_CENTER);
         });
         addMenuNode(&clockMenu, D_CLOCK_DISPLAY, [this]() { // CLOCK
             mode = DISPLAY_MODE::CLOCK_DISPLAY;
-            clockApp.setMode(CLOCK_MODE::REGULAR);
+            setClockMode(CLOCK_MODE::REGULAR);
 
             display.setFont(ArialMT_Plain_24);
             display.setTextAlignment(TEXT_ALIGN_CENTER);
         });
         addMenuNode(&clockMenu, D_CLOCK_SET, [this]() { // CLOCK SET TIME
             mode = DISPLAY_MODE::CLOCK;
-            clockApp.setMode(CLOCK_MODE::SET);
+            setClockMode(CLOCK_MODE::SET);
 
             display.setFont(ArialMT_Plain_24);
             display.setTextAlignment(TEXT_ALIGN_CENTER);
@@ -733,10 +733,10 @@ void DisplayUI::draw(bool force) {
             case DISPLAY_MODE::INTRO:
                 if (!scan.isScanning() && (currentTime - startTime >= screenIntroTime)) {
                     // mode = DISPLAY_MODE::RANDOM_CLOCK;
-                    // clockApp.setMode(CLOCK_MODE::RANDOM);
+                    // setClockMode(CLOCK_MODE::RANDOM);
                     // display.setFont(Random_Plain_24);
                     mode = DISPLAY_MODE::PREDATOR_CLOCK;
-                    clockApp.setMode(CLOCK_MODE::PREDATOR);
+                    setClockMode(CLOCK_MODE::PREDATOR);
                     display.setFont(Predator_Plain_24);
 
                     display.setTextAlignment(TEXT_ALIGN_CENTER);
@@ -972,4 +972,9 @@ void DisplayUI::setTime(int h, int m, int s) {
     clock.setMinute(clockMinute);
     clock.setSecond(clockSecond);
 #endif // ifdef RTC_DS3231
+}
+
+
+void DisplayUI::setClockMode(CLOCK_MODE mode) {
+  clockApp.setMode(mode);
 }

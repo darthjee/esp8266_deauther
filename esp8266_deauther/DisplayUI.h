@@ -209,6 +209,8 @@ class DisplayUI {
 
         uint32_t clockTime = 0;
 
+        void setClockMode(CLOCK_MODE mode);
+
 #ifdef RTC_DS3231
         DS3231 clock;
 #endif // ifdef RTC_DS3231
