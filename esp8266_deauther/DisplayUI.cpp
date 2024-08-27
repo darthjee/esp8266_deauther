@@ -446,37 +446,22 @@ void DisplayUI::setup() {
         addMenuNode(&clockMenu, D_PREDATOR_CLOCK, [this]() { // PREDATOR CLOCK
             mode = DISPLAY_MODE::PREDATOR_CLOCK;
             setClockMode(CLOCK_MODE::PREDATOR);
-
-            display.setFont(Predator_Plain_24);
-            display.setTextAlignment(TEXT_ALIGN_CENTER);
         });
         addMenuNode(&clockMenu, D_CRYPTIC_CLOCK, [this]() { // CRYPTIC CLOCK
             mode = DISPLAY_MODE::CRYPTIC_CLOCK;
             setClockMode(CLOCK_MODE::CRYPTIC);
-
-            display.setFont(Cryptic_Plain_36);
-            display.setTextAlignment(TEXT_ALIGN_CENTER);
         });
         addMenuNode(&clockMenu, D_RANDOM_CLOCK, [this]() { // RANDOM CLOCK
             mode = DISPLAY_MODE::RANDOM_CLOCK;
             setClockMode(CLOCK_MODE::RANDOM);
-
-            display.setFont(Random_Plain_24);
-            display.setTextAlignment(TEXT_ALIGN_CENTER);
         });
         addMenuNode(&clockMenu, D_CLOCK_DISPLAY, [this]() { // CLOCK
             mode = DISPLAY_MODE::CLOCK_DISPLAY;
             setClockMode(CLOCK_MODE::REGULAR);
-
-            display.setFont(ArialMT_Plain_24);
-            display.setTextAlignment(TEXT_ALIGN_CENTER);
         });
         addMenuNode(&clockMenu, D_CLOCK_SET, [this]() { // CLOCK SET TIME
             mode = DISPLAY_MODE::CLOCK;
             setClockMode(CLOCK_MODE::SET);
-
-            display.setFont(ArialMT_Plain_24);
-            display.setTextAlignment(TEXT_ALIGN_CENTER);
         });
     });
 
@@ -734,12 +719,8 @@ void DisplayUI::draw(bool force) {
                 if (!scan.isScanning() && (currentTime - startTime >= screenIntroTime)) {
                     // mode = DISPLAY_MODE::RANDOM_CLOCK;
                     // setClockMode(CLOCK_MODE::RANDOM);
-                    // display.setFont(Random_Plain_24);
                     mode = DISPLAY_MODE::PREDATOR_CLOCK;
                     setClockMode(CLOCK_MODE::PREDATOR);
-                    display.setFont(Predator_Plain_24);
-
-                    display.setTextAlignment(TEXT_ALIGN_CENTER);
                 }
                 drawIntro();
                 break;
@@ -977,4 +958,8 @@ void DisplayUI::setTime(int h, int m, int s) {
 
 void DisplayUI::setClockMode(CLOCK_MODE mode) {
   clockApp.setMode(mode);
+
+  display.setFont(clockApp.font);
+
+  display.setTextAlignment(TEXT_ALIGN_CENTER);
 }
