@@ -10,12 +10,10 @@ String Clock::formatTime(int time) {
 }
 
 String Clock::clockString(int clockHour, int clockMinute) {
-  String str;
-
   if (mode == CLOCK_MODE::RANDOM) {
-    str = randomClockString(clockHour, clockMinute);
+    return randomClockString(clockHour, clockMinute);
   } else {
-    str = regularClockString(clockHour, clockMinute);
+    return regularClockString(clockHour, clockMinute);
   }
 }
 
