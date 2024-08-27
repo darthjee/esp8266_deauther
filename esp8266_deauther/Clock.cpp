@@ -21,3 +21,9 @@ String Clock::regularClockString(int clockHour, int clockMinute) {
 
   return clockTime;
 }
+
+String Clock::randomClockString(int clockHour, int clockMinute) {
+  String clockTime = "5 365/45 427";
+
+  return clockTime;
+}
