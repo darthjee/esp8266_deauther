@@ -1,3 +1,5 @@
+#include "arduino.h"
+
 enum class CLOCK_MODE {
   REGULAR,
   CRYPTIC,
@@ -9,4 +11,7 @@ enum class CLOCK_MODE {
 class Clock {
     public:
       CLOCK_MODE mode = CLOCK_MODE::REGULAR;
+      String clockString();
+    private:
+      String regularClockString();
 };

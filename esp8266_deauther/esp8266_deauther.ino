@@ -31,7 +31,6 @@ extern "C" {
 #include "CLI.h"
 #include "DisplayUI.h"
 #include "A_config.h"
-#include "Clock.h"
 
 #include "led.h"
 
@@ -44,7 +43,6 @@ Scan   scan;
 Attack attack;
 CLI    cli;
 DisplayUI displayUI;
-Clock clockObject;
 
 simplebutton::Button* resetButton;
 

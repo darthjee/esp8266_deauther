@@ -8,6 +8,7 @@
 #include "SSIDs.h"
 #include "Scan.h"
 #include "Attack.h"
+#include "Clock.h"
 
 // ===== adjustable ===== //
 #if defined(SSD1306_I2C)
@@ -86,6 +87,7 @@ enum class DISPLAY_MODE { OFF,
 class DisplayUI {
     public:
         DISPLAY_MODE mode = DISPLAY_MODE::MENU;
+        Clock clockApp;
         bool highlightLED = false;
 
         Button* up   = NULL;
