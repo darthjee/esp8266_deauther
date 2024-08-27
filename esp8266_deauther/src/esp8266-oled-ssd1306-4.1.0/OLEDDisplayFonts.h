@@ -1003,7 +1003,7 @@ const uint8_t Predator_Plain_24[] PROGMEM = {
 
 const uint8_t Random_Plain_24[] PROGMEM = {
   0x07, // Width: 7
-  0x18, // Height: 24
+  0x1D, // Height: 29
   0x20, // First Char: 32
   0x18, // Numbers of Chars: 24
 
