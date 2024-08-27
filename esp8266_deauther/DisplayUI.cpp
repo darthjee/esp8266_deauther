@@ -858,15 +858,6 @@ void DisplayUI::drawIntro() {
     }
 }
 
-String DisplayUI::formatTime(int time) {
-    String clockTime = "";
-
-    if (time < 10) clockTime += '0';
-    clockTime += String(time);
-
-    return clockTime;
-}
-
 void DisplayUI::drawClock() {
     String clockTime = clockApp.clockString(clockHour, clockMinute);
 
