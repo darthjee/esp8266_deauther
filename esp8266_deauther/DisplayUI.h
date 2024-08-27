@@ -8,6 +8,7 @@
 #include "SSIDs.h"
 #include "Scan.h"
 #include "Attack.h"
+#include "Clock.h"
 
 // ===== adjustable ===== //
 #if defined(SSD1306_I2C)
@@ -86,6 +87,7 @@ enum class DISPLAY_MODE { OFF,
 class DisplayUI {
     public:
         DISPLAY_MODE mode = DISPLAY_MODE::MENU;
+        Clock clockApp;
         bool highlightLED = false;
 
         Button* up   = NULL;
@@ -198,9 +200,7 @@ class DisplayUI {
         void addMenuNode(Menu* menu, const char* ptr, Menu* next);
 
         // fake clock
-        String formatTime(int time);
         void drawClock();
-        void drawRandomClock();
         void setTime(int h, int m, int s);
 
         int clockHour   = 6;
@@ -208,6 +208,8 @@ class DisplayUI {
         int clockSecond = 0;
 
         uint32_t clockTime = 0;
+
+        void setClockMode(CLOCK_MODE mode);
 
 #ifdef RTC_DS3231
         DS3231 clock;
