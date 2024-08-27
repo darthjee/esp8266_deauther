@@ -15,6 +15,7 @@ class Clock {
       const uint8_t *font = ArialMT_Plain_24;
 
       String clockString(int clockHour, int clockMinute);
+      void setMode(CLOCK_MODE newMode);
     private:
       String regularClockString(int clockHour, int clockMinute);
       String randomClockString(int clockHour, int clockMinute);

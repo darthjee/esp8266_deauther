@@ -1,12 +1,25 @@
 #include "Clock.h"
 
-String Clock::formatTime(int time) {
-    String clockTime = "";
+void Clock::setMode(CLOCK_MODE newMode) {
+  mode = newMode;
 
-    if (time < 10) clockTime += '0';
-    clockTime += String(time);
+  switch (mode) {
+    case CLOCK_MODE::REGULAR:
+    case CLOCK_MODE::SET:
+      font = ArialMT_Plain_24; 
+      break;
 
-    return clockTime;
+    case CLOCK_MODE::CRYPTIC:
+      font = Cryptic_Plain_36;
+      break;
+
+    case CLOCK_MODE::PREDATOR:
+      font = Predator_Plain_24;
+      break;
+
+    case CLOCK_MODE::RANDOM:
+      font = Random_Plain_24;
+  }
 }
 
 String Clock::clockString(int clockHour, int clockMinute) {
@@ -28,6 +41,15 @@ String Clock::regularClockString(int clockHour, int clockMinute) {
 
 String Clock::randomClockString(int clockHour, int clockMinute) {
   String clockTime = "5 365/45 427";
+
+  return clockTime;
+}
+
+String Clock::formatTime(int time) {
+  String clockTime = "";
+
+  if (time < 10) clockTime += '0';
+  clockTime += String(time);
 
   return clockTime;
 }
