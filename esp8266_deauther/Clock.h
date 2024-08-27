@@ -11,12 +11,12 @@ enum class CLOCK_MODE {
 
 class Clock {
     public:
-      CLOCK_MODE mode = CLOCK_MODE::REGULAR;
       const uint8_t *font = ArialMT_Plain_24;
 
       String clockString(int clockHour, int clockMinute);
       void setMode(CLOCK_MODE newMode);
     private:
+      CLOCK_MODE mode = CLOCK_MODE::REGULAR;
       String regularClockString(int clockHour, int clockMinute);
       String randomClockString(int clockHour, int clockMinute);
       String formatTime(int time);
