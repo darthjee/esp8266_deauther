@@ -445,26 +445,36 @@ void DisplayUI::setup() {
     createMenu(&clockMenu, &mainMenu, [this]() {
         addMenuNode(&clockMenu, D_PREDATOR_CLOCK, [this]() { // PREDATOR CLOCK
             mode = DISPLAY_MODE::PREDATOR_CLOCK;
+            clockApp.mode = CLOCK_MODE::PREDATOR;
+
             display.setFont(Predator_Plain_24);
             display.setTextAlignment(TEXT_ALIGN_CENTER);
         });
         addMenuNode(&clockMenu, D_CRYPTIC_CLOCK, [this]() { // CRYPTIC CLOCK
             mode = DISPLAY_MODE::CRYPTIC_CLOCK;
+            clockApp.mode = CLOCK_MODE::CRYPTIC;
+
             display.setFont(Cryptic_Plain_36);
             display.setTextAlignment(TEXT_ALIGN_CENTER);
         });
         addMenuNode(&clockMenu, D_RANDOM_CLOCK, [this]() { // RANDOM CLOCK
             mode = DISPLAY_MODE::RANDOM_CLOCK;
+            clockApp.mode = CLOCK_MODE::RANDOM;
+
             display.setFont(Random_Plain_24);
             display.setTextAlignment(TEXT_ALIGN_CENTER);
         });
         addMenuNode(&clockMenu, D_CLOCK_DISPLAY, [this]() { // CLOCK
             mode = DISPLAY_MODE::CLOCK_DISPLAY;
+            clockApp.mode = CLOCK_MODE::REGULAR;
+
             display.setFont(ArialMT_Plain_24);
             display.setTextAlignment(TEXT_ALIGN_CENTER);
         });
         addMenuNode(&clockMenu, D_CLOCK_SET, [this]() { // CLOCK SET TIME
             mode = DISPLAY_MODE::CLOCK;
+            clockApp.mode = CLOCK_MODE::SET;
+
             display.setFont(ArialMT_Plain_24);
             display.setTextAlignment(TEXT_ALIGN_CENTER);
         });
