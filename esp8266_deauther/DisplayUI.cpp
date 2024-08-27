@@ -754,7 +754,7 @@ void DisplayUI::draw(bool force) {
                 drawClock();
                 break;
             case DISPLAY_MODE::RANDOM_CLOCK:
-                drawRandomClock();
+                drawClock();
                 break;
             case DISPLAY_MODE::RESETTING:
                 drawResetting();
@@ -863,12 +863,6 @@ void DisplayUI::drawIntro() {
 
 void DisplayUI::drawClock() {
     String clockTime = clockApp.clockString(clockHour, clockMinute);
-
-    display.drawString(64, 20, clockTime);
-}
-
-void DisplayUI::drawRandomClock() {
-    String clockTime = clockApp.randomClockString(clockHour, clockMinute);
 
     display.drawString(64, 20, clockTime);
 }
