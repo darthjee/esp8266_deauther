@@ -11,7 +11,9 @@ enum class CLOCK_MODE {
 class Clock {
     public:
       CLOCK_MODE mode = CLOCK_MODE::REGULAR;
-      String clockString();
+
+      String clockString(int clockHour, int clockMinute);
     private:
-      String regularClockString();
+      String regularClockString(int clockHour, int clockMinute);
+      String formatTime(int time);
 };

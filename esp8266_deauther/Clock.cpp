@@ -1,8 +1,23 @@
 #include "Clock.h"
 
-String Clock::clockString() {
-  return regularClockString();
+String Clock::formatTime(int time) {
+    String clockTime = "";
+
+    if (time < 10) clockTime += '0';
+    clockTime += String(time);
+
+    return clockTime;
 }
 
-String Clock::regularClockString() {
+String Clock::clockString(int clockHour, int clockMinute) {
+  return regularClockString(clockHour, clockMinute);
+}
+
+String Clock::regularClockString(int clockHour, int clockMinute) {
+  String clockTime = formatTime(clockHour);
+
+  clockTime += ':';
+  clockTime += formatTime(clockMinute);
+
+  return clockTime;
 }
