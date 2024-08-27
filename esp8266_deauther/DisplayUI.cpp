@@ -733,9 +733,12 @@ void DisplayUI::draw(bool force) {
             case DISPLAY_MODE::INTRO:
                 if (!scan.isScanning() && (currentTime - startTime >= screenIntroTime)) {
                     // mode = DISPLAY_MODE::RANDOM_CLOCK;
+                    // clockApp.mode = CLOCK_MODE::RANDOM;
                     // display.setFont(Random_Plain_24);
                     mode = DISPLAY_MODE::PREDATOR_CLOCK;
+                    clockApp.mode = CLOCK_MODE::PREDATOR;
                     display.setFont(Predator_Plain_24);
+
                     display.setTextAlignment(TEXT_ALIGN_CENTER);
                 }
                 drawIntro();
