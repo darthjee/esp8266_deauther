@@ -161,6 +161,10 @@ void loop() {
     scan.update();   // run scan
     ssids.update();  // run random mode, if enabled
 
+    if (displayUI.mode == DISPLAY_MODE::CLOCK_DISPLAY) {
+      delay(1000);
+    }
+
     // auto-save
     if (settings::getAutosaveSettings().enabled
         && (currentTime - autosaveTime > settings::getAutosaveSettings().time)) {
