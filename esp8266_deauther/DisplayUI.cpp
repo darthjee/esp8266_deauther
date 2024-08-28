@@ -444,15 +444,15 @@ void DisplayUI::setup() {
     // CLOCK MENU
     createMenu(&clockMenu, &mainMenu, [this]() {
         addMenuNode(&clockMenu, D_PREDATOR_CLOCK, [this]() { // PREDATOR CLOCK
-            mode = DISPLAY_MODE::PREDATOR_CLOCK;
+            mode = DISPLAY_MODE::CLOCK_DISPLAY;
             setClockMode(CLOCK_MODE::PREDATOR);
         });
         addMenuNode(&clockMenu, D_CRYPTIC_CLOCK, [this]() { // CRYPTIC CLOCK
-            mode = DISPLAY_MODE::CRYPTIC_CLOCK;
+            mode = DISPLAY_MODE::CLOCK_DISPLAY;
             setClockMode(CLOCK_MODE::CRYPTIC);
         });
         addMenuNode(&clockMenu, D_RANDOM_CLOCK, [this]() { // RANDOM CLOCK
-            mode = DISPLAY_MODE::RANDOM_CLOCK;
+            mode = DISPLAY_MODE::CLOCK_DISPLAY;
             setClockMode(CLOCK_MODE::RANDOM);
         });
         addMenuNode(&clockMenu, D_CLOCK_DISPLAY, [this]() { // CLOCK
@@ -621,9 +621,6 @@ void DisplayUI::setupButtons() {
 
                 case DISPLAY_MODE::CLOCK:
                 case DISPLAY_MODE::CLOCK_DISPLAY:
-                case DISPLAY_MODE::CRYPTIC_CLOCK:
-                case DISPLAY_MODE::PREDATOR_CLOCK:
-                case DISPLAY_MODE::RANDOM_CLOCK:
                     mode = DISPLAY_MODE::MENU;
                     display.setFont(DejaVu_Sans_Mono_12);
                     display.setTextAlignment(TEXT_ALIGN_LEFT);
@@ -717,18 +714,14 @@ void DisplayUI::draw(bool force) {
 
             case DISPLAY_MODE::INTRO:
                 if (!scan.isScanning() && (currentTime - startTime >= screenIntroTime)) {
-                    // mode = DISPLAY_MODE::RANDOM_CLOCK;
-                    // setClockMode(CLOCK_MODE::RANDOM);
-                    mode = DISPLAY_MODE::PREDATOR_CLOCK;
+                    mode = DISPLAY_MODE::CLOCK_DISPLAY;
                     setClockMode(CLOCK_MODE::PREDATOR);
+                    // setClockMode(CLOCK_MODE::RANDOM);
                 }
                 drawIntro();
                 break;
             case DISPLAY_MODE::CLOCK:
             case DISPLAY_MODE::CLOCK_DISPLAY:
-            case DISPLAY_MODE::CRYPTIC_CLOCK:
-            case DISPLAY_MODE::PREDATOR_CLOCK:
-            case DISPLAY_MODE::RANDOM_CLOCK:
                 drawClock();
                 break;
             case DISPLAY_MODE::RESETTING:

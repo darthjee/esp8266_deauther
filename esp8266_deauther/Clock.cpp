@@ -40,9 +40,35 @@ String Clock::regularClockString(int clockHour, int clockMinute) {
 }
 
 String Clock::randomClockString(int clockHour, int clockMinute) {
-  String clockTime = "5 365/45 427";
+//  String clockTime = "5 365/45 427";
+  String clockTime = numberToBitsString(clockHour, (unsigned char) 1);
 
   return clockTime;
+}
+
+String Clock::numberToBitsString(int number, unsigned char tensColumns) {
+  unsigned char tens = (unsigned char) (number / 10);
+  unsigned char units = (unsigned char) (number % 10);
+
+  return digitToBitsString(tens, tensColumns) + 
+    " " +
+    digitToBitsString(tens, 3);
+}
+
+String Clock::digitToBitsString(unsigned char digit, unsigned char columnsNumber) {
+  unsigned char columns[3] = {1,2,3};
+
+  return columnsToString(columns, columnsNumber);
+}
+
+String Clock::columnsToString(unsigned char *columns, unsigned char size) {
+  unsigned char i;
+  String s = "";
+
+  for (i = 0; i < size; i++) {
+    s += (columns[i] + 48);
+  }
+  return s;;
 }
 
 String Clock::formatTime(int time) {

@@ -10,14 +10,17 @@ enum class CLOCK_MODE {
 };
 
 class Clock {
-    public:
-      const uint8_t *font = ArialMT_Plain_24;
+  public:
+    const uint8_t *font = ArialMT_Plain_24;
 
-      String clockString(int clockHour, int clockMinute);
-      void setMode(CLOCK_MODE newMode);
-    private:
-      CLOCK_MODE mode = CLOCK_MODE::REGULAR;
-      String regularClockString(int clockHour, int clockMinute);
-      String randomClockString(int clockHour, int clockMinute);
-      String formatTime(int time);
+    String clockString(int clockHour, int clockMinute);
+    void setMode(CLOCK_MODE newMode);
+  private:
+    CLOCK_MODE mode = CLOCK_MODE::REGULAR;
+    String regularClockString(int clockHour, int clockMinute);
+    String randomClockString(int clockHour, int clockMinute);
+    String numberToBitsString(int number, unsigned char tensColumns);
+    String digitToBitsString(unsigned char digit, unsigned char columnsNumber);
+    String columnsToString(unsigned char columns[], unsigned char size);
+    String formatTime(int time);
 };
