@@ -21,6 +21,7 @@ class Clock {
     String randomClockString(int clockHour, int clockMinute);
     String numberToBitsString(int number, unsigned char tensColumns);
     String digitToBitsString(unsigned char digit, unsigned char columnsNumber);
-    String columnsToString(unsigned char columns[], unsigned char size);
+    String columnsToString(unsigned char columns[3][3], unsigned char size);
+    unsigned char columnToString(unsigned char *columns);
     String formatTime(int time);
 };
