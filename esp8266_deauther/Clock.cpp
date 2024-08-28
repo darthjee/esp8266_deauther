@@ -19,7 +19,6 @@ void Clock::setMode(CLOCK_MODE newMode) {
 
     case CLOCK_MODE::RANDOM:
       font = Random_Plain_24;
-      font = ArialMT_Plain_24; 
   }
 }
 
@@ -44,6 +43,9 @@ String Clock::randomClockString(int clockHour, int clockMinute) {
 //  String clockTime = "5 365/45 427";
   String clockTime = numberToBitsString(clockHour, (unsigned char) 1);
 
+  clockTime += "/";
+  clockTime += numberToBitsString(clockMinute, (unsigned char) 2);
+
   return clockTime;
 }
 
@@ -57,7 +59,7 @@ String Clock::numberToBitsString(int number, unsigned char tensColumns) {
 }
 
 String Clock::digitToBitsString(unsigned char digit, unsigned char columnsNumber) {
-  unsigned char columns[3][3] = {{0,1,0},{1,0,1},{1,0,1}};
+  unsigned char columns[3][3] = {{0,1,0},{1,0,1},{1,1,1}};
 
   return columnsToString(columns, columnsNumber);
 }
