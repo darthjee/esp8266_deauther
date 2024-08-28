@@ -124,5 +124,5 @@ Generator.write(char: 32, width: pixel_size + 1, value: 0, pixel_size:)
 Generator.write(char: 47, width: pixel_size + 6, value: 0, pixel_size:)
 
 (48..55).to_a.each do |char|
-  Generator.write(char:, pixel_size:, type: :blank)
+  Generator.write(char:, pixel_size:, type: :frame)
 end
