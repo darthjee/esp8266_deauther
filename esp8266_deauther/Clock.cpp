@@ -53,7 +53,7 @@ String Clock::numberToBitsString(int number, unsigned char tensColumns) {
 
   return digitToBitsString(tens, tensColumns) + 
     " " +
-    digitToBitsString(tens, 3);
+    digitToBitsString(units, 3);
 }
 
 String Clock::digitToBitsString(unsigned char digit, unsigned char columnsNumber) {
@@ -67,9 +67,9 @@ String Clock::columnsToString(unsigned char *columns, unsigned char size) {
   String s = "";
 
   for (i = 0; i < size; i++) {
-    s += (columns[i] + 48);
+    s += columns[i];
   }
-  return s;;
+  return s;
 }
 
 String Clock::formatTime(int time) {
