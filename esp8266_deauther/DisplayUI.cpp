@@ -715,8 +715,8 @@ void DisplayUI::draw(bool force) {
             case DISPLAY_MODE::INTRO:
                 if (!scan.isScanning() && (currentTime - startTime >= screenIntroTime)) {
                     mode = DISPLAY_MODE::CLOCK_DISPLAY;
-                    setClockMode(CLOCK_MODE::PREDATOR);
-                    // setClockMode(CLOCK_MODE::RANDOM);
+                    //setClockMode(CLOCK_MODE::PREDATOR);
+                    setClockMode(CLOCK_MODE::RANDOM);
                 }
                 drawIntro();
                 break;

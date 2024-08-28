@@ -19,6 +19,7 @@ void Clock::setMode(CLOCK_MODE newMode) {
 
     case CLOCK_MODE::RANDOM:
       font = Random_Plain_24;
+      font = ArialMT_Plain_24; 
   }
 }
 
