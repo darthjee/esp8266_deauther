@@ -59,7 +59,18 @@ String Clock::numberToBitsString(int number, unsigned char tensColumns) {
 }
 
 String Clock::digitToBitsString(unsigned char digit, unsigned char columnsNumber) {
-  unsigned char columns[3][3] = {{0,1,0},{1,0,1},{1,1,1}};
+  unsigned char columns[3][3] = {{0,0,0},{0,0,0},{0,0,0}};
+  unsigned char col, row;
+
+  while (digit > 0) {
+    col = rand() % columnsNumber;
+    row = rand() % 3;
+
+    if (columns[col][row] == 0) {
+      columns[col][row] = 1;
+      digit--;
+    }
+  }
 
   return columnsToString(columns, columnsNumber);
 }
