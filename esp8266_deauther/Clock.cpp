@@ -78,7 +78,7 @@ unsigned char Clock::columnToString(unsigned char *column) {
   unsigned char power = 1;
 
   for (i = 0; i < 3; i++) {
-    value += (unsigned int) power * (unsigned int) column;
+    value += power * column[i];
     power *= 2;
   }
 
