@@ -12,6 +12,8 @@ enum class CLOCK_MODE {
 class Clock {
   public:
     const uint8_t *font = ArialMT_Plain_24;
+    uint32_t lastTime = 0;
+    String lastTimeString;
 
     String clockString(int clockHour, int clockMinute);
     void setMode(CLOCK_MODE newMode);
