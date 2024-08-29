@@ -2,6 +2,7 @@
 
 void Clock::setMode(CLOCK_MODE newMode) {
   mode = newMode;
+  lastTime = 0;
 
   switch (mode) {
     case CLOCK_MODE::REGULAR:
@@ -22,7 +23,7 @@ void Clock::setMode(CLOCK_MODE newMode) {
   }
 }
 
-String Clock::clockString(int clockHour, int clockMinute) {
+String Clock::clockString(int clockHour, int clockMinute, uint32_t currentTime) {
   if (mode == CLOCK_MODE::RANDOM) {
     return randomClockString(clockHour, clockMinute);
   } else {

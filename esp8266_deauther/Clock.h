@@ -15,7 +15,7 @@ class Clock {
     uint32_t lastTime = 0;
     String lastTimeString;
 
-    String clockString(int clockHour, int clockMinute);
+    String clockString(int clockHour, int clockMinute, uint32_t currentTime);
     void setMode(CLOCK_MODE newMode);
   private:
     CLOCK_MODE mode = CLOCK_MODE::REGULAR;
