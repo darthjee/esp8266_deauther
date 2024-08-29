@@ -71,9 +71,11 @@ void DisplayUI::setup() {
     clock.setClockMode(false);
     clockHour   = clock.getHour(h12, PM_time);
     clockMinute = clock.getMinute();
+    clockSecond = clock.getSecond();
 #else // ifdef RTC_DS3231
     clockHour   = random(12);
     clockMinute = random(60);
+    clockSecond = random(60);
 #endif // ifdef RTC_DS3231
 
     // ===== MENUS ===== //
@@ -830,7 +832,7 @@ void DisplayUI::drawIntro() {
 }
 
 void DisplayUI::drawClock() {
-    String clockTime = clockApp.clockString(clockHour, clockMinute);
+    String clockTime = clockApp.clockString(clockHour, clockMinute, clockSecond);
 
     display.drawString(64, 20, clockTime);
 }
