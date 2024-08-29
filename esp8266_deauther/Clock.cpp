@@ -30,21 +30,21 @@ String Clock::clockString(int hour, int minute, int second) {
   }
 }
 
-String Clock::regularClockString(int clockHour, int clockMinute) {
-  String clockTime = formatTime(clockHour);
+String Clock::regularClockString(int hour, int minute) {
+  String clockTime = formatTime(hour);
 
   clockTime += ':';
-  clockTime += formatTime(clockMinute);
+  clockTime += formatTime(minute);
 
   return clockTime;
 }
 
-String Clock::randomClockString(int clockHour, int clockMinute) {
+String Clock::randomClockString(int hour, int minute) {
 //  String clockTime = "5 365/45 427";
-  String clockTime = numberToBitsString(clockHour, (unsigned char) 1);
+  String clockTime = numberToBitsString(hour, (unsigned char) 1);
 
   clockTime += "/";
-  clockTime += numberToBitsString(clockMinute, (unsigned char) 2);
+  clockTime += numberToBitsString(minute, (unsigned char) 2);
 
   return clockTime;
 }

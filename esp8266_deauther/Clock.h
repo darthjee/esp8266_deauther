@@ -19,8 +19,8 @@ class Clock {
     void setMode(CLOCK_MODE newMode);
   private:
     CLOCK_MODE mode = CLOCK_MODE::REGULAR;
-    String regularClockString(int clockHour, int clockMinute);
-    String randomClockString(int clockHour, int clockMinute);
+    String regularClockString(int hour, int minute);
+    String randomClockString(int hour, int minute);
     String numberToBitsString(int number, unsigned char tensColumns);
     String digitToBitsString(unsigned char digit, unsigned char columnsNumber);
     String columnsToString(unsigned char columns[3][3], unsigned char size);
