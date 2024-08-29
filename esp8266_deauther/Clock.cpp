@@ -49,7 +49,6 @@ String Clock::regularClockString(int hour, int minute) {
 }
 
 String Clock::randomClockString(int hour, int minute) {
-  //  String clockTime = "5 365/45 427";
   String clockTime = numberToBitsString(hour, (unsigned char) 1);
 
   clockTime += "/";
