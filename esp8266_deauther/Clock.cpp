@@ -67,7 +67,10 @@ String Clock::numberToBitsString(int number, unsigned char tensColumns) {
 }
 
 String Clock::digitToBitsString(unsigned char digit, unsigned char columnsNumber) {
-  unsigned char columns[3][3] = {{0,0,0},{0,0,0},{0,0,0}};
+  unsigned char deft = 0;
+  unsigned char columns[3][3] = {
+    {deft, deft, deft},{deft, deft, deft},{deft,deft,deft}
+  };
   unsigned char col, row;
 
   while (digit > 0) {
