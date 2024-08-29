@@ -67,19 +67,22 @@ String Clock::numberToBitsString(int number, unsigned char tensColumns) {
 }
 
 String Clock::digitToBitsString(unsigned char digit, unsigned char columnsNumber) {
-  unsigned char deft = 0;
+  unsigned char max = columnsNumber * 3;
+  unsigned char deft = digit > (max / 2) ? 1 : 0;
+  unsigned char bit = digit > (max / 2) ? 0 : 1;
+  unsigned char value = digit > (max / 2) ? max - digit : digit;
   unsigned char columns[3][3] = {
     {deft, deft, deft},{deft, deft, deft},{deft,deft,deft}
   };
   unsigned char col, row;
 
-  while (digit > 0) {
+  while (value > 0) {
     col = rand() % columnsNumber;
     row = rand() % 3;
 
-    if (columns[col][row] == 0) {
-      columns[col][row] = 1;
-      digit--;
+    if (columns[col][row] == deft) {
+      columns[col][row] = bit;
+      value--;
     }
   }
 
