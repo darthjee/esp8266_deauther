@@ -832,7 +832,7 @@ void DisplayUI::drawIntro() {
 }
 
 void DisplayUI::drawClock() {
-    String clockTime = clockApp.clockString(clockHour, clockMinute);
+    String clockTime = clockApp.clockString(clockHour, clockMinute, clockSecond);
 
     display.drawString(64, 20, clockTime);
 }
