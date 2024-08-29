@@ -12,7 +12,7 @@ enum class CLOCK_MODE {
 class Clock {
   public:
     const uint8_t *font = ArialMT_Plain_24;
-    uint32_t lastTime = 0;
+    int lastTime = -1;
     String lastTimeString;
 
     String clockString(int hour, int minute, int second);

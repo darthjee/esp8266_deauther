@@ -2,6 +2,7 @@
 
 void Clock::setMode(CLOCK_MODE newMode) {
   mode = newMode;
+  lastTime = -1;
 
   switch (mode) {
     case CLOCK_MODE::REGULAR:
