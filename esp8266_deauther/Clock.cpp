@@ -27,7 +27,7 @@ String Clock::clockString(int hour, int minute, int second) {
   int currentTime = hour * 3600 + minute * 60 + second;
   int diff = currentTime - lastTime;
 
-  if (lastTime <= 0 || (diff > 2 && diff < 0 )) {
+  if (lastTime <= 0 || diff > 2 || diff < 0) {
     if (mode == CLOCK_MODE::RANDOM) {
       lastTimeString = randomClockString(hour, minute);
     } else {
@@ -35,7 +35,7 @@ String Clock::clockString(int hour, int minute, int second) {
     }
     lastTime = currentTime;
   }
-
+  
   return lastTimeString;
 }
 

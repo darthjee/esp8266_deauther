@@ -719,6 +719,7 @@ void DisplayUI::draw(bool force) {
                     mode = DISPLAY_MODE::CLOCK_DISPLAY;
                     //setClockMode(CLOCK_MODE::PREDATOR);
                     setClockMode(CLOCK_MODE::RANDOM);
+                    //setClockMode(CLOCK_MODE::REGULAR);
                 }
                 drawIntro();
                 break;
