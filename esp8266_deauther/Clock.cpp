@@ -24,11 +24,20 @@ void Clock::setMode(CLOCK_MODE newMode) {
 }
 
 String Clock::clockString(int hour, int minute, int second) {
-  if (mode == CLOCK_MODE::RANDOM) {
-    return randomClockString(hour, minute);
-  } else {
-    return regularClockString(hour, minute);
+  int currentTime = hour * 3600 + minute * 60 + second;
+  int diff = currentTime - lastTime;
+
+  if (lastTime >= 0 && (diff > 1000 || diff < -1000 )) {
+    return lastTimeString;
   }
+
+  if (mode == CLOCK_MODE::RANDOM) {
+    lastTimeString = randomClockString(hour, minute);
+  } else {
+    lastTimeString = regularClockString(hour, minute);
+  }
+
+  return lastTimeString;
 }
 
 String Clock::regularClockString(int hour, int minute) {
