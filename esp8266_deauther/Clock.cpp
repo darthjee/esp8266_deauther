@@ -22,7 +22,7 @@ void Clock::setMode(CLOCK_MODE newMode) {
   }
 }
 
-String Clock::clockString(int clockHour, int clockMinute, int clockSecond) {
+String Clock::clockString(int clockHour, int clockMinute) {
   if (mode == CLOCK_MODE::RANDOM) {
     return randomClockString(clockHour, clockMinute);
   } else {

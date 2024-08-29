@@ -1,4 +1,4 @@
-#include "Arduino.h"
+#include "arduino.h"
 #include "src/esp8266-oled-ssd1306-4.1.0/OLEDDisplayFonts.h"
 
 enum class CLOCK_MODE {
@@ -13,7 +13,7 @@ class Clock {
   public:
     const uint8_t *font = ArialMT_Plain_24;
 
-    String clockString(int clockHour, int clockMinute, int clockSecond);
+    String clockString(int clockHour, int clockMinute);
     void setMode(CLOCK_MODE newMode);
   private:
     CLOCK_MODE mode = CLOCK_MODE::REGULAR;
