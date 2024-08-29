@@ -483,25 +483,14 @@ void DisplayUI::setupLED() {
 #endif // ifdef HIGHLIGHT_LED
 
 void DisplayUI::update(bool force) {
-    int delayCounter;
     if (!enabled) return;
 
-    if (mode == DISPLAY_MODE::CLOCK_DISPLAY) {
-      delayCounter = 1000;
-    } else {
-      delayCounter = 1;
-    }
+    up->update();
+    down->update();
+    a->update();
+    b->update();
 
     draw(force);
-
-    while (delayCounter > 0) {
-      up->update();
-      down->update();
-      a->update();
-      b->update();
-      delay(1);
-      delayCounter --;
-    }
 
     uint32_t timeout = settings::getDisplaySettings().timeout * 1000;
 
