@@ -27,14 +27,13 @@ String Clock::clockString(int hour, int minute, int second) {
   int currentTime = hour * 3600 + minute * 60 + second;
   int diff = currentTime - lastTime;
 
-  if (lastTime >= 0 && (diff > 1000 || diff < -1000 )) {
-    return lastTimeString;
-  }
-
-  if (mode == CLOCK_MODE::RANDOM) {
-    lastTimeString = randomClockString(hour, minute);
-  } else {
-    lastTimeString = regularClockString(hour, minute);
+  if (lastTime <= 0 || (diff > 1000 && diff < 0 )) {
+    if (mode == CLOCK_MODE::RANDOM) {
+      lastTimeString = randomClockString(hour, minute);
+    } else {
+      lastTimeString = regularClockString(hour, minute);
+    }
+    lastTime = currentTime;
   }
 
   return lastTimeString;
@@ -50,7 +49,7 @@ String Clock::regularClockString(int hour, int minute) {
 }
 
 String Clock::randomClockString(int hour, int minute) {
-//  String clockTime = "5 365/45 427";
+  //  String clockTime = "5 365/45 427";
   String clockTime = numberToBitsString(hour, (unsigned char) 1);
 
   clockTime += "/";
