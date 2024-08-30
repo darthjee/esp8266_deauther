@@ -114,7 +114,7 @@ void setup() {
     // start display
     if (settings::getDisplaySettings().enabled) {
         displayUI.setup();
-        displayUI.mode = DISPLAY_MODE::INTRO;
+        displayUI.setMode(DISPLAY_MODE::INTRO);
     }
 
     // load everything else
@@ -182,7 +182,7 @@ void loop() {
     if (resetButton->holding(5000)) {
         led::setMode(LED_MODE::SCAN);
         DISPLAY_MODE _mode = displayUI.mode;
-        displayUI.mode = DISPLAY_MODE::RESETTING;
+        displayUI.setMode(DISPLAY_MODE::RESETTING);
         displayUI.update(true);
 
         settings::reset();
