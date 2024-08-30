@@ -40,7 +40,7 @@ class Generator
 
     if bit.zero?
       if type_blank?
-        write_blank_line
+        write_blank_bit
       else
         write_frame_bit
       end
@@ -118,7 +118,7 @@ class Generator
   end
 end
 
-pixel_size = 7
+pixel_size = 8
 
 Generator.write(char: 32, width: pixel_size + 1, value: 0, pixel_size:)
 Generator.write(char: 47, width: pixel_size + 6, value: 0, pixel_size:)
