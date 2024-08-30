@@ -23,7 +23,7 @@ void Clock::setMode(CLOCK_MODE newMode) {
   }
 }
 
-String Clock::clockString(int hour, int minute, int second) {
+String Clock::clockString(char hour, char minute, char second) {
   int currentTime = hour * 3600 + minute * 60 + second;
   int diff = currentTime - lastTime;
 
@@ -39,7 +39,7 @@ String Clock::clockString(int hour, int minute, int second) {
   return lastTimeString;
 }
 
-String Clock::regularClockString(int hour, int minute) {
+String Clock::regularClockString(char hour, char minute) {
   String clockTime = formatTime(hour);
 
   clockTime += ':';
@@ -48,7 +48,7 @@ String Clock::regularClockString(int hour, int minute) {
   return clockTime;
 }
 
-String Clock::randomClockString(int hour, int minute) {
+String Clock::randomClockString(char hour, char minute) {
   String clockTime = numberToBitsString(hour, (unsigned char) 1);
 
   clockTime += "/";
@@ -57,7 +57,7 @@ String Clock::randomClockString(int hour, int minute) {
   return clockTime;
 }
 
-String Clock::numberToBitsString(int number, unsigned char tensColumns) {
+String Clock::numberToBitsString(char number, unsigned char tensColumns) {
   unsigned char tens = (unsigned char) (number / 10);
   unsigned char units = (unsigned char) (number % 10);
 
@@ -68,9 +68,10 @@ String Clock::numberToBitsString(int number, unsigned char tensColumns) {
 
 String Clock::digitToBitsString(unsigned char digit, unsigned char columnsNumber) {
   unsigned char max = columnsNumber * 3;
-  unsigned char deft = digit > (max / 2) ? 1 : 0;
-  unsigned char bit = digit > (max / 2) ? 0 : 1;
-  unsigned char value = digit > (max / 2) ? max - digit : digit;
+  unsigned char half = max / 2;
+  unsigned char deft = digit > half ? 1 : 0;
+  unsigned char bit = digit > half ? 0 : 1;
+  unsigned char value = digit > half ? max - digit : digit;
   unsigned char columns[3][3] = {
     {deft, deft, deft},{deft, deft, deft},{deft,deft,deft}
   };
@@ -112,7 +113,7 @@ unsigned char Clock::columnToString(unsigned char *column) {
   return value;
 }
 
-String Clock::formatTime(int time) {
+String Clock::formatTime(unsigned char time) {
   String clockTime = "";
 
   if (time < 10) clockTime += '0';
