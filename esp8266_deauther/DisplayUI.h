@@ -83,7 +83,6 @@ enum class DISPLAY_MODE { OFF,
 
 class DisplayUI {
     public:
-        DISPLAY_MODE mode = DISPLAY_MODE::MENU;
         Clock clockApp;
         bool highlightLED = false;
 
@@ -138,6 +137,7 @@ class DisplayUI {
         void off();
 
     private:
+        DISPLAY_MODE mode = DISPLAY_MODE::MENU;
         int16_t selectedID    = 0; // i.e. access point ID to draw the apMenu
         uint8_t scrollCounter = 0; // for horizontal scrolling
 
