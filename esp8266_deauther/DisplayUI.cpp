@@ -52,6 +52,13 @@ void DisplayUI::drawLine(int x1, int y1, int x2, int y2) {
     display.drawLine(x1, y1, x2, y2);
 }
 
+void DisplayUI::setMode(DISPLAY_MODE newMode) {
+  mode = newMode;
+}
+
+DISPLAY_MODE DisplayUI::getMode() {
+  return mode;
+}
 // ====================== //
 
 
@@ -87,7 +94,7 @@ void DisplayUI::setup() {
         addMenuNode(&mainMenu, D_ATTACK, &attackMenu);      // ATTACK
         addMenuNode(&mainMenu, D_PACKET_MONITOR, [this]() { // PACKET MONITOR
             scan.start(SCAN_MODE_SNIFFER, 0, SCAN_MODE_OFF, 0, false, wifi_channel);
-            mode = DISPLAY_MODE::PACKETMONITOR;
+            setMode(DISPLAY_MODE::PACKETMONITOR);
         });
         addMenuNode(&mainMenu, D_CLOCK, &clockMenu); // CLOCK
 
@@ -103,15 +110,15 @@ void DisplayUI::setup() {
     createMenu(&scanMenu, &mainMenu, [this]() {
         addMenuNode(&scanMenu, D_SCAN_APST, [this]() { // SCAN AP + ST
             scan.start(SCAN_MODE_ALL, 15000, SCAN_MODE_OFF, 0, true, wifi_channel);
-            mode = DISPLAY_MODE::LOADSCAN;
+            setMode(DISPLAY_MODE::LOADSCAN);
         });
         addMenuNode(&scanMenu, D_SCAN_AP, [this]() { // SCAN AP
             scan.start(SCAN_MODE_APS, 0, SCAN_MODE_OFF, 0, true, wifi_channel);
-            mode = DISPLAY_MODE::LOADSCAN;
+            setMode(DISPLAY_MODE::LOADSCAN);
         });
         addMenuNode(&scanMenu, D_SCAN_ST, [this]() { // SCAN ST
             scan.start(SCAN_MODE_STATIONS, 30000, SCAN_MODE_OFF, 0, true, wifi_channel);
-            mode = DISPLAY_MODE::LOADSCAN;
+            setMode(DISPLAY_MODE::LOADSCAN);
         });
     });
 
@@ -446,23 +453,23 @@ void DisplayUI::setup() {
     // CLOCK MENU
     createMenu(&clockMenu, &mainMenu, [this]() {
         addMenuNode(&clockMenu, D_PREDATOR_CLOCK, [this]() { // PREDATOR CLOCK
-            mode = DISPLAY_MODE::CLOCK_DISPLAY;
+            setMode(DISPLAY_MODE::CLOCK_DISPLAY);
             setClockMode(CLOCK_MODE::PREDATOR);
         });
         addMenuNode(&clockMenu, D_CRYPTIC_CLOCK, [this]() { // CRYPTIC CLOCK
-            mode = DISPLAY_MODE::CLOCK_DISPLAY;
+            setMode(DISPLAY_MODE::CLOCK_DISPLAY);
             setClockMode(CLOCK_MODE::CRYPTIC);
         });
         addMenuNode(&clockMenu, D_RANDOM_CLOCK, [this]() { // RANDOM CLOCK
-            mode = DISPLAY_MODE::CLOCK_DISPLAY;
+            setMode(DISPLAY_MODE::CLOCK_DISPLAY);
             setClockMode(CLOCK_MODE::RANDOM);
         });
         addMenuNode(&clockMenu, D_CLOCK_DISPLAY, [this]() { // CLOCK
-            mode = DISPLAY_MODE::CLOCK_DISPLAY;
+            setMode(DISPLAY_MODE::CLOCK_DISPLAY);
             setClockMode(CLOCK_MODE::REGULAR);
         });
         addMenuNode(&clockMenu, D_CLOCK_SET, [this]() { // CLOCK SET TIME
-            mode = DISPLAY_MODE::CLOCK;
+            setMode(DISPLAY_MODE::CLOCK);
             setClockMode(CLOCK_MODE::SET);
         });
     });
@@ -618,12 +625,12 @@ void DisplayUI::setupButtons() {
                 case DISPLAY_MODE::PACKETMONITOR:
                 case DISPLAY_MODE::LOADSCAN:
                     scan.stop();
-                    mode = DISPLAY_MODE::MENU;
+                    setMode(DISPLAY_MODE::MENU);
                     break;
 
                 case DISPLAY_MODE::CLOCK:
                 case DISPLAY_MODE::CLOCK_DISPLAY:
-                    mode = DISPLAY_MODE::MENU;
+                    setMode(DISPLAY_MODE::MENU);
                     display.setFont(DejaVu_Sans_Mono_12);
                     display.setTextAlignment(TEXT_ALIGN_LEFT);
                     break;
@@ -658,11 +665,11 @@ void DisplayUI::setupButtons() {
                 case DISPLAY_MODE::PACKETMONITOR:
                 case DISPLAY_MODE::LOADSCAN:
                     scan.stop();
-                    mode = DISPLAY_MODE::MENU;
+                    setMode(DISPLAY_MODE::MENU);
                     break;
 
                 case DISPLAY_MODE::CLOCK:
-                    mode = DISPLAY_MODE::MENU;
+                    setMode(DISPLAY_MODE::MENU);
                     display.setFont(DejaVu_Sans_Mono_12);
                     display.setTextAlignment(TEXT_ALIGN_LEFT);
                     break;
@@ -716,7 +723,7 @@ void DisplayUI::draw(bool force) {
 
             case DISPLAY_MODE::INTRO:
                 if (!scan.isScanning() && (currentTime - startTime >= screenIntroTime)) {
-                    mode = DISPLAY_MODE::CLOCK_DISPLAY;
+                    setMode(DISPLAY_MODE::CLOCK_DISPLAY);
                     //setClockMode(CLOCK_MODE::PREDATOR);
                     setClockMode(CLOCK_MODE::RANDOM);
                     //setClockMode(CLOCK_MODE::REGULAR);
