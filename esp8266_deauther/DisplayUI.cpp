@@ -55,6 +55,10 @@ void DisplayUI::drawLine(int x1, int y1, int x2, int y2) {
 void DisplayUI::setMode(DISPLAY_MODE newMode) {
   mode = newMode;
 }
+
+DISPLAY_MODE DisplayUI::getMode() {
+  return mode;
+}
 // ====================== //
 
 
