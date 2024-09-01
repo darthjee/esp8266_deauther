@@ -61,6 +61,13 @@ DISPLAY_MODE DisplayUI::getMode() {
 }
 // ====================== //
 
+#ifdef DEBUG_DISPLAY
+void DisplayUI::showDebugMessage(String message) {
+  updateSuffix();
+  drawString(0, message)
+}
+#endif
+
 
 DisplayUI::DisplayUI() {}
 
