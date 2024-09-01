@@ -31,6 +31,8 @@
 
 #include "src/SimpleButton/SimpleButton.h"
 
+#define DEBUG_DISPLAY true
+
 using namespace simplebutton;
 
 
@@ -210,6 +212,10 @@ class DisplayUI {
         uint32_t clockTime = 0;
 
         void setClockMode(CLOCK_MODE mode);
+
+#ifdef DEBUG_DISPLAY
+        void showDebugMessage(String message);
+#endif
 
 #ifdef RTC_DS3231
         DS3231 clock;

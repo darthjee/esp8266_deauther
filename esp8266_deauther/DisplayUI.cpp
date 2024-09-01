@@ -61,6 +61,15 @@ DISPLAY_MODE DisplayUI::getMode() {
 }
 // ====================== //
 
+#ifdef DEBUG_DISPLAY
+void DisplayUI::showDebugMessage(String message) {
+  display.setFont(DejaVu_Sans_Mono_12);
+  display.setTextAlignment(TEXT_ALIGN_LEFT);
+  updateSuffix();
+  drawString(0, message);
+}
+#endif
+
 
 DisplayUI::DisplayUI() {}
 
