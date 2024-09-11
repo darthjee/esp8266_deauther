@@ -137,7 +137,7 @@ class DisplayUI {
         void update(bool force = false);
         void on();
         void off();
-        bool DisplayUI::isOff();
+        bool isOff();
 
     private:
         DISPLAY_MODE mode = DISPLAY_MODE::MENU;

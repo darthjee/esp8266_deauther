@@ -14,6 +14,7 @@ enum LED_MODE {
 namespace led {
     void setup();
     void update();
+    void update(bool forceOff);
     void setMode(LED_MODE new_mode, bool force = false);
     void setColor(uint8_t r, uint8_t g, uint8_t b);
 }
