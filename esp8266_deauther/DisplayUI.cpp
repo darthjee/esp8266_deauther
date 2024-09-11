@@ -542,6 +542,10 @@ void DisplayUI::off() {
     }
 }
 
+bool DisplayUI::isOff() {
+    return tempOff;
+}
+
 void DisplayUI::setupButtons() {
     up   = new ButtonPullup(BUTTON_UP);
     down = new ButtonPullup(BUTTON_DOWN);
