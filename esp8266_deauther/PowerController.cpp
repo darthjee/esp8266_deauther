@@ -1,3 +1,5 @@
 #include "PowerController.h"
 
-void PowerController::check() {}
+void PowerController::check(DisplayUI *display) {
+  display->showDebugMessage(String(currentTime));
+}

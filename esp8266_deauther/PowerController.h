@@ -1,8 +1,8 @@
-#include "src/DS3231-1.0.3/DS3231.h"
+#include "DisplayUI.h"
 
 class PowerController {
-  public:
-    DS3231 clock;
+  uint32_t actionTime;
 
-    void check();
+  public:
+    void check(DisplayUI *display);
 };

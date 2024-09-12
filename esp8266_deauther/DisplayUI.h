@@ -139,6 +139,10 @@ class DisplayUI {
         void off();
         bool isOff();
 
+#ifdef DEBUG_DISPLAY
+        void showDebugMessage(String message);
+#endif
+
     private:
         DISPLAY_MODE mode = DISPLAY_MODE::MENU;
         int16_t selectedID    = 0; // i.e. access point ID to draw the apMenu
@@ -213,10 +217,6 @@ class DisplayUI {
         uint32_t clockTime = 0;
 
         void setClockMode(CLOCK_MODE mode);
-
-#ifdef DEBUG_DISPLAY
-        void showDebugMessage(String message);
-#endif
 
 #ifdef RTC_DS3231
         DS3231 clock;

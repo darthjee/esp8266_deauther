@@ -162,7 +162,7 @@ void loop() {
     cli.update();    // read and run serial input
     scan.update();   // run scan
     ssids.update();  // run random mode, if enabled
-    powerController.check();
+    powerController.check(&displayUI);
 
     // auto-save
     if (settings::getAutosaveSettings().enabled
