@@ -528,7 +528,7 @@
 // =============== DISPLAY =============== //
 
 #ifndef DISPLAY_TIMEOUT
-  #define DISPLAY_TIMEOUT 600
+  #define DISPLAY_TIMEOUT 30
 #endif /* ifndef DISPLAY_TIMEOUT */
 
 #ifndef DISPLAY_TEXT
@@ -691,7 +691,7 @@
 
    // ===== DISPLAY ===== //
  #define USE_DISPLAY false
- #define DISPLAY_TIMEOUT 600
+ #define DISPLAY_TIMEOUT 30
  #define FLIP_DIPLAY false
 
  #define SSD1306_I2C

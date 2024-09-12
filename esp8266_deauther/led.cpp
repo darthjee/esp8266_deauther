@@ -112,6 +112,14 @@ namespace led {
         }
     }
 
+    void update(bool forceOff) {
+        if (forceOff) {
+            setMode(OFF);
+        } else {
+            update();
+        }
+    }
+
     void setMode(LED_MODE new_mode, bool force) {
         if ((new_mode != mode) || force) {
             mode = new_mode;

@@ -9,7 +9,7 @@
     "autosave": true,
     "autosavetime": 30000,
     "display": false,
-    "displayTimeout": 600,
+    "displayTimeout": 30,
     "serial": true,
     "serialEcho": true,
     "web": true,

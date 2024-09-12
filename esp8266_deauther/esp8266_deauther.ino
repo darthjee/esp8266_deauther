@@ -153,7 +153,7 @@ void setup() {
 void loop() {
     currentTime = millis();
 
-    led::update();   // update LED color
+    led::update(displayUI.isOff());   // update LED color
     wifi::update();  // manage access point
     attack.update(); // run attacks
     displayUI.update();
