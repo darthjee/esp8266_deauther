@@ -75,7 +75,7 @@ Time interval for automatic saving in milliseconds.
 Enables display interface.  
 
 ## DISPLAYTIMEOUT
-`uint32_t displayTimeout = 30`  
+`uint32_t displayTimeout = 120`  
 Time in seconds after which the display turns off when inactive.  
 To disable the display timeout, set it to 0.  
 
