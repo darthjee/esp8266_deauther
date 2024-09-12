@@ -31,6 +31,7 @@ extern "C" {
 #include "CLI.h"
 #include "DisplayUI.h"
 #include "A_config.h"
+#include "PowerController.h"
 
 #include "led.h"
 
@@ -43,6 +44,7 @@ Scan   scan;
 Attack attack;
 CLI    cli;
 DisplayUI displayUI;
+PowerController powerController;
 
 simplebutton::Button* resetButton;
 
@@ -160,6 +162,7 @@ void loop() {
     cli.update();    // read and run serial input
     scan.update();   // run scan
     ssids.update();  // run random mode, if enabled
+    powerController.check();
 
     // auto-save
     if (settings::getAutosaveSettings().enabled
