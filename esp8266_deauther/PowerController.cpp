@@ -35,6 +35,7 @@ void PowerController::check(DisplayUI *display) {
 
     if (currentTime - actionTime >= timeout * 1000) {
       display->off();
-      ESP.deepSleep(5000);
+      led::update(true);
+      ESP.deepSleep(0);
     }
 }
