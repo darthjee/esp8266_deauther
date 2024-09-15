@@ -33,16 +33,8 @@ void PowerController::check(DisplayUI *display) {
     a->update();
     b->update();
 
-    String decision = "";
-
-    if (currentTime - actionTime >= 10 * 1000) {
-      decision = "OFF";
-    } else {
-      decision = "ON";
+    if (currentTime - actionTime >= timeout * 1000) {
+      display->off();
+      ESP.deepSleep(5000);
     }
-
-    String msg = String(currentTime) + " - " + String(actionTime) + " - " +decision;
-
-    display->showDebugMessage(msg);
-
 }

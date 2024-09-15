@@ -5,7 +5,8 @@ class PowerController {
         void setup();
         void check(DisplayUI *display);
     private:
-        uint32_t actionTime = 0;
+        uint32_t actionTime;
+        uint32_t timeout = 10;
 
         Button* up   = NULL;
         Button* down = NULL;
