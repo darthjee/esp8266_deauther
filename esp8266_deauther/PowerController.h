@@ -1,10 +1,13 @@
 #include "DisplayUI.h"
 
 class PowerController {
-  uint32_t actionTime;
-
     public:
+        void setupButtons();
+        void setup();
         void check(DisplayUI *display);
+    private:
+        uint32_t actionTime;
+
         Button* up   = NULL;
         Button* down = NULL;
         Button* a    = NULL;

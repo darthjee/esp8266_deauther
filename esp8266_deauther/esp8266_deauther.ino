@@ -119,6 +119,8 @@ void setup() {
         displayUI.setMode(DISPLAY_MODE::INTRO);
     }
 
+    powerController.setup();
+
     // load everything else
     names.load();
     ssids.load();
