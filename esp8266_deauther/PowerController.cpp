@@ -27,6 +27,7 @@ void PowerController::setupButtons() {
         actionTime = currentTime;
     });
 }
+
 void PowerController::check(DisplayUI *display) {
     up->update();
     down->update();

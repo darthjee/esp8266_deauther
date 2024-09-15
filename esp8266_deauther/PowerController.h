@@ -7,7 +7,7 @@ class PowerController {
         void check(DisplayUI *display);
     private:
         uint32_t actionTime;
-        uint32_t timeout = 10;
+        uint32_t timeout = 180;
 
         Button* up   = NULL;
         Button* down = NULL;
