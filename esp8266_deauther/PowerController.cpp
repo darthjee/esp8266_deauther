@@ -1,6 +1,7 @@
 #include "PowerController.h"
 
 void PowerController::setup() {
+    actionTime = currentTime;
     setupButtons();
 }
 
@@ -27,12 +28,21 @@ void PowerController::setupButtons() {
     });
 }
 void PowerController::check(DisplayUI *display) {
-    String msg = String(currentTime) + " - " + String(actionTime);
-
-    display->showDebugMessage(msg);
-
     up->update();
     down->update();
     a->update();
     b->update();
+
+    String decision = "";
+
+    if (currentTime - actionTime >= 10 * 1000) {
+      decision = "OFF";
+    } else {
+      decision = "ON";
+    }
+
+    String msg = String(currentTime) + " - " + String(actionTime) + " - " +decision;
+
+    display->showDebugMessage(msg);
+
 }
